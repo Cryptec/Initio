@@ -1,10 +1,14 @@
 # Initio
 
-## Basic Commands
+## Basic Commands with concurrently
 1. `yarn install` install the dependencys.
-2. `yarn start` starts the react app on port 3000.
+2. `yarn run dev` starts Frontend and Express Server.
 3. `yarn run electron` starts the electron app.
-4. `cd /src` followed by `node Server.js` starts the Backend Express Server on port 5000.
+
+###  Or run all components seperatly 
+1. `yarn start` starts the react app on port 3000.
+2. `cd ./src/Backend` followed by `node Server.js` starts the Backend Express Server on port 5000.
+3. `yarn run electron` starts the electron app.
 
 
 # Create React App & Electron Application
@@ -113,4 +117,3 @@ app.on('activate', function () {
 more infos at:
 
 https://www.freecodecamp.org/news/building-an-electron-application-with-create-react-app-97945861647c/
-
