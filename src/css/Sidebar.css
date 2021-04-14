@@ -1,0 +1,6 @@
+#container {
+    background-color: var(--secondary);
+    width: var(--sidebar-width);
+    position: absolute;
+    height: 100%;  
+}
