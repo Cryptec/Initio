@@ -1,27 +1,3 @@
-# Initio
-
-## Basic Commands
-1. `yarn install` install the dependencys.
-2. `yarn start` starts the react app on port 3000.
-3. `yarn run electron` starts the electron app.
-4. `cd /src` followed by `node Server.js` starts the Backend Express Server on port 5000.
-
-
-# Create React App & Electron Application
-
-## Basic Recipe
-1. run `create-react-app` to generate a basic React application
-2. run `npm install --save-dev electron`
-3. add `main.js` from [electron-quick-start](https://github.com/electron/electron-quick-start) (we’ll rename it to `electron-starter.js`, for clarity)
-4. modify call to `mainWindow.loadURL` (in `electron-starter.js`) to use `localhost:3000` (webpack-dev-server)
-5. add a main entry to `package.json` for `electron-starter.js`
-6. add a run target to start Electron to `package.json`
-7. `npm start` followed by `npm run electron`
-
-
-## Steps 1 and 2 are pretty straightforward. Here’s the code for steps 3 and 4:
-
-```
 const electron = require('electron');
 // Module to control application life.
 const app = electron.app;
@@ -78,39 +54,3 @@ app.on('activate', function () {
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
-
-```
-
-## And for steps 5 and 6:
-
-```
-{
-  "name": "electron-with-create-react-app",
-  "version": "0.1.0",
-  "private": true,
-  "devDependencies": {
-    "electron": "^1.4.14",
-    "react-scripts": "0.8.5"
-  },
-  "dependencies": {
-    "react": "^15.4.2",
-    "react-dom": "^15.4.2"
-  },
-  "main": "src/electron-starter.js",
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject",
-    "electron": "electron ."
-  }
-}
-
-```
-
-## When you run the npm commands in step 7 both apps are running.
-
-more infos at:
-
-https://www.freecodecamp.org/news/building-an-electron-application-with-create-react-app-97945861647c/
-
