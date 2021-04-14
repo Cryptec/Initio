@@ -4,3 +4,8 @@
     position: absolute;
     height: 100%;  
 }
+.liststyle {
+    color: white;
+    list-style: none;
+    text-decoration: none;
+}
