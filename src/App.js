@@ -12,6 +12,7 @@ import Home from './Screens/Home'
 import Login from './Screens/Login';
 import New from './Screens/AddNew';
 import Invoke from './Screens/Invoke';
+import Settings from './Screens/Settings';
 
 
 class App extends Component {
@@ -25,6 +26,7 @@ class App extends Component {
           <PublicRoute restricted={false} component={Home} path="/" exact />
           <PublicRoute restricted={false} component={New} path="/new" exact />
           <PublicRoute restricted={false} component={Invoke} path="/invoke" exact />
+          <PublicRoute restricted={false} component={Settings} path="/settings" exact />
 
         </Switch>
       </Router>

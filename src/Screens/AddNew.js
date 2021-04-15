@@ -14,7 +14,7 @@ class New extends Component {
 <div className="container">
 
     <div className="box-wrapper"> 
-        <div id="articles"> 
+        <div id="box2"> 
 
             <form type="submit">
 

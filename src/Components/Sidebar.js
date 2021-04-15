@@ -36,6 +36,9 @@ class Sidebar extends Component {
                             <Link className="liststyle" to="/invoke">Abrufen</Link>
                         </li>
                         <li>
+                            <Link className="liststylesettings" to="/settings">&#9881; Einstellungen</Link>
+                        </li>
+                        <li>
 
                                 {this.state.isLogin ?
                                     <button onClick={() => this.handleLogout()}>Logout</button>
