@@ -4,8 +4,19 @@
     position: absolute;
     height: 100%;  
 }
-.liststyle {
-    color: white;
+#liststyle {
     list-style: none;
+    margin-left: -20px;
+    margin-top: 180px;
+}
+.liststyle {
     text-decoration: none;
+    list-style: none;
+    color: white;
+    display: block;
+    padding: 15px 35px;
+    margin-left: -20px;
+}
+.liststyle:hover {
+    background-color: black;
 }

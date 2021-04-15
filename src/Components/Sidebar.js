@@ -25,15 +25,15 @@ class Sidebar extends Component {
         return(
             <div>
                 <div id="container">
-                    <ul className="liststyle">
+                    <ul id="liststyle">
                         <li>
-                            <Link to="/">Home</Link>
+                            <Link className="liststyle" to="/">Home</Link>
                         </li>
                         <li>
-                            <Link to="/new">Neuer Artikel</Link>
+                            <Link className="liststyle" to="/new">Neuer Artikel</Link>
                         </li>
                         <li>
-                            <Link to="/invoke">Abrufen</Link>
+                            <Link className="liststyle" to="/invoke">Abrufen</Link>
                         </li>
                         <li>
 
