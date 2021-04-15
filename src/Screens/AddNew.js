@@ -11,7 +11,7 @@ class New extends Component {
         this.state = {
             Teilenummer: "",
             SKU: "",
-            Hersteller: "Submit",
+            Hersteller: "",
             Price: "",
             Beschreibung: "",
             answerOk: "Success",
@@ -84,7 +84,8 @@ class New extends Component {
                   <label>
                   Hersteller: 
                   <br />
-                      <select 
+                      <input 
+                        list="manufacturers"
                         name="Hersteller" 
                         id="Hersteller" 
                         className="herstellerinput"
@@ -92,12 +93,14 @@ class New extends Component {
                         onChange={this.handleChange.bind(this)}
                         required
                       >
+                      </input>
+                      <datalist id="manufacturers">
                           <option value="Volkswagen">Volkswagen</option>
                           <option value="Audi">Audi</option>
                           <option value="BMW" selected="selected">BMW</option>
                           <option value="Mercedes" selected="selected">Mercedes</option>
                           <option value="Opel" selected="selected">Opel</option>  
-                      </select>
+                      </datalist>
                   </label>
               </div>
 
