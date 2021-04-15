@@ -5,9 +5,13 @@ import Sidebar from '../Components/Sidebar'
 import '../css/Global.css'
 import '../css/AddNew.css'
 
+const API = 'https://hn.algolia.com/api/v1/search?query='
+const DEFAULT_QUERY ='redux'
+
 class New extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
+
         this.state = {
             Teilenummer: "",
             SKU: "",
@@ -15,11 +19,19 @@ class New extends Component {
             Price: "",
             Beschreibung: "",
             answerOk: "Success",
-            answerDenied: "Denied"
+            answerDenied: "Denied",
+            hits: [],
         };
     }
 
+    componentDidMount() {
+        fetch(API + DEFAULT_QUERY)
+         .then(response => response.json())
+         .then(data => this.setState({hits: data.hits}));
+    }
+
     render() {
+        const { hits } = this.state;
         return (
 <div>
 <Sidebar />
@@ -146,6 +158,13 @@ class New extends Component {
                       <th>Preis</th>
                       <th style={{'borderTopRightRadius': '4px'}}>SKU</th>
                    </tr>
+                   <ul>
+                       {hits.map(hit =>
+                    <li key={hit.objectID}>
+                        <a href={hit.url}>{hit.title}</a>
+                    </li>
+                       )}
+                   </ul>
                 </thead>
                </table>
             </div>
