@@ -26,25 +26,36 @@ app.get('/ping', function (req, res) {
   return res.send('pong');
 });
 // Insert here other API endpoints
-app.post("/api/user/", (req, res, next) => {
+app.post("/api/teile/", (req, res, next) => {
   var errors = []
-  if (!req.body.regpassword) {
-    errors.push("No password specified");
+  if (!req.body.Teilenummer) {
+    errors.push("No Teilenummer specified");
   }
-  if (!req.body.regemail) {
-    errors.push("No email specified");
+  if (!req.body.SKU) {
+    errors.push("No SKU specified");
+  }
+  if (!req.body.Hersteller) {
+    errors.push("No Hersteller specified");
+  }
+  if (!req.body.Price) {
+    errors.push("No Price specified");
+  }
+  if (!req.body.Beschreibung) {
+    errors.push("No Beschreibung specified");
   }
   if (errors.length) {
     res.status(400).json({ "error": errors.join(",") });
     return;
   }
   var data = {
-    regname: req.body.regname,
-    regemail: req.body.regemail,
-    regpassword: md5(req.body.regpassword)
+    Teilenummer: req.body.Teilenummer,
+    SKU: req.body.SKU,
+    Hersteller: req.body.Hersteller,
+    Price: req.body.Price,
+    Beschreibung: req.body.Beschreibung,
   }
-  var sql = 'INSERT INTO user (regname, regemail, regpassword) VALUES (?,?,?)'
-  var params = [data.regname, data.regemail, data.regpassword]
+  var sql = 'INSERT INTO Teilebestand (Teilenummer, SKU, Hersteller, Price, Beschreibung) VALUES (?,?,?,?,?)'
+  var params = [data.Teilenummer, data.SKU, data.Hersteller, data.Price, data.Beschreibung]
   db.run(sql, params, function (err, result) {
     if (err) {
       res.status(400).json({ "error": err.message })
@@ -57,8 +68,8 @@ app.post("/api/user/", (req, res, next) => {
 })
 
 
-app.get("/api/users", (req, res, next) => {
-  var sql = "select * from user"
+app.get("/api/bestand", (req, res, next) => {
+  var sql = "select * from Teilebestand"
   var params = []
   db.all(sql, params, (err, rows) => {
     if (err) {
@@ -76,7 +87,7 @@ app.post("/login", function (req, res) {
 
   var name = req.body.regname;
   var password = req.body.regpassword;
-  var sql = "SELECT * FROM user where (regname==?) AND (regpassword==?)"
+  var sql = "SELECT * FROM Teilebestand where (regname==?) AND (regpassword==?)"
 
   if (req.body.regname && req.body.regpassword) {
     console.log('Checking regname: ' + name + ' regpassword: ' + password);
@@ -106,8 +117,8 @@ app.post("/login", function (req, res) {
 
 });
 
-app.get("/api/user/:id", (req, res, next) => {
-  var sql = "select * from user where id = ?"
+app.get("/api/bestand/:id", (req, res, next) => {
+  var sql = "select * from Teilebestand where id = ?"
   var params = [req.params.id]
   db.get(sql, params, (err, row) => {
     if (err) {

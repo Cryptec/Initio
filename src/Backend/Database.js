@@ -1,5 +1,4 @@
 var sqlite3 = require('sqlite3').verbose()
-var md5 = require('md5')
 
 
 const DBSOURCE = "db.sqlite"
@@ -11,20 +10,22 @@ let db = new sqlite3.Database(DBSOURCE, (err) => {
         throw err
     } else {
         console.log('Connected to the SQLite database.')
-        db.run(`CREATE TABLE user (
+        db.run(`CREATE TABLE Teilebestand (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
-            regname text, 
-            regemail text UNIQUE, 
-            regpassword text, 
-            CONSTRAINT regemail_unique UNIQUE (regemail)
+            Teilenummer text, 
+            SKU text UNIQUE, 
+            Hersteller text, 
+            Price text, 
+            Beschreibung text, 
+            CONSTRAINT SKU_unique UNIQUE (SKU)
             )`,
             (err) => {
                 if (err) {
                     // Table already created
                 } else {
                     // Table just created, creating some rows
-                    var insert = 'INSERT INTO user (regname, regemail, regpassword) VALUES (?,?,?)'
-                    db.run(insert, ["admin", "admin@example.com", md5("admin123456")])
+                    var insert = 'INSERT INTO Teilebestand (Teilenummer, SKU, Hersteller, Price, Beschreibung) VALUES (?,?,?,?,?)'
+                    db.run(insert, ["000000000", "A3354", "Volkswagen", "19,95", "Tacho Kombiinstrument"])
 
                 }
             });
