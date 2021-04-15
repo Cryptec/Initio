@@ -33,6 +33,9 @@ class Sidebar extends Component {
                             <Link to="/new">Neuer Artikel</Link>
                         </li>
                         <li>
+                            <Link to="/invoke">Abrufen</Link>
+                        </li>
+                        <li>
 
                                 {this.state.isLogin ?
                                     <button onClick={() => this.handleLogout()}>Logout</button>

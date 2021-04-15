@@ -1,5 +1,5 @@
 .container {
     margin-left: var(--sidebar-width);
-    background-color: var(--background);
+    background-color: var(--background-global);
     height: 100vh;
 }
