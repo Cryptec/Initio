@@ -21,13 +21,25 @@ class New extends Component {
             answerOk: "Success",
             answerDenied: "Denied",
             hits: [],
+            isLoading: false,
+            error: null,
         };
     }
 
+    
+
     componentDidMount() {
-        fetch(API + DEFAULT_QUERY)
-         .then(response => response.json())
-         .then(data => this.setState({hits: data.hits}));
+        this.setState({ isLoading: true });
+ 
+    axios.get(API + DEFAULT_QUERY)
+      .then(result => this.setState({
+        hits: result.data.hits,
+        isLoading: false
+      }))
+      .catch(error => this.setState({
+        error,
+        isLoading: false
+      }));
     }
 
     render() {
@@ -161,7 +173,7 @@ class New extends Component {
                    <ul>
                        {hits.map(hit =>
                     <li key={hit.objectID}>
-                        <a href={hit.url}>{hit.title}</a>
+                       <a href={hit.url}>{hit.title}</a>
                     </li>
                        )}
                    </ul>
