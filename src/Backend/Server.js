@@ -77,8 +77,7 @@ app.get("/api/bestand", (req, res, next) => {
       return;
     }
     res.json({
-      "answer": "success",
-      "data": rows
+      rows
     })
   });
 });

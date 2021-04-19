@@ -5,8 +5,6 @@ import Sidebar from '../Components/Sidebar'
 import '../css/Global.css'
 import '../css/AddNew.css'
 
-const API = 'https://hn.algolia.com/api/v1/search?query='
-const DEFAULT_QUERY ='redux'
 
 class New extends Component {
     constructor(props) {
@@ -20,30 +18,36 @@ class New extends Component {
             Beschreibung: "",
             answerOk: "Success",
             answerDenied: "Denied",
-            hits: [],
-            isLoading: false,
-            error: null,
+            apiResponse: []
         };
     }
 
     
 
     componentDidMount() {
-        this.setState({ isLoading: true });
- 
-    axios.get(API + DEFAULT_QUERY)
-      .then(result => this.setState({
-        hits: result.data.hits,
-        isLoading: false
-      }))
-      .catch(error => this.setState({
-        error,
-        isLoading: false
-      }));
-    }
+        fetch('http://localhost:5000/api/bestand')
+          .then(res => res.text())
+          .then(
+            (result) => {
+              this.setState({
+                isLoaded: true,
+                apiResponse: result
+              });
+            },
+            // error handler
+            (error) => {
+              this.setState({
+                isLoaded: true,
+                error
+              });
+            }
+          )
+      }
+
+      
 
     render() {
-        const { hits } = this.state;
+        const { error, isLoaded, apiResponse } = this.state;
         return (
 <div>
 <Sidebar />
@@ -59,7 +63,7 @@ class New extends Component {
                     Teilenummer: 
                     <br/>
                     <input 
-                        type="text" 
+                        type="JSON" 
                         className="teilenrinput" 
                         name="Teilenummer" 
                         id="Teilenummer" 
@@ -170,14 +174,16 @@ class New extends Component {
                       <th>Preis</th>
                       <th style={{'borderTopRightRadius': '4px'}}>SKU</th>
                    </tr>
-                   <ul>
-                       {hits.map(hit =>
-                    <li key={hit.objectID}>
-                       <a href={hit.url}>{hit.title}</a>
-                    </li>
-                       )}
-                   </ul>
                 </thead>
+                <tbody>
+                   <tr >
+                      <td ></td>
+                      <td>{apiResponse}</td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                   </tr>
+                </tbody>
                </table>
             </div>
         </div>
