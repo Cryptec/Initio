@@ -13,6 +13,7 @@ import Login from './Screens/Login';
 import New from './Screens/AddNew';
 import Invoke from './Screens/Invoke';
 import Settings from './Screens/Settings';
+import Table from './Components/Table';
 
 
 class App extends Component {
@@ -27,7 +28,8 @@ class App extends Component {
           <PublicRoute restricted={false} component={New} path="/new" exact />
           <PublicRoute restricted={false} component={Invoke} path="/invoke" exact />
           <PublicRoute restricted={false} component={Settings} path="/settings" exact />
-
+          
+          <PublicRoute restricted={false} component={Table} path="/table" exact />
         </Switch>
       </Router>
     );

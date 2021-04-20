@@ -56,6 +56,7 @@ app.post("/api/teile/", (req, res, next) => {
   }
   var sql = 'INSERT INTO Teilebestand (Teilenummer, SKU, Hersteller, Price, Beschreibung) VALUES (?,?,?,?,?)'
   var params = [data.Teilenummer, data.SKU, data.Hersteller, data.Price, data.Beschreibung]
+  
   db.run(sql, params, function (err, result) {
     if (err) {
       res.status(400).json({ "error": err.message })
