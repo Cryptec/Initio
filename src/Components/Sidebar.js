@@ -28,12 +28,12 @@ class Sidebar extends Component {
                 <div id="container">
 
                     <div className="dropdown">
-                        <button className="dropbtn">&#9776;</button>
+                        <button className="dropbtn"> &#9776;</button>
                         <div className="dropdown-content">
-                        <a onclick="win.reload()">Refresh (F5)</a>
-                        <a onclick=" win.setFullScreen(true)">Fullscreen (F11)</a>
+                        <p onclick="win.reload()">Refresh (F5)</p>
+                        <p onclick=" win.setFullScreen(true)"> Fullscreen (F11)</p>
                         <hr/>
-                        <a href="https://github.com/Cryptec/Initio" target="_blank" style={{fontSize: "10px", fontWeight: "bold", textAlign: "center" }}>Made with ❤️ by Nippo</a>
+                        <a href="https://github.com/Cryptec/Initio" target="_blank" rel="noreferrer" style={{fontSize: "10px", fontWeight: "bold", textAlign: "center" }}>Made with ❤️ by Nippo</a>
                         </div>
                     </div>
 
