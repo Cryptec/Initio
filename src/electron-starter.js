@@ -18,6 +18,10 @@ function createWindow() {
         height: 700,
         minWidth: 930,
         minHeight: 650,
+        webPreferences: {
+            nodeIntegration: true,
+            enableRemoteModule: true
+        }
     });
 
     // and load the index.html of the app.
