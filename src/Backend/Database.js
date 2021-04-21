@@ -24,7 +24,7 @@ let db = new sqlite3.Database(DBSOURCE, (err) => {
                 } else {
                     // Table just created, creating some rows
                     var insert = 'INSERT INTO Teilebestand (Teilenummer, Hersteller, Beschreibung, Preis, SKU) VALUES (?,?,?,?,?)'
-                    db.run(insert, ["000000000", "A3354", "Volkswagen", "19,95", "Tacho Kombiinstrument"])
+                    db.run(insert, ["000000000", "Volkswagen", "Tacho Kombiinstrument", "19,95", "Z195"])
 
                 }
             });
