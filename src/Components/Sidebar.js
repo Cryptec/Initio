@@ -1,8 +1,9 @@
-import React, { Component } from 'react';
-import { Link } from "react-router-dom";
+import React, { Component } from 'react'
+import { Link } from "react-router-dom"
 import { logout, isLogin } from '../utils'
 
 import '../css/Sidebar.css'
+import '../css/Dropdown.css'
 
 class Sidebar extends Component {
     constructor(props) {
@@ -25,6 +26,18 @@ class Sidebar extends Component {
         return(
             <div>
                 <div id="container">
+
+                    <div className="dropdown">
+                        <button className="dropbtn">&#9776;</button>
+                        <div className="dropdown-content">
+                        <a onclick="win.reload()">Refresh (F5)</a>
+                        <a onclick=" win.setFullScreen(true)">Fullscreen (F11)</a>
+                        <hr/>
+                        <a href="https://github.com/Cryptec/Initio" target="_blank" style={{fontSize: "10px", fontWeight: "bold", textAlign: "center" }}>Made with ❤️ by Nippo</a>
+                        </div>
+                    </div>
+
+
                     <ul id="liststyle">
                         <li>
                             <Link className="liststyle" to="/">Home</Link>

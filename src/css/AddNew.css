@@ -130,13 +130,13 @@
   
   #tblData tr:nth-child(even){background-color: #1A373E;}
   
-  #tblData tr:hover {background-color: #2A4A51;}
+  #tblData tr:hover {background-color: var(--primary);}
   
   #tblData th {
     padding-top: 10px;
     padding-bottom: 10px;
     text-align: left;
-    background-color: #2A4A51;
+    background-color: var(--primary);
     color: white;
   }
 
