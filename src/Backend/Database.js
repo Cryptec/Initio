@@ -11,12 +11,11 @@ let db = new sqlite3.Database(DBSOURCE, (err) => {
     } else {
         console.log('Connected to the SQLite database.')
         db.run(`CREATE TABLE Teilebestand (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            Teilenummer text, 
-            SKU text UNIQUE, 
-            Hersteller text, 
-            Price text, 
-            Beschreibung text, 
+            Teilenummer text,  
+            Hersteller text,
+            Beschreibung text,  
+            Preis text, 
+            SKU text UNIQUE,
             CONSTRAINT SKU_unique UNIQUE (SKU)
             )`,
             (err) => {
@@ -24,7 +23,7 @@ let db = new sqlite3.Database(DBSOURCE, (err) => {
                     // Table already created
                 } else {
                     // Table just created, creating some rows
-                    var insert = 'INSERT INTO Teilebestand (Teilenummer, SKU, Hersteller, Price, Beschreibung) VALUES (?,?,?,?,?)'
+                    var insert = 'INSERT INTO Teilebestand (Teilenummer, Hersteller, Beschreibung, Preis, SKU) VALUES (?,?,?,?,?)'
                     db.run(insert, ["000000000", "A3354", "Volkswagen", "19,95", "Tacho Kombiinstrument"])
 
                 }

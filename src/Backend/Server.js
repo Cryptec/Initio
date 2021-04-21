@@ -37,8 +37,8 @@ app.post("/api/teile/", (req, res, next) => {
   if (!req.body.Hersteller) {
     errors.push("No Hersteller specified");
   }
-  if (!req.body.Price) {
-    errors.push("No Price specified");
+  if (!req.body.Preis) {
+    errors.push("No Preis specified");
   }
   if (!req.body.Beschreibung) {
     errors.push("No Beschreibung specified");
@@ -51,11 +51,11 @@ app.post("/api/teile/", (req, res, next) => {
     Teilenummer: req.body.Teilenummer,
     SKU: req.body.SKU,
     Hersteller: req.body.Hersteller,
-    Price: req.body.Price,
+    Preis: req.body.Preis,
     Beschreibung: req.body.Beschreibung,
   }
-  var sql = 'INSERT INTO Teilebestand (Teilenummer, SKU, Hersteller, Price, Beschreibung) VALUES (?,?,?,?,?)'
-  var params = [data.Teilenummer, data.SKU, data.Hersteller, data.Price, data.Beschreibung]
+  var sql = 'INSERT INTO Teilebestand (Teilenummer, SKU, Hersteller, Preis, Beschreibung) VALUES (?,?,?,?,?)'
+  var params = [data.Teilenummer, data.SKU, data.Hersteller, data.Preis, data.Beschreibung]
   
   db.run(sql, params, function (err, result) {
     if (err) {
@@ -77,9 +77,7 @@ app.get("/api/bestand", (req, res, next) => {
       res.status(400).json({ "error": err.message });
       return;
     }
-    res.json({
-      rows
-    })
+    res.status(200).json(rows);
   });
 });
 

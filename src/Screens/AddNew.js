@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import axios from "axios"
 import Sidebar from '../Components/Sidebar'
+import Table from '../Components/Table'
 
 import '../css/Global.css'
 import '../css/AddNew.css'
@@ -14,40 +15,17 @@ class New extends Component {
             Teilenummer: "",
             SKU: "",
             Hersteller: "",
-            Price: "",
+            Preis: "",
             Beschreibung: "",
             answerOk: "Success",
             answerDenied: "Denied",
-            apiResponse: []
         };
     }
 
-    
-
-    componentDidMount() {
-        fetch('http://localhost:5000/api/bestand')
-          .then(res => res.text())
-          .then(
-            (result) => {
-              this.setState({
-                isLoaded: true,
-                apiResponse: result
-              });
-            },
-            // error handler
-            (error) => {
-              this.setState({
-                isLoaded: true,
-                error
-              });
-            }
-          )
-      }
 
       
 
     render() {
-        const { error, isLoaded, apiResponse } = this.state;
         return (
 <div>
 <Sidebar />
@@ -99,8 +77,8 @@ class New extends Component {
                         type="text" 
                         name="Price" 
                         className="priceinput" 
-                        id="Price" 
-                        value={this.state.Price}
+                        id="Preis" 
+                        value={this.state.Preis}
                         onChange={this.handleChange.bind(this)}
                         required
                     />
@@ -149,12 +127,7 @@ class New extends Component {
                   </label>
               </div>
 
-              <input  class="Eintragen-Button" type="submit" value="Anlegen " 
-                       onclick="values(); 
-                       document.getElementById('Teilenummer').value='';
-                       document.getElementById('Beschreibung').value='';
-                       document.getElementById('Price').value='';
-                       document.getElementById('SKU').value=''; "/>
+              <input  class="Eintragen-Button" type="submit" value="Anlegen "/>
 
                        <span id="response"></span>
                        <button class="exportieren" onclick="exportTableToExcel('tblData')">Exportieren</button>
@@ -165,25 +138,13 @@ class New extends Component {
 
         <div id="box3"> 
             <div id="box4"> 
-               <table className="table" id="tblData" >
-                <thead>
-                   <tr className="tblhead">
-                      <th style={{'borderTopLeftRadius': '4px'}}>Teilenummer</th>
-                      <th>Hersteller</th>
-                      <th>Beschreibung</th>
-                      <th>Preis</th>
-                      <th style={{'borderTopRightRadius': '4px'}}>SKU</th>
-                   </tr>
+               <table className="table" id="tblData">
+                <thead className="tblhead" >
+                  
+                   <Table />
+                 
                 </thead>
-                <tbody>
-                   <tr >
-                      <td ></td>
-                      <td>{apiResponse}</td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                   </tr>
-                </tbody>
+                 
                </table>
             </div>
         </div>
@@ -203,8 +164,8 @@ class New extends Component {
             this.setState({ SKU: event.target.value });
         } else if (field === "Hersteller") {
             this.setState({ Hersteller: event.target.value });
-        } else if (field === "Price") {
-            this.setState({ Price: event.target.value });
+        } else if (field === "Preis") {
+            this.setState({ Preis: event.target.value });
         } else if (field === "Beschreibung") {
             this.setState({ Beschreibung: event.target.value });
         }
@@ -222,7 +183,7 @@ class New extends Component {
                    Teilenummer: this.state.Teilenummer, 
                    SKU: this.state.SKU,
                    Hersteller: this.state.Hersteller,
-                   Price: this.state.Price,
+                   Preis: this.state.Preis,
                    Beschreibung: this.state.Beschreibung 
                   }
             
@@ -234,7 +195,7 @@ class New extends Component {
                 this.setState({ Teilenummer: "", 
                                 SKU: "", 
                                 Hersteller: "",
-                                Price: "",
+                                Preis: "",
                                 Beschreibung: "",
                                 status: "Logged in" })
                 alert("Success");
@@ -245,7 +206,7 @@ class New extends Component {
                 this.setState({ Teilenummer: "", 
                                 SKU: "", 
                                 Hersteller: "",
-                                Price: "",
+                                Preis: "",
                                 Beschreibung: "",
                                 status: "Failed" })
                 alert("Wrong Username or Password");
