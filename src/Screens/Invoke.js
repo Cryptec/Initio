@@ -1,35 +1,30 @@
 import React, { Component } from 'react'
 import Sidebar from '../Components/Sidebar'
+import Table from '../Components/Table'
 
 import '../css/Invoke.css'
+import '../css/Global.css'
+
 
 class Invoke extends Component {
 
-
-
-    render() {
-        return (
-            <div>
-            <Sidebar />
+render() {
+    return (
+    <div>
+        <Sidebar />
             <div className="container">
-               <div class="section-wrapper"> 
-                  <div id="search-wrapper"> 
-                     
-                     <form className="search">
-                       
-                       <label>Teilesuche: 
-                       <br /> 
-                       <input type="text" name="Suchen" id="suchen" style={{'width': '500px'}} />
-                       </label>
+              <div className="box-wrapper"> 
+                <div id="background">
 
-                     </form>
-                     <a href="showitems.html"><input class="suchen-Button" type="submit" value="Suchen" onClick= "document.getElementById('Suchen').value=''" /></a>
-                  </div> 
+                    <input type="search" name="Suchen" id="suchen" placeholder="&#124; &#x2315;" style={{right: "40px", position: "absolute", width: "200px"}}/>
+                    <br />
+                    <br />
+        
+                  <Table />
+                 </div> 
               </div>
             </div>
-            </div>
-
-
+    </div>
         );
     }
 }
