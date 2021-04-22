@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-
+import Loginbox from '../Components/Login/Loginbox'
 import '../css/Login.css'
 
 class Login extends Component {
@@ -8,7 +8,7 @@ class Login extends Component {
         return (
             <div>
                 <div id="logincontainer">
-                    Login
+                    <Loginbox />
                 </div>
             </div>
         )

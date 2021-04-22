@@ -13,6 +13,7 @@ import Login from './Screens/Login'
 import New from './Screens/AddNew'
 import Invoke from './Screens/Invoke'
 import Settings from './Screens/Settings'
+import Forgot from './Components/Login/Forgot/Forgotbox'
 
 
 class App extends Component {
@@ -22,6 +23,7 @@ class App extends Component {
       <Router>
         <Switch>
           <PublicRoute restricted={false} component={Login} path="/login" exact />
+          <PublicRoute restricted={false} component={Forgot} path="/forgot" exact />
 
           <PublicRoute restricted={false} component={Home} path="/" exact />
           <PublicRoute restricted={false} component={New} path="/new" exact />
