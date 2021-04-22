@@ -35,7 +35,7 @@
      max-width: 350px;
      position: absolute;
      border: none;
-     background: var(--primary-dark);
+     background: var(--background-global);
      color: var(--white);
      border-bottom-left-radius: 6px;
      text-decoration: none;
@@ -54,7 +54,7 @@
      position: absolute;
      border: none;
      cursor: default;
-     background: var(--primary-dark);
+     background: var(--background-global);
      color: var(--white);
      border-bottom-right-radius: 6px;
      text-decoration: none;
@@ -99,7 +99,7 @@
       min-width: 0;
       position: absolute;
       border: none;
-      background: var(--primary-dark);
+      background: var(--background-global);
       color: var(--white);
       border-bottom-left-radius: 6px;
       text-decoration: none;
@@ -117,7 +117,7 @@
       min-width: 0;
       position: absolute;
       border: none;
-      background: var(--primary-dark);
+      background: var(--background-global);
       color: var(--white);;
       border-bottom-right-radius: 6px;
       text-decoration: none;

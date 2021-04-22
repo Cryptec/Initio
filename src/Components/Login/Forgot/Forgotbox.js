@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 import ForgotPassword from './ForgotPassword'
 
 import '../../../css/logincss/forgotbox.css'
-import '../../../css/logincss/colors.css'
 
 
 class ForgotBox extends Component {

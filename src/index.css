@@ -4,12 +4,14 @@
   --primary: #2A4A51;
   --background-global: #1A373E;
   --button: #e2cc00;
+  --white: #FFFFFF;
 
   --box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   --transition: all ease-in-out 300ms;
   --sidebar-width: 180px;
+  --radius: 4px;
 }
-
+ 
 .secondary {
    color: var(--secondary);
 }

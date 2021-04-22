@@ -39,7 +39,7 @@
     border: none;
   }
   .loginTextBox {
-    background-color: var(--primary-dark);
+    background-color: var(--background-global);
     width: 45.5%;
     height: 240px;
     border-radius: 4px;
@@ -100,7 +100,7 @@
      max-width: 350px;
      position: absolute;
      border: none;
-     background: var(--primary-dark);
+     background: var(--background-global);
      color: var(--white);
      border-bottom-left-radius: 6px;
      text-decoration: none;
@@ -119,7 +119,7 @@
      max-width: 350px;
      position: absolute;
      border: none;
-     background: var(--primary-dark);
+     background: var(--background-global);
      color: var(--white);
      border-bottom-right-radius: 6px;
      text-decoration: none;
@@ -175,7 +175,7 @@
      min-width: 0;
      position: absolute;
      border: none;
-     background: var(--primary-dark);
+     background: var(--background-global);
      color: var(--white);
      border-bottom-left-radius: 6px;
      text-decoration: none;
@@ -193,7 +193,7 @@
      min-width: 0;
      position: absolute;
      border: none;
-     background: var(--primary-dark);
+     background: var(--background-global);
      color: var(--white);;
      border-bottom-right-radius: 6px;
      text-decoration: none;

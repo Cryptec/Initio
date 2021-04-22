@@ -5,7 +5,6 @@ import LoginForm from './Loginfrom'
 import RegisterForm from './Registerfrom'
 
 import '../../css/logincss/loginbox.css';
-import '../../css/logincss/colors.css';
 
 
 class Loginbox extends Component {
