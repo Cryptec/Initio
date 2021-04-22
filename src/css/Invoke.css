@@ -48,6 +48,7 @@ font-size: 20px;
     background: var(--primary); 
     border-radius: 6px; 
     border: none;
+    margin-right: 10px;
   }
   .suchen-Button {
     background-color: var(--button);

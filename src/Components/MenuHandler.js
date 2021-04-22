@@ -1,7 +1,9 @@
+
 const $ = require('jquery');
 const { remote } = require('electron');
 var win = remote.getCurrentWindow();
 const { getCurrentWindow, globalShortcut } = require('electron').remote;
+
 
 $(window).on("load", function () {
     console.log("loaded");

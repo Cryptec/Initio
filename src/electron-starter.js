@@ -18,9 +18,11 @@ function createWindow() {
         height: 700,
         minWidth: 930,
         minHeight: 650,
+        //frame: false,
         webPreferences: {
             nodeIntegration: true,
-            enableRemoteModule: true
+            enableRemoteModule: true,
+            contextIsolation: false,
         }
     });
 

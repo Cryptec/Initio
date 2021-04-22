@@ -1,19 +1,18 @@
-import React, { Component } from 'react';
-//import PrivateRoute from './Routes/PrivateRoute';
-import PublicRoute from './Routes/PublicRoute';
+import React, { Component } from 'react'
+//import PrivateRoute from './Routes/PrivateRoute'
+import PublicRoute from './Routes/PublicRoute'
 import {
   BrowserRouter as Router,
   Switch
-} from "react-router-dom";
+} from "react-router-dom"
 
 import './App.css'
 
 import Home from './Screens/Home'
-import Login from './Screens/Login';
-import New from './Screens/AddNew';
-import Invoke from './Screens/Invoke';
-import Settings from './Screens/Settings';
-import Table from './Components/Table';
+import Login from './Screens/Login'
+import New from './Screens/AddNew'
+import Invoke from './Screens/Invoke'
+import Settings from './Screens/Settings'
 
 
 class App extends Component {
