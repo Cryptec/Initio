@@ -28,8 +28,6 @@ class App extends Component {
           <PublicRoute restricted={false} component={New} path="/new" exact />
           <PublicRoute restricted={false} component={Invoke} path="/invoke" exact />
           <PublicRoute restricted={false} component={Settings} path="/settings" exact />
-          
-          <PublicRoute restricted={false} component={Table} path="/table" exact />
         </Switch>
       </Router>
     );

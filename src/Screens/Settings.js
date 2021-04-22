@@ -22,36 +22,32 @@ $(document).ready(function() {
 
 class Settings extends Component {
 
+render() {
+  return (
+    <div>
+      <div>
+        <Sidebar />
+      </div>
 
+      <div className="container">
+        <div className="box-wrapper"> 
 
-    render() {
-        return (
-            <div>
-            <div>
-                
-                <Sidebar />
+          <div id="general"> 
+
+            <div id="set1">
+              <h3>General settings:</h3>
+               <text>Choose Design: </text>
+
+               <select name="Hersteller" id="Hersteller" style={{height: "25px", width: "200px", background: "#2A4A51", borderRadius: "6px", border: "none", color: "white"}}>
+                  <option value="design_default">Default</option> 
+               </select>
             </div>
-            <div className="container">
-            <div className="box-wrapper"> 
 
-<div id="general"> 
-  <div id="set1">
-      <h3>General settings:</h3><br/>
-         <text>Password:</text><br />
-               <text>New password: </text><input type="text" name="pass" id="pass" style={{height: "25px", width: "200px", background: "#2A4A51", borderRadius: "6px", border: "none", color: "white"}}/><br /><br />
-         <text>Design:</text><br />
-               <text>Choose Design: </text><select name="Hersteller" id="Hersteller" style={{height: "25px", width: "200px", background: "#2A4A51", borderRadius: "6px", border: "none", color: "white"}}>
-               <option value="design_default">Default</option> 
-                                  </select>
-  </div>
-</div>
-<div id="box3"> 
+       <br />
 
-  <div id="connection"> 
-    <div id="set2">
+  <div id="set2">
+        <h3>Connection settings:</h3>
 
-        <h3>Connection settings:</h3><br/>
-        <text>Database:</text><br />
         <text>Type: </text>
            <select name="Storage" id="storage" style={{height: "25px", width: "200px", background: "#2A4A51", borderRadius: "6px", border: "none", color: "white"}}>
                <option value="MySQL">MySQL</option>
@@ -68,15 +64,31 @@ class Settings extends Component {
             <input type="text" name="pass" id="password" style={{height: "25px", width: "200px", background: "#2A4A51", borderRadius: "6px", border: "none", color: "white"}}/><br /><br />
    </div>
 
+</div>
+<div id="box3"> 
+
+  <div id="connection">
+
+    <div id="set3">
+
+      <h3>Login Settings:</h3>
+        <text>New password: </text>
+            <input type="text" name="pass" id="pass" style={{height: "25px", width: "200px", background: "#2A4A51", borderRadius: "6px", border: "none", color: "white"}}/><br /><br />
+              
+        <text>Login window: </text>
+            <select name="loginselect" id="loginselectid" style={{height: "25px", width: "200px", background: "#2A4A51", borderRadius: "6px", border: "none", color: "white"}}>
+                <option value="enabled">enabled</option>
+                <option value="disabled" id="disabled">disabled</option>
+            </select>
+
+    </div>
     <p><button className='save-Button' id="save-Button">Save</button></p>
-  
   </div>
+
 </div> 
 </div> 
 </div>
 </div>
-
-
         );
     }
 }
