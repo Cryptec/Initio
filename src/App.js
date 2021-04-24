@@ -13,7 +13,7 @@ import Login from './Screens/Login'
 import New from './Screens/AddNew'
 import Invoke from './Screens/Invoke'
 import Settings from './Screens/Settings'
-import Forgot from './Components/Login/Forgot/Forgotbox'
+import Forgot from './Screens/Forgot'
 
 
 class App extends Component {

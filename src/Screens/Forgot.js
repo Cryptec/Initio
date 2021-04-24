@@ -1,14 +1,15 @@
-import '../App.css';
 import ForgotBox from '../Components/Login/Forgot/Forgotbox'
+import '../css/Login.css'
 
 function ForgotWindow() {
   return (
-      <header className="App-header">
+    <div>
+      <div id="logincontainer">
 
         <ForgotBox />
 
-      </header>
-
+      </div>
+    </div>
   );
 }
 
