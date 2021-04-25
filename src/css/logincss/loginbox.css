@@ -37,6 +37,7 @@
     width: 45.5%;
     border-radius: 4px;
     border: none;
+    
   }
   .loginTextBox {
     background-color: var(--background-global);
