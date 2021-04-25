@@ -21,7 +21,7 @@ class ForgotBox extends Component {
                         <TabList>
                         <div>
                             <Tab className="orderButton" type="submit"> Order key </Tab>
-                            <Link to='/' className="setNewButton">Back</Link>
+                            <Link to='/login' className="setNewButton">Back</Link>
                         </div>
                         </TabList>
                         

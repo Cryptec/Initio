@@ -1,8 +1,0 @@
-#logincontainer{
-    background-color: var(--background-global);
-    height: 100vh;
-    justify-content: center;
-    align-items: center;
-    display: flex;
-    color: white;
-}
