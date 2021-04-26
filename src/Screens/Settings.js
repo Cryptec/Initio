@@ -46,6 +46,7 @@ render() {
        <br />
 
   <div id="set2">
+
         <h3>Connection settings:</h3>
 
         <text>Type: </text>
@@ -62,6 +63,7 @@ render() {
      
         <text className="password"> Password: </text>
             <input type="text" name="pass" id="password" style={{height: "25px", width: "200px", background: "#2A4A51", borderRadius: "6px", border: "none", color: "white"}}/><br /><br />
+  
    </div>
 
 </div>
@@ -76,6 +78,20 @@ render() {
             <input type="text" name="pass" id="pass" style={{height: "25px", width: "200px", background: "#2A4A51", borderRadius: "6px", border: "none", color: "white"}}/><br /><br />
               
         <text>Login window: </text>
+            <select name="loginselect" id="loginselectid" style={{height: "25px", width: "200px", background: "#2A4A51", borderRadius: "6px", border: "none", color: "white"}}>
+                <option value="enabled">enabled</option>
+                <option value="disabled" id="disabled">disabled</option>
+            </select>
+
+    </div>
+    <br />
+    <div id="set4">
+
+      <h3>email Settings:</h3>
+        <text>receiving address: </text>
+            <input type="text" name="pass" id="pass" style={{height: "25px", width: "200px", background: "#2A4A51", borderRadius: "6px", border: "none", color: "white"}}/><br /><br />
+              
+        <text>sending address: </text>
             <select name="loginselect" id="loginselectid" style={{height: "25px", width: "200px", background: "#2A4A51", borderRadius: "6px", border: "none", color: "white"}}>
                 <option value="enabled">enabled</option>
                 <option value="disabled" id="disabled">disabled</option>
