@@ -27,7 +27,7 @@ class ForgotPassword extends Component {
                     <div className="orderContent">
                         <span style={{ fontWeight: "600" }}>Forgot your password?</span>
 
-                        <Link to="/login" onClick={() => LoginWindow()} style={{fontSize:"1.5rem", textDecoration:"none", right: "30px", top: "20px", color:"white", position:"absolute"}}> &#x2716; </Link>
+                        <Link to="/login" style={{fontSize:"1.5rem", textDecoration:"none", right: "30px", top: "20px", color:"white", position:"absolute"}}> &#x2716; </Link>
 
                         <br></br>
                         

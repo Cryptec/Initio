@@ -12,8 +12,10 @@ import Home from './Screens/Home'
 import Login from './Screens/Login'
 import New from './Screens/AddNew'
 import Invoke from './Screens/Invoke'
-import Settings from './Screens/Settings'
+import Settings from './Screens/Settings/Settings'
 import Forgot from './Screens/Forgot'
+import Mailsettings from './Screens/Settings/Mailsettings'
+import Connectionsettings from './Screens/Settings/Connectionsettings'
 
 
 class App extends Component {
@@ -28,7 +30,10 @@ class App extends Component {
           <PublicRoute restricted={false} component={Home} path="/" exact />
           <PublicRoute restricted={false} component={New} path="/new" exact />
           <PublicRoute restricted={false} component={Invoke} path="/invoke" exact />
+
           <PublicRoute restricted={false} component={Settings} path="/settings" exact />
+          <PublicRoute restricted={false} component={Mailsettings} path="/settings-mail" exact />
+          <PublicRoute restricted={false} component={Connectionsettings} path="/settings-connection" exact />
         </Switch>
       </Router>
     );

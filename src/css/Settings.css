@@ -1,10 +1,11 @@
-.box-wrapper { 
+.box-wrapper-settings { 
     height: 100vh; 
     display: flex; 
     flex-direction: column; 
     margin-right: 30px;
-    margin-left: 15px;
+    margin-left: 75px;
     overflow: hidden;
+    color: white;
 } 
 
 #general { 

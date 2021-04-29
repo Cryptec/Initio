@@ -75,9 +75,9 @@ render() {
 
       <h3>Login Settings:</h3>
         <text>New password: </text>
-            <input type="text" name="pass" id="pass" style={{height: "25px", width: "200px", background: "#2A4A51", borderRadius: "6px", border: "none", color: "white"}}/><br /><br />
+            <input type="text" name="pass" id="pass" style={{height: "25px", width: "200px", background: "#2A4A51", borderRadius: "6px", border: "none", color: "white"}}/>
               
-        <text>Login window: </text>
+        <text> Login window: </text>
             <select name="loginselect" id="loginselectid" style={{height: "25px", width: "200px", background: "#2A4A51", borderRadius: "6px", border: "none", color: "white"}}>
                 <option value="enabled">enabled</option>
                 <option value="disabled" id="disabled">disabled</option>
