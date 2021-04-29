@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import { GrAdd, SaveOutline, IoSettingsOutline, MailOutline } from '../../Components/Icons'
-import { withRouter, Link } from 'react-router-dom'
+import { SaveOutline, IoSettingsOutline, MailOutline } from '../../Components/Icons'
+import { Link } from 'react-router-dom'
 
 
 import '../../css/StaticBar.css'
