@@ -14,9 +14,9 @@
     min-width: 500px;
     max-width: 700px;
     position: absolute;
-    border-radius: 6px;
+    border-radius: var(--radius);
     min-height: 300px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    box-shadow: var(--box-shadow)
   }
   
   .loginContent {
@@ -35,7 +35,7 @@
     margin-top: 40px;
     height: 30px;
     width: 45.5%;
-    border-radius: 4px;
+    border-radius: var(--radius);
     border: none;
     
   }
@@ -43,7 +43,7 @@
     background-color: var(--background-global);
     width: 45.5%;
     height: 240px;
-    border-radius: 4px;
+    border-radius: var(--radius);
     float: right;
     color: var(--white);
     font-size: 1rem;
@@ -55,7 +55,7 @@
     height: 70vh;
     background-color: rgb(170, 170, 170);
     border: 1px solid black;
-    border-radius: 6px;
+    border-radius: var(--radius);
     text-align: center;
     display: flex;
     justify-content: center;
@@ -76,7 +76,7 @@
   .form-group-register {
     margin-top: 40px;
     height: 30px;
-    border-radius: 4px;
+    border-radius: var(--radius);
     border: none;
     width: 45.5%;
   }
@@ -103,7 +103,7 @@
      border: none;
      background: var(--background-global);
      color: var(--white);
-     border-bottom-left-radius: 6px;
+     border-bottom-left-radius: var(--radius);
      text-decoration: none;
      list-style: none;
      font-size: medium;
@@ -122,7 +122,7 @@
      border: none;
      background: var(--background-global);
      color: var(--white);
-     border-bottom-right-radius: 6px;
+     border-bottom-right-radius: var(--radius);
      text-decoration: none;
      list-style: none;
      font-size: medium;
@@ -154,7 +154,7 @@
     width: 94vw;
     height: 94vh;
     bottom: 3vh;
-    border-radius: 6px;
+    border-radius: var(--radius);
     min-height: 470px;
     max-height: none;
     min-width: 0;
@@ -178,7 +178,7 @@
      border: none;
      background: var(--background-global);
      color: var(--white);
-     border-bottom-left-radius: 6px;
+     border-bottom-left-radius: var(--radius);
      text-decoration: none;
      list-style: none;
      font-size: medium;
@@ -196,7 +196,7 @@
      border: none;
      background: var(--background-global);
      color: var(--white);;
-     border-bottom-right-radius: 6px;
+     border-bottom-right-radius: var(--radius);
      text-decoration: none;
      list-style: none;
      font-size: medium;
@@ -209,7 +209,7 @@
     width: 99%;
     min-width: 76vw;
     bottom: 5px;
-    border-radius: 4px;
+    border-radius: var(--radius);
     border: none;
     position: relative;
     display: flex;
@@ -222,7 +222,7 @@
     height: 30px;
     width: 80vw;
     min-width: 76vw;
-    border-radius: 4px;
+    border-radius: var(--radius);
     border: none;
     justify-content: space-around;
     flex-direction: column;
