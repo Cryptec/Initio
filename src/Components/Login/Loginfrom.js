@@ -95,7 +95,7 @@ class Loginform extends Component {
 
         axios({
             method: "POST",
-            url: "https://rust.mneubauer.com/login",
+            url: "http://localhost:5000/auth",
             headers: { 'Content-Type': 'application/json' },
             data: { name: this.state.name, password: this.state.password }
             

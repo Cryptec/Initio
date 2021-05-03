@@ -169,3 +169,32 @@ app.get("/api/users/:id", (req, res, next) => {
 app.use(function (req, res) {
   res.status(404);
 });
+
+app.post("/auth", function (req, res) {
+
+  var name = req.body.regname;
+  var password = req.body.regpassword;
+  var sql = "SELECT * FROM Teilebestand where (regname==?) AND (regpassword==?)"
+
+  if (req.body.regname && req.body.regpassword) {
+    console.log('Checking regname: ' + name + ' regpassword: ' + password);
+    db.all(sql, function (err, rows) {
+
+      if (err) {
+        console.log('Error: ' + err);
+        res.json({
+          "answer": "Denied",
+        })
+      }
+      else {
+        rows.forEach(function (row) {
+          console.log('Login Success')
+          res.json({
+            "answer": "Success",
+          })
+
+        });
+      }
+    })}
+})
+      
