@@ -32,7 +32,7 @@ class Registerbox extends Component {
                                 type='text'
                                 className='form-group-register'
                                 id="regname"
-                                value={this.state.name}
+                                value={this.state.regname}
                                 onChange={this.handleChange.bind(this)}
                                 required
                                 placeholder=' Username*'
@@ -43,7 +43,7 @@ class Registerbox extends Component {
                                 type='text'
                                 className='form-group-register'
                                 id="regemail"
-                                value={this.state.email}
+                                value={this.state.regemail}
                                 onChange={this.handleChange.bind(this)}
                                 required
                                 placeholder=' Enter your email*'
@@ -53,7 +53,7 @@ class Registerbox extends Component {
                                 type='password'
                                 className='form-group-register'
                                 id="regpassword"
-                                value={this.state.password}
+                                value={this.state.regpassword}
                                 onChange={this.handleChange.bind(this)}
                                 required
                                 placeholder=' Password*'
@@ -63,7 +63,7 @@ class Registerbox extends Component {
                                 type='password'
                                 className='form-group-register'
                                 id="regconfirm_password"
-                                value={this.state.confirm_password}
+                                value={this.state.regconfirm_password}
                                 onChange={this.handleChange.bind(this)}
                                 required
                                 placeholder=' Confirm password*'
