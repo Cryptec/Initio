@@ -1,4 +1,5 @@
 var sqlite3 = require('sqlite3').verbose()
+var md5 = require('md5')
 
 
 const DBSOURCE = "db.sqlite"
@@ -23,9 +24,26 @@ let db = new sqlite3.Database(DBSOURCE, (err) => {
                     // Table already created
                 } else {
                     // Table just created, creating some rows
-                    var insert = 'INSERT INTO Teilebestand (Teilenummer, Hersteller, Beschreibung, Preis, SKU) VALUES (?,?,?,?,?)'
-                    db.run(insert, ["000000000", "Volkswagen", "Tacho Kombiinstrument", "19,95", "Z195"])
+                    var insertBestand = 'INSERT INTO Teilebestand (Teilenummer, Hersteller, Beschreibung, Preis, SKU) VALUES (?,?,?,?,?)'
+                    db.run(insertBestand, ["000000000", "Volkswagen", "Tacho Kombiinstrument", "19,95", "Z195"])
 
+        db.run(`CREATE TABLE Users (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            regname text, 
+            regemail text UNIQUE, 
+            regpassword text, 
+            CONSTRAINT regemail_unique UNIQUE (regemail)
+            )`,
+            (err) => {
+                if (err) {
+                    // Table already created
+                } else {
+                    // Table just created, creating some rows
+                    var insertUsers = 'INSERT INTO Users (regname, regemail, regpassword) VALUES (?,?,?)'
+                    db.run(insertUsers, ["admin","admin@example.com",md5("admin123456")])
+            
+                    }
+                });
                 }
             });
     }

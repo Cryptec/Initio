@@ -25,6 +25,9 @@ app.get("/", (req, res, next) => {
 app.get('/ping', function (req, res) {
   return res.send('pong');
 });
+
+
+
 // Insert here other API endpoints
 app.post("/api/teile/", (req, res, next) => {
   var errors = []
@@ -81,39 +84,6 @@ app.get("/api/bestand", (req, res, next) => {
   });
 });
 
-app.post("/login", function (req, res) {
-
-  var name = req.body.regname;
-  var password = req.body.regpassword;
-  var sql = "SELECT * FROM Teilebestand where (regname==?) AND (regpassword==?)"
-
-  if (req.body.regname && req.body.regpassword) {
-    console.log('Checking regname: ' + name + ' regpassword: ' + password);
-    db.all(sql, function (err, rows) {
-
-      if (err) {
-        console.log('Error: ' + err);
-      }
-      else {
-        rows.forEach(function (row) {
-          console.log('Login Success')
-          res.json({
-            "answer": "Success",
-          })
-
-        });
-
-      }
-      console.log('Login Fail')
-      res.json({
-        "answer": "Success",
-      })
-    });
-
-  }
-
-
-});
 
 app.get("/api/bestand/:id", (req, res, next) => {
   var sql = "select * from Teilebestand where id = ?"
@@ -129,6 +99,72 @@ app.get("/api/bestand/:id", (req, res, next) => {
     })
   });
 });
+
+
+//Users
+
+app.post("/api/register/", (req, res, next) => {
+  var errors=[]
+  if (!req.body.regname){
+    errors.push("No Username specified");
+  }
+  if (!req.body.regpassword){
+      errors.push("No password specified");
+  }
+  if (!req.body.regemail){
+      errors.push("No email specified");
+  } 
+  if (errors.length){
+      res.status(400).json({"error":errors.join(",")});
+      return;
+  }
+  var data = {
+      regname: req.body.regname,
+      regemail: req.body.regemail,
+      regpassword : md5(req.body.regpassword)
+  }
+  var sql ='INSERT INTO Users (regname, regemail, regpassword) VALUES (?,?,?)'
+  var params =[data.regname, data.regemail, data.regpassword]
+  db.run(sql, params, function (err, result) {
+      if (err){
+          res.status(400).json({"error": err.message})
+          return;
+      }
+      res.json({
+          "answer": "Success",
+      })
+      res.status(200)
+  });
+})
+
+
+app.get("/api/users", (req, res, next) => {
+  var sql = "select * from Users"
+  var params = []
+  db.all(sql, params, (err, rows) => {
+    if (err) {
+      res.status(400).json({ "error": err.message });
+      return;
+    }
+    res.status(200).json(rows);
+  });
+});
+
+app.get("/api/users/:id", (req, res, next) => {
+  var sql = "select * from Users where id = ?"
+  var params = [req.params.id]
+  db.get(sql, params, (err, row) => {
+      if (err) {
+        res.status(400).json({"error":err.message});
+        return;
+      }
+      res.json({
+          "answer":"success",
+          "data":row
+      })
+    });
+});
+
 // Default response for any other request
 app.use(function (req, res) {
   res.status(404);
