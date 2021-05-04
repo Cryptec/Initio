@@ -73,7 +73,7 @@ app.post("/api/bestand/", (req, res, next) => {
 
 
 app.patch("/api/bestand/", (req, res, next) => {
-  var reqBody = re.body;
+  var reqBody = req.body;
   db.run(`UPDATE Teilebestand set Teilenummer = ?, SKU = ?, Hersteller = ?, Preis = ?, Beschreibung = ? WHERE Teilebestand_id = ?`,
       [reqBody.Teilenummer, reqBody.SKU, reqBody.Hersteller, reqBody.Preis, reqBody.Beschreibung, reqBody.Teilebestand_id],
       function (err, result) {

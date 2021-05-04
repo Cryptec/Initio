@@ -62,7 +62,7 @@ class Loginform extends Component {
                             />
                 
                         </div>
-                        <Link to="/forgot" onClick={() => ForgotWindow()} style={{fontSize: "0.8rem", textDecoration: "none", color: "white"}}> forgot password? </Link>
+                        <Link to="/forgot" style={{fontSize: "0.8rem", textDecoration: "none", color: "white"}}> forgot password? </Link>
 
                     </div>
    

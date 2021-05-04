@@ -1,8 +1,10 @@
+import { Component } from 'react';
 import ForgotBox from '../Components/Login/Forgot/Forgotbox'
 
-import '../App.css'
 
-function ForgotWindow() {
+class ForgotWindow extends Component {
+  
+  render() {
   return (
     <div>
       <header className="App-header">
@@ -12,6 +14,6 @@ function ForgotWindow() {
       </header>
     </div>
   );
-}
+}}
 
 export default ForgotWindow;
