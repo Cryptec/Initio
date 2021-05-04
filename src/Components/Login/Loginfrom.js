@@ -1,11 +1,10 @@
-import React, { Component } from 'react';
-import axios from "axios";
-import { withRouter, Link } from 'react-router-dom';
+import React, { Component } from 'react'
+import axios from "axios"
+import { withRouter, Link } from 'react-router-dom'
 
-import ForgotWindow from '../../Screens/Forgot';
-import login from '../../utils';
+import login from '../../utils'
 
-import '../../css/logincss/loginbox.css';
+import '../../css/logincss/loginbox.css'
 
 
 class Loginform extends Component {
@@ -16,7 +15,7 @@ class Loginform extends Component {
             password: "",
             status: "Submit",
             answerOk: "Success",
-            answerDenied: "Denied"
+            answerDenied: "Denied",
         };
     }
 
@@ -115,8 +114,7 @@ class Loginform extends Component {
                 alert("Wrong Username or Password");
             }
         });
-    
     }
 }
-//export default Loginform
+
 export default withRouter(Loginform);
