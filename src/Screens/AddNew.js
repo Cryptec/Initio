@@ -177,7 +177,7 @@ class New extends Component {
 
         axios({
             method: "POST",
-            url: "http://localhost:5000/api/teile/",
+            url: "http://localhost:5000/api/bestand/",
             headers: { 'Content-Type': 'application/json' },
             data: { 
                    Teilenummer: this.state.Teilenummer, 

@@ -29,7 +29,7 @@ app.get('/ping', function (req, res) {
 
 
 // Insert here other API endpoints
-app.post("/api/teile/", (req, res, next) => {
+app.post("/api/bestand/", (req, res, next) => {
   var errors = []
   if (!req.body.Teilenummer) {
     errors.push("No Teilenummer specified");
@@ -70,6 +70,31 @@ app.post("/api/teile/", (req, res, next) => {
     })
   });
 })
+
+
+app.patch("/api/bestand/", (req, res, next) => {
+  var reqBody = re.body;
+  db.run(`UPDATE Teilebestand set Teilenummer = ?, SKU = ?, Hersteller = ?, Preis = ?, Beschreibung = ? WHERE Teilebestand_id = ?`,
+      [reqBody.Teilenummer, reqBody.SKU, reqBody.Hersteller, reqBody.Preis, reqBody.Beschreibung, reqBody.Teilebestand_id],
+      function (err, result) {
+          if (err) {
+              res.status(400).json({ "error": res.message })
+              return;
+          }
+          res.status(200).json({ updatedID: this.changes });
+      });
+});
+app.delete("/api/bestand/:id", (req, res, next) => {
+  db.run(`DELETE FROM Teilebestand WHERE id = ?`,
+      req.params.id,
+      function (err, result) {
+          if (err) {
+              res.status(400).json({ "error": res.message })
+              return;
+          }
+          res.status(200).json({ deletedID: this.changes })
+      });
+});
 
 
 app.get("/api/bestand", (req, res, next) => {
