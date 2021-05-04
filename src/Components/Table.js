@@ -38,7 +38,11 @@ render() {
         <table className="table" id="tblData"  >
           <thead>
             <tr>
-              {this.renderTableHeader()}
+              <th>Teilenummer</th>
+              <th>Hersteller</th>
+              <th>Beschreibung</th>
+              <th>Preis</th>
+              <th>SKU</th>
             </tr>
           </thead>
           <tbody>

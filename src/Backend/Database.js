@@ -12,6 +12,7 @@ let db = new sqlite3.Database(DBSOURCE, (err) => {
     } else {
         console.log('Connected to the SQLite database.')
         db.run(`CREATE TABLE Teilebestand (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
             Teilenummer text,  
             Hersteller text,
             Beschreibung text,  
