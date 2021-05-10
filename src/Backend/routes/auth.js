@@ -1,9 +1,9 @@
-const router = require('express').Router();
-const Joi = require('@hapi/joi');
-var db = require('../Database');
-var md5 = require('md5')
+const router = require('express').Router()
+const Joi = require('@hapi/joi')
+var db = require('../Database')
+const bcrypt = require('bcryptjs')
 
-//Validation
+// Validation
 const schema = {
     regname: Joi.string().min(4).required(),
     regemail: Joi.string().min(4).required().email(),
@@ -11,14 +11,18 @@ const schema = {
 }
 
 router.post('/register', async (req, res) => {
+  
+  // Hashing
+  const salt = await bcrypt.genSalt(10)
+  const hashedPassword = await bcrypt.hash(req.body.regpassword, salt)
 
   // Validate
-  const {error} = Joi.validate(req.body, schema);
+  const {error} = Joi.validate(req.body, schema)
 
   var data = {
       regname: req.body.regname,
       regemail: req.body.regemail,
-      regpassword : md5(req.body.regpassword)
+      regpassword : hashedPassword
   }
   var sql ='INSERT INTO Users (regname, regemail, regpassword) VALUES (?,?,?)'
   var params =[data.regname, data.regemail, data.regpassword]

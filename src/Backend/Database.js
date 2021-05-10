@@ -1,5 +1,5 @@
 var sqlite3 = require('sqlite3').verbose()
-var md5 = require('md5')
+const bcrypt = require('bcryptjs')
 
 
 const DBSOURCE = "db.sqlite"
@@ -39,9 +39,12 @@ let db = new sqlite3.Database(DBSOURCE, (err) => {
                 if (err) {
                     // Table already created
                 } else {
+                    // Hashing
+                    var salt = bcrypt.genSaltSync(10);
+                    var hashedPassword = bcrypt.hashSync("admin123456", salt);
                     // Table just created, creating some rows
                     var insertUsers = 'INSERT INTO Users (regname, regemail, regpassword) VALUES (?,?,?)'
-                    db.run(insertUsers, ["admin","admin@example.com",md5("admin123456")])
+                    db.run(insertUsers, ["admin","admin@example.com", hashedPassword])
             
                     }
                 });
