@@ -11,8 +11,8 @@ class Loginform extends Component {
     constructor() {
         super();
         this.state = {
-            name: "",
-            password: "",
+            regname: "",
+            regpassword: "",
             status: "Submit",
             answerOk: "Success",
             answerDenied: "Denied",
@@ -44,7 +44,7 @@ class Loginform extends Component {
                                 type='text'
                                 className='form-group'
                                 id="name"
-                                value={this.state.name}
+                                value={this.state.regname}
                                 onChange={this.handleChange.bind(this)}
                                 required
                                 placeholder=' Username'
@@ -54,7 +54,7 @@ class Loginform extends Component {
                                 type='password'
                                 className='form-group'
                                 id="password"
-                                value={this.state.password}
+                                value={this.state.regpassword}
                                 onChange={this.handleChange.bind(this)}
                                 required
                                 placeholder=' Password'
@@ -77,9 +77,9 @@ class Loginform extends Component {
     handleChange(event) {
         const field = event.target.id;
         if (field === "name") {
-            this.setState({ name: event.target.value });
+            this.setState({ regname: event.target.value });
         } else if (field === "password") {
-            this.setState({ password: event.target.value });
+            this.setState({ regpassword: event.target.value });
         }
     }
 
@@ -94,23 +94,23 @@ class Loginform extends Component {
 
         axios({
             method: "POST",
-            url: "http://localhost:5000/auth",
+            url: "http://localhost:5000/api/login",
             headers: { 'Content-Type': 'application/json' },
-            data: { name: this.state.name, password: this.state.password }
+            data: { regname: this.state.regname, regpassword: this.state.regpassword, regemail: "neupi92@web.de"}
             
         }).then((response, props) => {
             
             console.log(response);
             if (response.data.answer === this.state.answerOk) {
                 
-                this.setState({ name: "", password: "", status: "Logged in" })
+                this.setState({ regname: "", regpassword: "", status: "Logged in" })
                 this.handleLogin()
                 alert("Login Success");
 
                 
            
             } else if (response.data.answer === this.state.answerDenied) {
-                this.setState({ password: "", status: "Logging in" });
+                this.setState({ regpassword: "", status: "Logging in" });
                 alert("Wrong Username or Password");
             }
         });

@@ -65,15 +65,39 @@ router.get("/users", (req, res, next) => {
       });
   });
 
-  router.post('/login', (req, res) => {
-    
-    // Validate
-    const {error} = Joi.validate(req.body, schema);
-    if (error){
-        res.status(400).send(error.details[0].message);
-        return;
-    }
-
+  router.post('/login', (req, res, next) => {
+    let sql = `SELECT * FROM Users WHERE regname = "${req.body.regname}" AND regpassword = "${req.body.regpassword}"`;
+    var x;
+   
+    db.all(sql, (err, rows) => {
+     if (err) {
+       next(err);
+       return;
+     }
+     if (!rows) {
+       res.status(400);
+       res.send('Invalid username or password');
+       return
+     }
+     rows.forEach((row) => {
+       if (row.regname === req.body.regname && bcrypt.compare(req.body.regpassword, row)) {
+           x = 1;
+       }
+       else {
+           x = 2;
+           db.close();
+       }
+     })
+     if (x === 1) {
+      res.json({
+        "answer":"Success",
+    })
+     }
+     else { 
+       res.json(
+         {"answer":"Denied",}
+       ) }
+    })
   })
 
 
