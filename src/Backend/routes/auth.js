@@ -68,7 +68,7 @@ router.get("/users", (req, res, next) => {
   router.post('/login', (req, res, next) => {
     let sql = `SELECT * FROM Users WHERE regname = "${req.body.regname}" AND regpassword = "${req.body.regpassword}"`;
     var x;
-   
+
     db.all(sql, (err, rows) => {
      if (err) {
        next(err);
@@ -79,8 +79,8 @@ router.get("/users", (req, res, next) => {
        res.send('Invalid username or password');
        return
      }
-     rows.forEach((row) => {
-       if (row.regname === req.body.regname && bcrypt.compare(req.body.regpassword, row)) {
+     rows.forEach( async (row) => {
+       if (row.regname === req.body.regname && await bcrypt.compare(req.body.regpassword, row.regpassword) ) {
            x = 1;
        }
        else {
@@ -91,12 +91,13 @@ router.get("/users", (req, res, next) => {
      if (x === 1) {
       res.json({
         "answer":"Success",
-    })
+     })
      }
      else { 
        res.json(
-         {"answer":"Denied",}
-       ) }
+         {"answer":"Denied",
+     }) 
+     }
     })
   })
 

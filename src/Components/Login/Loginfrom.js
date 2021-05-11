@@ -96,7 +96,7 @@ class Loginform extends Component {
             method: "POST",
             url: "http://localhost:5000/api/login",
             headers: { 'Content-Type': 'application/json' },
-            data: { regname: this.state.regname, regpassword: this.state.regpassword, regemail: "neupi92@web.de"}
+            data: { regname: this.state.regname, regpassword: this.state.regpassword}
             
         }).then((response, props) => {
             
