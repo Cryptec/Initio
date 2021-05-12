@@ -68,12 +68,12 @@ router.get("/users", (req, res, next) => {
   router.post('/login', (req, res) => {
     const  regname  =  req.body.regname;
     const  regpassword  =  req.body.regpassword;
-    const  findUserByEmail  = (regname, cb) => {
+    const  findUserByName  = (regname, cb) => {
       return  db.get(`SELECT * FROM Users WHERE regname = ?`,[regname], (err, row) => {
               cb(err, row)
       });
   }
-    findUserByEmail(regname, (err, user)=>{
+    findUserByName(regname, (err, user)=>{
         if (err) return  res.status(500).send('Server error!');
         if (!user) return  res.status(404).send('User not found!');
         const  result  =  bcrypt.compareSync(regpassword, user.regpassword);

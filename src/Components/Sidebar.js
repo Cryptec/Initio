@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
-import { withRouter } from 'react-router'
+import { Link, withRouter } from 'react-router-dom'
 import { logout, isLogin } from '../utils'
 
 import '../css/Sidebar.css'
@@ -34,7 +33,7 @@ class Sidebar extends Component {
                         <p onclick="win.reload()">Refresh (F5)</p>
                         <p onclick=" win.setFullScreen(true)"> Fullscreen (F11)</p>
                         <hr/>
-                        <p>
+                        <p className ="logoutbutton">
 
                                 {this.state.isLogin ?
                                     <p onClick={() => this.handleLogout()}>Logout</p>
