@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import { Link } from "react-router-dom"
+import { Link } from 'react-router-dom'
+import { withRouter } from 'react-router'
 import { logout, isLogin } from '../utils'
 
 import '../css/Sidebar.css'
@@ -66,4 +67,4 @@ class Sidebar extends Component {
     }
 }
 
-export default Sidebar
+export default withRouter(Sidebar)
