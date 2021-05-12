@@ -33,7 +33,14 @@ class Sidebar extends Component {
                         <p onclick="win.reload()">Refresh (F5)</p>
                         <p onclick=" win.setFullScreen(true)"> Fullscreen (F11)</p>
                         <hr/>
-                        <a href="https://github.com/Cryptec/Initio" target="_blank" rel="noreferrer" style={{fontSize: "10px", fontWeight: "bold", textAlign: "center" }}>Made with ❤️ by Nippo</a>
+                        <p>
+
+                                {this.state.isLogin ?
+                                    <p onClick={() => this.handleLogout()}>Logout</p>
+                                    : <Link to="/login" onClick={() => this.handleLogout()}>Logout</Link>
+                                }
+                            
+                        </p>
                         </div>
                     </div>
 
@@ -50,14 +57,6 @@ class Sidebar extends Component {
                         </li>
                         <li>
                             <Link className="liststylesettings" to="/settings">&#9881; Einstellungen</Link>
-                        </li>
-                        <li>
-
-                                {this.state.isLogin ?
-                                    <button onClick={() => this.handleLogout()}>Logout</button>
-                                    : <Link to="/login" onClick={() => this.handleLogout()}></Link>
-                                }
-                            
                         </li>
                      
                     </ul>
