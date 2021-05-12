@@ -65,41 +65,27 @@ router.get("/users", (req, res, next) => {
       });
   });
 
-  router.post('/login', (req, res, next) => {
-    let sql = `SELECT * FROM Users WHERE regname = "${req.body.regname}" AND regpassword = "${req.body.regpassword}"`;
-    var x;
+  router.post('/login', (req, res) => {
+    const  regname  =  req.body.regname;
+    const  regpassword  =  req.body.regpassword;
+    const  findUserByEmail  = (regname, cb) => {
+      return  db.get(`SELECT * FROM Users WHERE regname = ?`,[regname], (err, row) => {
+              cb(err, row)
+      });
+  }
+    findUserByEmail(regname, (err, user)=>{
+        if (err) return  res.status(500).send('Server error!');
+        if (!user) return  res.status(404).send('User not found!');
+        const  result  =  bcrypt.compareSync(regpassword, user.regpassword);
+        if(!result) return  res.status(401).send('Password not valid!');
 
-    db.all(sql, (err, rows) => {
-     if (err) {
-       next(err);
-       return;
-     }
-     if (!rows) {
-       res.status(400);
-       res.send('Invalid username or password');
-       return
-     }
-     rows.forEach( async (row) => {
-       if (row.regname === req.body.regname && await bcrypt.compare(req.body.regpassword, row.regpassword) ) {
-           x = 1;
-       }
-       else {
-           x = 2;
-           db.close();
-       }
-     })
-     if (x === 1) {
-      res.json({
-        "answer":"Success",
-     })
-     }
-     else { 
-       res.json(
-         {"answer":"Denied",
-     }) 
-     }
-    })
-  })
+        res.status(200)
+        res.json({
+          "answer":"Success",
+        })
+
+    });
+});
 
 
 module.exports = router;
