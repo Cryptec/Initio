@@ -30,8 +30,8 @@ class Sidebar extends Component {
                     <div className="dropdown">
                         <button className="dropbtn"> &#9776;</button>
                         <div className="dropdown-content">
-                        <p onclick="win.reload()">Refresh (F5)</p>
-                        <p onclick=" win.setFullScreen(true)"> Fullscreen (F11)</p>
+                        <p onclick="mainWindow.reload()">Refresh (F5)</p>
+                        <p onclick="mainWindow.setFullScreen(true)"> Fullscreen (F11)</p>
                         <hr/>
                        
 

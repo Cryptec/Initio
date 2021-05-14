@@ -2,7 +2,7 @@
 import React, { Component } from 'react'
 
 import '../css/Global.css'
-
+import './MenuHandler'
 
 class WindowButtons extends Component {
 

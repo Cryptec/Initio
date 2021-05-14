@@ -1,30 +1,29 @@
 
 const $ = require('jquery');
-const { remote } = require('electron');
-var win = remote.getCurrentWindow();
-const { getCurrentWindow, globalShortcut } = require('electron').remote;
-
+const { remote } = window.require('electron');
+var mainWindow = remote.getCurrentWindow();
+const { getCurrentWindow, globalShortcut } = window.require('electron').remote;
 
 $(window).on("load", function () {
     console.log("loaded");
 
     $("#minimize").click(function () {
         console.log("minimize");
-        win.minimize();
+        mainWindow.minimize();
     });
 
     $("#maximize").click(function () {
         console.log("maximize");
-        if (win.isMaximized()) {
-            win.unmaximize();
+        if (mainWindow.isMaximized()) {
+            mainWindow.unmaximize();
         } else {
-            win.maximize();
+            mainWindow.maximize();
         }
     });
 
     $("#close").click(function () {
         console.log("close");
-        win.close();
+        mainWindow.close();
     });
 
 });
