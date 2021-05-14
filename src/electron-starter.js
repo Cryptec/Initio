@@ -11,6 +11,8 @@ const url = require('url');
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow;
 
+var IMG_DIR = '/img/';
+
 function createWindow() {
     // Create the browser window.
     mainWindow = new BrowserWindow({
@@ -18,6 +20,7 @@ function createWindow() {
         height: 700,
         minWidth: 930,
         minHeight: 650,
+        icon: path.join(__dirname, IMG_DIR, 'icon.png'),
         frame: false,
         webPreferences: {
             nodeIntegration: true,
