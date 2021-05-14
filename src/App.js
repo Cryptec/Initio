@@ -8,7 +8,7 @@ import {
 
 import './App.css'
 
-import Home from './Screens/Home'
+import Layout from './Screens/Layout'
 import Login from './Screens/Login'
 import New from './Screens/AddNew'
 import Invoke from './Screens/Invoke'
@@ -27,7 +27,7 @@ class App extends Component {
           <PublicRoute restricted={false} component={Login} path="/login" exact />
           <PublicRoute restricted={false} component={Forgot} path="/forgot" exact />
 
-          <PrivateRoute restricted={false} component={Home} path="/" exact />
+          <PrivateRoute restricted={false} component={Layout} path="/" exact />
           <PrivateRoute restricted={false} component={New} path="/new" exact />
           <PrivateRoute restricted={false} component={Invoke} path="/invoke" exact />
 

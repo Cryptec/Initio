@@ -33,14 +33,14 @@ class Sidebar extends Component {
                         <p onclick="win.reload()">Refresh (F5)</p>
                         <p onclick=" win.setFullScreen(true)"> Fullscreen (F11)</p>
                         <hr/>
-                        <p className ="logoutbutton">
+                       
 
                                 {this.state.isLogin ?
                                     <p onClick={() => this.handleLogout()}>Logout</p>
                                     : <Link to="/login" onClick={() => this.handleLogout()}>Logout</Link>
                                 }
                             
-                        </p>
+                      
                         </div>
                     </div>
 
