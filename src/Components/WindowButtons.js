@@ -15,17 +15,19 @@ render() {
         <nav>
           
           <div id="buttons">
-              <div id="minimize">
-                <span id="minimize-font">&mdash;</span>
-              </div>
-                
-              <div id="maximize">
-                <span id="size-font">&#9723;</span>
-              </div>
-                    
+
               <div id="close">
                  <span id="close-font" >&#10005;</span>
               </div>
+              
+              <div id="maximize">
+                <span id="size-font">&#9723;</span>
+              </div>
+              
+              <div id="minimize">
+                <span id="minimize-font">&mdash;</span>
+              </div>
+                    
           </div>
           
         </nav>
