@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import axios from "axios"
 import Sidebar from '../Components/Sidebar'
+import WindowButtons from '../Components/WindowButtons'
 import Table from '../Components/Table'
 
 import '../css/Global.css'
@@ -28,6 +29,7 @@ class New extends Component {
     render() {
         return (
 <div>
+<WindowButtons />
 <Sidebar />
 <div className="container">
 

@@ -15,10 +15,10 @@ class Layout extends Component {
         return (
             <div>
             <div>
+                <WindowButtons />
                 <Sidebar />
             </div>
             <div className="container">
-                <WindowButtons />
                 <Home />
             </div>
             </div>

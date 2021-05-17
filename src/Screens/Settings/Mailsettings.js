@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Sidebar from '../../Components/Sidebar'
 import StaticBar from './Sidebar-Static'
+import WindowButtons from '../../Components/WindowButtons'
 
 import '../../css/Global.css'
 import '../../css/Settings.css'
@@ -12,6 +13,7 @@ render() {
   return (
     <div>
       <div>
+        <WindowButtons />
         <Sidebar />
         <StaticBar />
       </div>

@@ -2,7 +2,7 @@
     background-color: var(--secondary);
     width: var(--sidebar-width);
     position: absolute;
-    height: 100%;  
+    height: 100%; 
 }
 #liststyle {
     list-style: none;
