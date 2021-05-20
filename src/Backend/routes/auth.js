@@ -65,7 +65,7 @@ router.post('/register', async (req, res) => {
         from: data.regname,
         to: data.regemail,
         subject: "User Registration",
-        html: `<p>Name: ${data.regname}</p><p>Successfuly registered</p>`,
+        html: `<p>${data.regname} is successfuly registered!</p>`,
       };
       contactEmail.sendMail(mail, (error) => {
         if (error) {
