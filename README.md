@@ -25,7 +25,7 @@
 
 ## Create React App & Electron Application
 
-# Basic Recipe
+### Basic Recipe
 1. run `create-react-app` to generate a basic React application
 2. run `npm install --save-dev electron`
 3. add `main.js` from [electron-quick-start](https://github.com/electron/electron-quick-start) (we’ll rename it to `electron-starter.js`, for clarity)
