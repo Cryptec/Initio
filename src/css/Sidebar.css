@@ -2,5 +2,36 @@
     background-color: var(--secondary);
     width: var(--sidebar-width);
     position: absolute;
-    height: 100%;  
+    height: 100%; 
+}
+#liststyle {
+    list-style: none;
+    margin-left: -20px;
+    margin-top: 180px;
+}
+.liststyle {
+    text-decoration: none;
+    list-style: none;
+    color: white;
+    display: block;
+    padding: 15px 35px;
+    margin-left: -20px;
+}
+.liststyle:hover {
+    background-color: black;
+}
+
+.liststylesettings {
+    text-decoration: none;
+    list-style: none;
+    color: white;
+    display: block;
+    padding: 15px 33.5px;
+    position: absolute;
+    bottom: 20px;
+    margin-left: -19.2px;
+    
+}
+.liststylesettings:hover {
+    background-color: black;
 }

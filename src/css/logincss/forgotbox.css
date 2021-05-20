@@ -1,0 +1,177 @@
+.forgotbox {
+    background-color: var(--primary);
+    height: 350px;
+    width: 50vw;
+    min-width: 500px;
+    max-width: 700px;
+    position: absolute;
+    border-radius: var(--radius);
+    min-height: 300px;
+    box-shadow: var(--box-shadow);
+  }
+  #key {
+   margin-left: 30px;
+   float: right;
+ }
+  #new_pass_re {
+   margin-left: 30px;
+   float: right;
+ }
+  
+  .orderContent {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+  .setNewContent {
+    padding-left: 30px;
+    padding-right: 30px; 
+  }
+ .orderButton {
+     bottom: 0;
+     left: 0vw;
+     width: 25vw;
+     height: 50px;
+     min-width: 250px;
+     max-width: 350px;
+     position: absolute;
+     border: none;
+     background: var(--background-global);
+     color: var(--white);
+     border-bottom-left-radius: var(--radius);
+     text-decoration: none;
+     list-style: none;
+     font-size: medium;
+     text-align: center;
+     line-height: 50px;
+  }
+  .setNewButton {
+     bottom: 0;
+     right: 0;
+     width: 25vw;
+     height: 50px;
+     min-width: 250px;
+     max-width: 350px;
+     position: absolute;
+     border: none;
+     cursor: default;
+     background: var(--background-global);
+     color: var(--white);
+     border-bottom-right-radius: var(--radius);
+     text-decoration: none;
+     list-style: none;
+     font-size: medium;
+     text-align: center;
+     line-height: 50px;
+  }
+  .orderButton:hover {
+     background: var(--secondary);
+   }
+   .setNewButton:hover {
+     background: var(--secondary);
+   }
+ 
+   @media (max-width: 500px) {
+     .forgotbox {
+     top:3vh;
+     left:3vw;
+     width: 94vw;
+     height: 94vh;
+     bottom: 3vh;
+     border-radius: var(--radius);
+     min-height: 470px;
+     max-height: none;
+     min-width: 0;
+     box-shadow: none;
+     }
+     .logoWhite {
+     display: flex;
+     position: absolute;
+     width: 33.3%;
+     left: 33.3%;
+   
+   
+     }
+     .orderButton {
+      bottom: 0;
+      width: 47vw;
+      height: 10vh;
+      min-height: 65px;
+      min-width: 0;
+      position: absolute;
+      border: none;
+      background: var(--background-global);
+      color: var(--white);
+      border-bottom-left-radius: var(--radius);
+      text-decoration: none;
+      list-style: none;
+      font-size: medium;
+      text-align: center;
+      line-height: 10vh;
+   }
+   .setNewButton {
+      bottom: 0;
+      left: 47vw;
+      width: 47vw;
+      height: 10vh;
+      min-height: 65px;
+      min-width: 0;
+      position: absolute;
+      border: none;
+      background: var(--background-global);
+      color: var(--white);;
+      border-bottom-right-radius: var(--radius);
+      text-decoration: none;
+      list-style: none;
+      font-size: medium;
+      text-align: center;
+      line-height: 10vh;
+   }
+   .form-group {
+     margin-top: 30px;
+     height: 30px;
+     width: 99%;
+     min-width: 76vw;
+     bottom: 5px;
+     border-radius: var(--radius);
+     border: none;
+     position: relative;
+     display: flex;
+   }
+   .space {
+     display: none;
+   }
+   .form-group-register {
+     margin-top: 30px;
+     height: 30px;
+     width: 80vw;
+     min-width: 76vw;
+     border-radius: var(--radius);
+     border: none;
+     justify-content: space-around;
+     flex-direction: column;
+     align-items: center;
+   }
+   #key {
+     margin-left: 0px;
+     float: none;
+   }
+   #new_pass_re {
+     margin-left: 0px;
+     float: none;
+   }
+   .orderContent {
+     margin-top: 16vh;
+     padding: 25px;
+   }
+   .setNewContent {
+     margin-top: 16vh;
+     padding: 25px;
+   }
+   .loginLogo{
+     visibility: hidden;
+   }}
+   @media (max-height: 650px) {
+     .loginLogo{
+       visibility: hidden;
+     }
+   }

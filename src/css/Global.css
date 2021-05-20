@@ -1,5 +1,15 @@
 .container {
-    left: var(--sidebar-width);
-    background-color: var(--background);
+    margin-left: var(--sidebar-width);
+    background-color: var(--background-global);
     height: 100vh;
+}
+
+.simplebackground {
+    padding: 20px; 
+    line-height: 30px; 
+    border-radius: 4px;
+    background-color: var(--background);
+    margin-bottom: 30px;
+    flex-grow: 2;
+    margin-top: 45px;
 }
