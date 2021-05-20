@@ -2,6 +2,9 @@ const router = require('express').Router()
 const Joi = require('@hapi/joi')
 var db = require('../Database')
 const bcrypt = require('bcryptjs')
+const nodemailer = require("nodemailer")
+
+require('dotenv').config()
 
 // Validation
 const schema = {
@@ -10,6 +13,30 @@ const schema = {
     regpassword: Joi.string().min(4).required(),
 }
 
+// Email
+const mailhost = process.env.MAIL_HOST
+const mailport = process.env.MAIL_PORT
+const mailemail = process.env.MAIL_EMAIL
+const mailpass = process.env.MAIL_PASSWORD
+
+const contactEmail = nodemailer.createTransport({
+  host: mailhost,
+  port: mailport,
+  auth: {
+    user: mailemail,
+    pass: mailpass,
+  },
+});
+
+contactEmail.verify((error) => {
+  if (error) {
+    console.log(error);
+  } else {
+    console.log("Ready to Send");
+  }
+});
+
+// Routes
 router.post('/register', async (req, res) => {
   
   // Hashing
@@ -34,6 +61,19 @@ router.post('/register', async (req, res) => {
       res.json({
           "answer": "Success",
       })
+      const mail = {
+        from: data.regname,
+        to: data.regemail,
+        subject: "User Registration",
+        html: `<p>Name: ${data.regname}</p><p>Successfuly registered</p>`,
+      };
+      contactEmail.sendMail(mail, (error) => {
+        if (error) {
+          res.json({ status: "failed" });
+        } else {
+          res.json({ status: "sent" });
+        }
+      });
       res.status(200)
   });
 })
