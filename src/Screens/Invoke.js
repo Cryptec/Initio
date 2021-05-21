@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import Sidebar from '../Components/Sidebar'
-import WindowButtons from '../Components/WindowButtons'
 import Table from '../Components/Table'
 
 import '../css/Invoke.css'
@@ -12,7 +11,6 @@ class Invoke extends Component {
 render() {
     return (
     <div>
-        <WindowButtons />
         <Sidebar />
             <div className="container">
               <div className="box-wrapper"> 

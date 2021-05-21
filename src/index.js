@@ -4,8 +4,12 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+import './Components/MenuHandler'
+import WindowButtons from './Components/WindowButtons';
+
 ReactDOM.render(
   <React.StrictMode>
+    <WindowButtons />
     <App />
   </React.StrictMode>,
   document.getElementById('root')
