@@ -2,6 +2,8 @@
   "name": "initio",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://localhost:5000",
+  "main": "src/electron-starter.js",
   "dependencies": {
     "@hapi/joi": "15.0.3",
     "@testing-library/jest-dom": "^5.11.4",
@@ -26,8 +28,6 @@
     "sqlite3": "^5.0.2",
     "web-vitals": "^1.0.1"
   },
-  "proxy": "http://localhost:5000",
-  "main": "src/electron-starter.js",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
