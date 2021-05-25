@@ -5,6 +5,8 @@ import { logout, isLogin } from '../utils'
 import '../css/Sidebar.css'
 import '../css/Dropdown.css'
 
+const { getCurrentWindow } = window.require('electron').remote;
+
 class Sidebar extends Component {
     constructor(props) {
         super(props);
@@ -22,6 +24,10 @@ class Sidebar extends Component {
         })
     }
 
+    reload = () => {
+        getCurrentWindow().reload()
+    }
+
     render () {
         return(
             <div>
@@ -30,7 +36,7 @@ class Sidebar extends Component {
                     <div className="dropdown">
                         <button className="dropbtn"> &#9776;</button>
                         <div className="dropdown-content">
-                        <p onclick="mainWindow.reload()">Refresh (F5)</p>
+                        <p onClick={this.reload}>Refresh (F5)</p>
                         <p onclick="mainWindow.setFullScreen(true)"> Fullscreen (F11)</p>
                         <hr/>
                        
