@@ -136,7 +136,7 @@ router.delete("/api/user/:id", (req, res, next) => {
               res.status(400).json({"error": res.message})
               return;
           }
-          res.json({"message":"deleted", changes: this.changes})
+          res.status(200).json({"message":"deleted", changes: this.changes})
   });
 })
 

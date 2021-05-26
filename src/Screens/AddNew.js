@@ -198,8 +198,7 @@ class New extends Component {
                                 SKU: "", 
                                 Hersteller: "",
                                 Preis: "",
-                                Beschreibung: "",
-                                status: "Logged in" })
+                                Beschreibung: "" })
                 alert("Success");
 
                 
@@ -209,9 +208,8 @@ class New extends Component {
                                 SKU: "", 
                                 Hersteller: "",
                                 Preis: "",
-                                Beschreibung: "",
-                                status: "Failed" })
-                alert("Wrong Username or Password");
+                                Beschreibung: "" })
+                alert("Failed adding articles");
             }
         });
     
