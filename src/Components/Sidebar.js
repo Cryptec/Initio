@@ -27,6 +27,9 @@ class Sidebar extends Component {
     reload = () => {
         getCurrentWindow().reload()
     }
+    devtools = () => {
+        getCurrentWindow().webContents.openDevTools()
+    }
 
     render () {
         return(
@@ -37,6 +40,7 @@ class Sidebar extends Component {
                         <button className="dropbtn"> &#9776;</button>
                         <div className="dropdown-content">
                         <p onClick={this.reload}>Refresh (F5)</p>
+                        <p onClick={this.devtools}>Open Devtools</p>
                         <p> Fullscreen (F11)</p>
                         <hr/>
                        
