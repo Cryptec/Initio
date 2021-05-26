@@ -5,7 +5,6 @@ import StaticBar from './Sidebar-Static'
 import Userstable from '../../Components/Userstable'
 
 import '../../css/Global.css'
-import '../../css/Settings.css'
 import '../../css/Usersettings.css'
 
 
@@ -35,12 +34,8 @@ render() {
 
           <div id="general"> 
 
-              <h3>User settings:</h3>
-               <text>Add new user: </text>
-
                <form onSubmit={this.handleSubmit.bind(this)} method="POST">
         
-                        <div className="textbox">
                             <div className="Userinput">
                             <label>
                             Username:
@@ -101,11 +96,9 @@ render() {
                                 onChange={this.handleChange.bind(this)}
                                 required
                             />
-                            <br /><br />
                             </label>
                             </div>
-                              <input className="Eintragen-Button" type="submit" value="Anlegen " />
-                       </div>
+                              <input className="Add-Button" type="submit" value="Anlegen " />      
                 </form>
             
 </div>
@@ -113,14 +106,14 @@ render() {
 
   <div id="connection">
 
-    <table className="table" id="tblData">
-                <thead className="tblhead" >
+    <div className="table" id="tblData">
+                <div className="tblhead" >
                   
                    <Userstable />
                  
-                </thead>
+                </div>
                  
-               </table>
+               </div>
         
 
     </div>

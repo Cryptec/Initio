@@ -54,7 +54,8 @@ class New extends Component {
                 </div> 
 
                 <div className="SKU">
-                    <label>SKU: 
+                    <label>
+                    SKU: 
                     <br />
                     <input 
                         type="text" 
@@ -103,9 +104,9 @@ class New extends Component {
                       <datalist id="manufacturers">
                           <option value="Volkswagen">Volkswagen</option>
                           <option value="Audi">Audi</option>
-                          <option value="BMW" selected="selected">BMW</option>
-                          <option value="Mercedes" selected="selected">Mercedes</option>
-                          <option value="Opel" selected="selected">Opel</option>  
+                          <option value="BMW">BMW</option>
+                          <option value="Mercedes">Mercedes</option>
+                          <option value="Opel">Opel</option>  
                       </datalist>
                   </label>
               </div>
@@ -138,14 +139,14 @@ class New extends Component {
 
         <div id="box3"> 
             <div id="box4"> 
-               <table className="table" id="tblData">
-                <thead className="tblhead" >
+               <div className="table" id="tblData">
+                <div className="tblhead" >
                   
                    <Table />
                  
-                </thead>
+                </div>
                  
-               </table>
+               </div>
             </div>
         </div>
 

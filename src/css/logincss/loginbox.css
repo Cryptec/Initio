@@ -83,11 +83,9 @@
     font-size: 1rem;
   }
   #regemail {
-    margin-left: 30px;
     float: right;
   }
   #regconfirm_password {
-    margin-left: 30px;
     float: right;
   }
   .loginButton {

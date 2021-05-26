@@ -23,7 +23,7 @@ render() {
 
             <div id="set1">
               <h3>General settings:</h3>
-               <text>Choose Design: </text>
+               <p>Choose Design: </p>
 
                <select name="Hersteller" id="Hersteller" style={{height: "25px", width: "200px", background: "#2A4A51", borderRadius: "6px", border: "none", color: "white"}}>
                   <option value="design_default">Default</option> 
@@ -45,10 +45,10 @@ render() {
     <div id="set3">
 
       <h3>Login Settings:</h3>
-        <text>New password: </text>
+        <p>New password: </p>
             <input type="text" name="pass" id="pass" style={{height: "25px", width: "200px", background: "#2A4A51", borderRadius: "6px", border: "none", color: "white"}}/>
               
-        <text> Login window: </text>
+        <p> Login window: </p>
             <select name="loginselect" id="loginselectid" style={{height: "25px", width: "200px", background: "#2A4A51", borderRadius: "6px", border: "none", color: "white"}}>
                 <option value="enabled">enabled</option>
                 <option value="disabled" id="disabled">disabled</option>
