@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 
+const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT
+
 class Table extends Component {
   constructor(props) {
     super(props)
@@ -13,7 +15,7 @@ class Table extends Component {
 
 async componentDidMount() {
     this.setState({ isLoading: true })
-    const response = await fetch('http://localhost:5000/api/bestand')
+    const response = await fetch(`${API_ENDPOINT}/api/bestand`)
     if (response.ok) {
       const parts = await response.json()
       this.setState({ parts, isLoading: false })

@@ -6,6 +6,7 @@ import Table from '../Components/Table'
 import '../css/Global.css'
 import '../css/AddNew.css'
 
+const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT
 
 class New extends Component {
     constructor(props) {
@@ -178,7 +179,7 @@ class New extends Component {
 
         axios({
             method: "POST",
-            url: "http://localhost:5000/api/bestand/",
+            url: `${API_ENDPOINT}/api/bestand`,
             headers: { 'Content-Type': 'application/json' },
             data: { 
                    Teilenummer: this.state.Teilenummer, 

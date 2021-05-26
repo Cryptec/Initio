@@ -7,7 +7,7 @@ import Userstable from '../../Components/Userstable'
 import '../../css/Global.css'
 import '../../css/Usersettings.css'
 
-
+const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT
 
 class Usersettings extends Component {
     constructor() {
@@ -157,7 +157,7 @@ render() {
         
         axios({
             method: "POST",
-            url: "http://localhost:5000/api/register",
+            url: `${API_ENDPOINT}/api/register`,
             headers: { 'Content-Type': 'application/json' },
             data: { regname: this.state.regname, regpassword: this.state.regpassword, regemail: this.state.regemail }
 

@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import axios from "axios";
 
-
 import '../../css/logincss/loginbox.css';
 
+const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT
 
 class Registerbox extends Component {
     constructor() {
@@ -114,7 +114,7 @@ class Registerbox extends Component {
         
         axios({
             method: "POST",
-            url: "http://localhost:5000/api/register",
+            url: `${API_ENDPOINT}/api/register`,
             headers: { 'Content-Type': 'application/json' },
             data: { regname: this.state.regname, regpassword: this.state.regpassword, regemail: this.state.regemail }
 

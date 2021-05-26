@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 
+const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT
+
 class Userstable extends Component {
   constructor(props) {
     super(props)
@@ -13,7 +15,7 @@ class Userstable extends Component {
 
 async componentDidMount() {
     this.setState({ isLoading: true })
-    const response = await fetch('http://localhost:5000/api/users')
+    const response = await fetch(`${API_ENDPOINT}/api/users`)
     if (response.ok) {
       const users = await response.json()
       this.setState({ users, isLoading: false })

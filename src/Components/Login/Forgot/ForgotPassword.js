@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 
 import '../../../css/logincss/forgotbox.css'
 
+const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT
 
 class ForgotPassword extends Component {
     constructor() {
@@ -94,7 +95,7 @@ class ForgotPassword extends Component {
 
         axios({
             method: "POST",
-            url: "https://rust.mneubauer.com/forgot_password",
+            url: `${API_ENDPOINT}/api/forgot_password`,
             headers: { 'Content-Type': 'application/json' },
             data: { email: this.state.email, password: this.state.password }
 
