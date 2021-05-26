@@ -13,3 +13,13 @@
     flex-grow: 2;
     margin-top: 45px;
 }
+
+.inAppInput {
+    height: 30px; 
+    width: 250px; 
+    margin-top: 20px;
+    background: var(--primary); 
+    border-radius: 6px; 
+    border: none;
+    color: white;
+}

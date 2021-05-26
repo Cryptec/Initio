@@ -6,6 +6,7 @@ import Userstable from '../../Components/Userstable'
 
 import '../../css/Global.css'
 import '../../css/Settings.css'
+import '../../css/Usersettings.css'
 
 
 
@@ -17,13 +18,10 @@ class Usersettings extends Component {
             regpassword: "",
             regemail:"",
             regconfirm_password:"",
-            regstatus: "Submit"
         };
     }
 
 render() {
-
-       let buttonText = this.state.regstatus;
 
   return (
     <div>
@@ -37,80 +35,83 @@ render() {
 
           <div id="general"> 
 
-            <div id="set1">
               <h3>User settings:</h3>
                <text>Add new user: </text>
 
                <form onSubmit={this.handleSubmit.bind(this)} method="POST">
-                    <div className="registerContent">
         
-                            <div className="textbox">
-                        
+                        <div className="textbox">
+                            <div className="Userinput">
+                            <label>
+                            Username:
+                            <br />
                             <input
                                 type='text'
-                                className='form-group-register'
+                                className='inAppInput'
                                 id="regname"
                                 value={this.state.regname}
                                 onChange={this.handleChange.bind(this)}
                                 required
-                                placeholder=' Username*'
                             />
-                       
-             
+                            <br /><br />
+                            </label>
+                            </div>
+
+                            <div className="Emailinput">
+                            <label>
+                            email:
+                            <br />
                             <input
                                 type='text'
-                                className='form-group-register'
+                                className='inAppInput'
                                 id="regemail"
                                 value={this.state.regemail}
                                 onChange={this.handleChange.bind(this)}
                                 required
-                                placeholder=' Enter your email*'
                             />
-                   
+                            <br /><br />
+                            </label>
+                            </div>
+                            
+                            <div className="Passwordinput">
+                            <label>
+                            Password:
+                            <br />
                             <input
                                 type='password'
-                                className='form-group-register'
+                                className='inAppInput'
                                 id="regpassword"
                                 value={this.state.regpassword}
                                 onChange={this.handleChange.bind(this)}
                                 required
-                                placeholder=' Password*'
                             />
+                            <br /><br />
+                            </label>
+                            </div>
                
+                            <div className="Secondpasswordinput">
+                            <label>
+                            retype password:
+                            <br />
                             <input
                                 type='password'
-                                className='form-group-register'
+                                className='inAppInput'
                                 id="regconfirm_password"
                                 value={this.state.regconfirm_password}
                                 onChange={this.handleChange.bind(this)}
                                 required
-                                placeholder=' Confirm password*'
                             />
+                            <br /><br />
+                            </label>
+                            </div>
+                              <input className="Eintragen-Button" type="submit" value="Anlegen " />
                        </div>
-                    
-                       </div>
-                        
-                    
-  
-                    <button className="registerButton">{buttonText}</button>
-
                 </form>
-
-            </div>
-
-       <br />
-
-  <div id="set2">
-
-        
-   </div>
-
+            
 </div>
 <div id="box3"> 
 
   <div id="connection">
-
-    <div id="set3">
 
     <table className="table" id="tblData">
                 <thead className="tblhead" >
@@ -129,7 +130,6 @@ render() {
 
 </div> 
 </div> 
-</div>
 </div>
         );
     }
