@@ -113,20 +113,6 @@ router.get("/users", (req, res, next) => {
               cb(err, row)
       });
   }
-
-  router.delete("/api/user/:id", (req, res, next) => {
-    db.run(
-        'DELETE FROM Users WHERE id = ?',
-        req.params.id,
-        function (err, result) {
-            if (err){
-                res.status(400).json({"error": res.message})
-                return;
-            }
-            res.json({"message":"deleted", changes: this.changes})
-    });
-})
-
     findUserByName(regname, (err, user)=>{
         if (err) return  res.status(500).send('Server error!');
         if (!user) return  res.status(404).send('User not found!');
@@ -140,6 +126,19 @@ router.get("/users", (req, res, next) => {
 
     });
 });
+
+router.delete("/api/user/:id", (req, res, next) => {
+  db.run(
+      'DELETE FROM Users WHERE id = ?',
+      req.params.id,
+      function (err, result) {
+          if (err){
+              res.status(400).json({"error": res.message})
+              return;
+          }
+          res.json({"message":"deleted", changes: this.changes})
+  });
+})
 
 
 module.exports = router;
