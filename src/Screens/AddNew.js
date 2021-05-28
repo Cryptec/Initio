@@ -132,7 +132,7 @@ class New extends Component {
               <input  className="Eintragen-Button" type="submit" value="Anlegen "/>
 
                        <span id="response"></span>
-                       <button className="exportieren" onClick="exportTableToExcel('tblData')">Exportieren</button>
+                       <button className="exportieren" >Exportieren</button>
 
             </form>
 

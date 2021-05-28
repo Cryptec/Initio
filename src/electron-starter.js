@@ -34,6 +34,8 @@ function createWindow() {
 
     // Open the DevTools.
     //mainWindow.webContents.openDevTools()
+
+    //remove MenuBar
     //mainWindow.removeMenu()
 
     // Emitted when the window is closed.
