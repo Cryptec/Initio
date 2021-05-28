@@ -33,7 +33,7 @@ function createWindow() {
     mainWindow.loadURL('http://localhost:3000')
 
     // Open the DevTools.
-    mainWindow.webContents.openDevTools()
+    //mainWindow.webContents.openDevTools()
     //mainWindow.removeMenu()
 
     // Emitted when the window is closed.

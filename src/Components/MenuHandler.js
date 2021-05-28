@@ -1,3 +1,4 @@
+import { logout } from '../utils'
 
 const $ = require('jquery');
 const { remote } = window.require('electron');
@@ -24,6 +25,7 @@ $(window).on("load", function () {
     $("#close").click(function () {
         console.log("close");
         mainWindow.close();
+        logout();
     });
 
 });
