@@ -138,16 +138,13 @@ class New extends Component {
 
         </div>
 
-        <div id="box3"> 
-            <div id="box4"> 
-               <div className="table" id="tblData">
-                <div className="tblhead" >
+        <div id="box3" style={{overflow: "hidden"}}> 
+            <div id="box4" style={{overflowY: "hidden"}}> 
+             
                   
                    <Table />
                  
-                </div>
-                 
-               </div>
+
             </div>
         </div>
 
