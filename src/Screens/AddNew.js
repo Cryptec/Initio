@@ -196,7 +196,7 @@ class New extends Component {
                                 Hersteller: "",
                                 Preis: "",
                                 Beschreibung: "" })
-                alert("Success");
+                console.log("Success");
 
                 
            

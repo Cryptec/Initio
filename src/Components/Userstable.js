@@ -40,9 +40,9 @@ render() {
         <table className="table" id="tblData"  >
           <thead>
             <tr>
-              <th>ID</th>
+              <th style={{ borderTopLeftRadius: "4px" }}>ID</th>
               <th>Name</th>
-              <th>email</th>
+              <th style={{ borderTopRightRadius: "4px" }}>email</th>
             </tr>
           </thead>
           <tbody>

@@ -98,14 +98,14 @@ class Registerbox extends Component {
     }
     handleConfirmPassword = (event) => {
         if (event.target.value !== this.state.regpassword) {
-            alert('error');
+            console.log('error');
             this.setState({ regconfirm_password: event.target.value })
         }
     }
     handleSubmit(event) {
         event.preventDefault();
         if (this.state.regpassword !== this.state.regconfirm_password) {
-            alert("The passwords doesn't match")
+            console.log("The passwords doesn't match")
             return false; // The form won't submit
         }
         else  
@@ -121,16 +121,16 @@ class Registerbox extends Component {
         }).then((response) => {
             if (response.data.answer === "Success") {
                 this.setState({ regname: "", regpassword: "", regconfirm_password: "", regemail: "", regstatus: "Submitted" });
-                alert("Form sent");
+                console.log("Form sent");
 
             } else if (response.data.answer === "Denied") {
-                alert("Wrong Username or Password");
+                console.log("Wrong Username or Password");
                 
             } else if (response.data.answer === "Name_Excist") {
-                alert("Username already exist");
+                console.log("Username already exist");
 
             } else if (response.data.answer === "Email_Excist") {
-                alert("There is already an account with this email");
+                console.log("There is already an account with this email");
         }
             
         });

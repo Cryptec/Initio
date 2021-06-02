@@ -6,13 +6,6 @@ const nodemailer = require("nodemailer")
 
 require('dotenv').config()
 
-// Validation
-const schema = {
-    regname: Joi.string().min(4).required(),
-    regemail: Joi.string().min(4).required().email(),
-    regpassword: Joi.string().min(4).required(),
-}
-
 // Email
 const mailhost = process.env.MAIL_HOST
 const mailport = process.env.MAIL_PORT
@@ -38,6 +31,13 @@ contactEmail.verify((error) => {
 
 // Routes
 router.post('/register', async (req, res) => {
+
+  // Validation
+  const schema = {
+    regname: Joi.string().min(4).required(),
+    regemail: Joi.string().min(4).required().email(),
+    regpassword: Joi.string().min(4).required(),
+  }
   
   // Hashing
   const salt = await bcrypt.genSalt(10)
@@ -53,11 +53,11 @@ router.post('/register', async (req, res) => {
   }
   var sql ='INSERT INTO Users (regname, regemail, regpassword) VALUES (?,?,?)'
   var params =[data.regname, data.regemail, data.regpassword]
-  db.run(sql, params, function (err, result) {
+  db.run(sql, params, function () {
       if (error){
           res.status(400).send(error.details[0].message);
           return;
-      }
+      } else {
       res.json({
           "answer": "Success",
       })
@@ -75,6 +75,7 @@ router.post('/register', async (req, res) => {
         }
       });
       res.status(200)
+    }
   });
 })
 

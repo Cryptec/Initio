@@ -40,11 +40,11 @@ render() {
         <table className="table" id="tblData"  >
           <thead>
             <tr>
-              <th>Teilenummer</th>
+              <th style={{borderTopLeftRadius: "4px"}}>Teilenummer</th>
               <th>Hersteller</th>
               <th>Beschreibung</th>
               <th>Preis</th>
-              <th>SKU</th>
+              <th style={{borderTopRightRadius: "4px"}}>SKU</th>
             </tr>
           </thead>
           <tbody>

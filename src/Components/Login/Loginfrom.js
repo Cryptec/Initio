@@ -106,13 +106,13 @@ class Loginform extends Component {
                 
                 this.setState({ regname: "", regpassword: "", status: "Logged in" })
                 this.handleLogin()
-                alert("Login Success");
+                console.log("Login Success");
 
                 
            
             } else if (response.data.answer === this.state.answerDenied) {
                 this.setState({ regpassword: "", status: "Logging in" });
-                alert("Wrong Username or Password");
+                console.log("Wrong Username or Password");
             }
         });
     }
