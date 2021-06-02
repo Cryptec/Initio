@@ -2,7 +2,7 @@
 
 
 <!-- MarkdownTOC autolink="true" -->
-
+- [About](#About)
 - [Getting Started](#Getting-Started)
   - [Commands](#Basic-Commands-with-concurrently)
 - [Techstack](#Create-React-App-&-Electron-Application)
@@ -10,7 +10,20 @@
 
 
 <!-- /MarkdownTOC -->
+## About
+
+Initio is an open-source Tool for stocks for your Collection or Company. And the best?
+it runs in the Browser AND as Desktop Application, and offer some useful features like
+a login window to protect your data! 
+
+want to contribute? simply open a PR in the ```development``` branch, or get in touch. 
+
+NOTE:
+The project is at a very early stage, so don´t expect it to work as it should already.
+
 ## Getting Started
+
+First, you can edit the two dotenv files in the root of the project for enabling / disabling the auto open for Browsers, and in the Backend folder to set the credentials for the Nodemailer.
 
 ### Basic Commands with concurrently
 1. `yarn install` install the dependencys.
