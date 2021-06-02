@@ -6,6 +6,7 @@ import login from '../../utils'
 
 import '../../css/logincss/loginbox.css'
 
+const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT
 
 class Loginform extends Component {
     constructor() {
@@ -94,7 +95,7 @@ class Loginform extends Component {
 
         axios({
             method: "POST",
-            url: "http://localhost:5000/api/login",
+            url: `${API_ENDPOINT}/api/login`,
             headers: { 'Content-Type': 'application/json' },
             data: { regname: this.state.regname, regpassword: this.state.regpassword}
             

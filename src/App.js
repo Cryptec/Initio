@@ -6,8 +6,6 @@ import {
   Switch
 } from "react-router-dom"
 
-import './App.css'
-
 import Layout from './Screens/Layout'
 import Login from './Screens/Login'
 import New from './Screens/AddNew'
@@ -16,7 +14,9 @@ import Settings from './Screens/Settings/Settings'
 import Forgot from './Screens/Forgot'
 import Mailsettings from './Screens/Settings/Mailsettings'
 import Connectionsettings from './Screens/Settings/Connectionsettings'
+import Usersettings from './Screens/Settings/Usersettings'
 
+import './App.css'
 
 class App extends Component {
 
@@ -33,6 +33,7 @@ class App extends Component {
 
           <PrivateRoute restricted={false} component={Settings} path="/settings" exact />
           <PrivateRoute restricted={false} component={Mailsettings} path="/settings-mail" exact />
+          <PrivateRoute restricted={false} component={Usersettings} path="/settings-users" exact />
           <PrivateRoute restricted={false} component={Connectionsettings} path="/settings-connection" exact />
         </Switch>
       </Router>

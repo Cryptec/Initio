@@ -4,7 +4,6 @@ import '../css/Global.css'
 import '../css/WindowButtons.css'
 
 import Sidebar from '../Components/Sidebar'
-import WindowButtons from '../Components/WindowButtons'
 import Home from './Home'
 
 class Layout extends Component {
@@ -15,7 +14,6 @@ class Layout extends Component {
         return (
             <div>
             <div>
-                <WindowButtons />
                 <Sidebar />
             </div>
             <div className="container">

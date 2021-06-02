@@ -2,11 +2,11 @@ import React, { Component } from 'react'
 
 const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT
 
-class Table extends Component {
+class Userstable extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      parts: [],
+      users: [],
       isLoading: false,
       isError: false
     }
@@ -15,17 +15,17 @@ class Table extends Component {
 
 async componentDidMount() {
     this.setState({ isLoading: true })
-    const response = await fetch(`${API_ENDPOINT}/api/bestand`)
+    const response = await fetch(`${API_ENDPOINT}/api/users`)
     if (response.ok) {
-      const parts = await response.json()
-      this.setState({ parts, isLoading: false })
+      const users = await response.json()
+      this.setState({ users, isLoading: false })
     } else {
       this.setState({ isError: true, isLoading: false })
     }
   }
 
 render() {
-    const { parts, isLoading, isError } = this.state
+    const { users, isLoading, isError } = this.state
 
     if (isLoading) {
       return <div>Loading...</div>
@@ -35,16 +35,14 @@ render() {
       return <div>Error</div>
     }
 
-    return parts.length > 0
+    return users.length > 0
       ? (
         <table className="table" id="tblData"  >
           <thead>
             <tr>
-              <th>Teilenummer</th>
-              <th>Hersteller</th>
-              <th>Beschreibung</th>
-              <th>Preis</th>
-              <th>SKU</th>
+              <th>ID</th>
+              <th>Name</th>
+              <th>email</th>
             </tr>
           </thead>
           <tbody>
@@ -53,30 +51,28 @@ render() {
         </table>
       ) : (
         <div>
-          No parts.
+          No users.
       </div>
       )
   }
 
 renderTableHeader = () => {
-    return Object.keys(this.state.parts[0]).map(attr => 
+    return Object.keys(this.state.users[0]).map(attr => 
     <th key={attr} >
     {attr}
     </th>)
   }
 
 renderTableRows = () => {
-    return this.state.parts.map(part => {
+    return this.state.users.map(user => {
       return (
-        <tr key={part.id}>
-          <td>{part.Teilenummer}</td>
-          <td>{part.Hersteller}</td>
-          <td>{part.Beschreibung}</td>
-          <td>{part.Preis}</td>
-          <td>{part.SKU}</td>
+        <tr key={user.id}>
+          <td>{user.id}</td>
+          <td>{user.regname}</td>
+          <td>{user.regemail}</td>
         </tr>
       )
     })
   }
 }
-export default Table
+export default Userstable

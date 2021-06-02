@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 import axios from "axios"
 import Sidebar from '../Components/Sidebar'
-import WindowButtons from '../Components/WindowButtons'
 import Table from '../Components/Table'
 
 import '../css/Global.css'
 import '../css/AddNew.css'
 
+const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT
 
 class New extends Component {
     constructor(props) {
@@ -29,7 +29,6 @@ class New extends Component {
     render() {
         return (
 <div>
-<WindowButtons />
 <Sidebar />
 <div className="container">
 
@@ -56,7 +55,8 @@ class New extends Component {
                 </div> 
 
                 <div className="SKU">
-                    <label>SKU: 
+                    <label>
+                    SKU: 
                     <br />
                     <input 
                         type="text" 
@@ -105,9 +105,9 @@ class New extends Component {
                       <datalist id="manufacturers">
                           <option value="Volkswagen">Volkswagen</option>
                           <option value="Audi">Audi</option>
-                          <option value="BMW" selected="selected">BMW</option>
-                          <option value="Mercedes" selected="selected">Mercedes</option>
-                          <option value="Opel" selected="selected">Opel</option>  
+                          <option value="BMW">BMW</option>
+                          <option value="Mercedes">Mercedes</option>
+                          <option value="Opel">Opel</option>  
                       </datalist>
                   </label>
               </div>
@@ -129,25 +129,22 @@ class New extends Component {
                   </label>
               </div>
 
-              <input  class="Eintragen-Button" type="submit" value="Anlegen "/>
+              <input  className="Eintragen-Button" type="submit" value="Anlegen "/>
 
                        <span id="response"></span>
-                       <button className="exportieren" onClick="exportTableToExcel('tblData')">Exportieren</button>
+                       <button className="exportieren" >Exportieren</button>
 
             </form>
 
         </div>
 
-        <div id="box3"> 
-            <div id="box4"> 
-               <table className="table" id="tblData">
-                <thead className="tblhead" >
+        <div id="box3" style={{overflow: "hidden"}}> 
+            <div id="box4" style={{overflowY: "hidden"}}> 
+             
                   
                    <Table />
                  
-                </thead>
-                 
-               </table>
+
             </div>
         </div>
 
@@ -179,7 +176,7 @@ class New extends Component {
 
         axios({
             method: "POST",
-            url: "http://localhost:5000/api/bestand/",
+            url: `${API_ENDPOINT}/api/bestand`,
             headers: { 'Content-Type': 'application/json' },
             data: { 
                    Teilenummer: this.state.Teilenummer, 
@@ -198,8 +195,7 @@ class New extends Component {
                                 SKU: "", 
                                 Hersteller: "",
                                 Preis: "",
-                                Beschreibung: "",
-                                status: "Logged in" })
+                                Beschreibung: "" })
                 alert("Success");
 
                 
@@ -209,9 +205,8 @@ class New extends Component {
                                 SKU: "", 
                                 Hersteller: "",
                                 Preis: "",
-                                Beschreibung: "",
-                                status: "Failed" })
-                alert("Wrong Username or Password");
+                                Beschreibung: "" })
+                alert("Failed adding articles");
             }
         });
     

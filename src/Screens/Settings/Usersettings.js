@@ -1,11 +1,15 @@
-import React, { Component } from 'react';
-import axios from "axios";
+import React, { Component } from 'react'
+import axios from "axios"
+import Sidebar from '../../Components/Sidebar'
+import StaticBar from './Sidebar-Static'
+import Userstable from '../../Components/Userstable'
 
-import '../../css/logincss/loginbox.css';
+import '../../css/Global.css'
+import '../../css/Usersettings.css'
 
 const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT
 
-class Registerbox extends Component {
+class Usersettings extends Component {
     constructor() {
         super();
         this.state = {
@@ -13,76 +17,115 @@ class Registerbox extends Component {
             regpassword: "",
             regemail:"",
             regconfirm_password:"",
-            regstatus: "Submit"
         };
     }
 
-    render() {
+render() {
 
-        let buttonText = this.state.regstatus;
-        return (
-            <div>
-                <form onSubmit={this.handleSubmit.bind(this)} method="POST">
-                    <div className="registerContent">
-                        <span style={{ fontWeight: "600" }}>Register</span>
+  return (
+    <div>
+      <div>
+        <Sidebar />
+        <StaticBar />
+      </div>
+
+      <div className="container">
+        <div className="box-wrapper-settings"> 
+
+          <div id="general"> 
+
+               <form onSubmit={this.handleSubmit.bind(this)} method="POST">
         
-                            <div className="textbox">
-                        
+                            <div className="Userinput">
+                            <label>
+                            Username:
+                            <br />
                             <input
                                 type='text'
-                                className='form-group-register'
+                                className='inAppInput'
                                 id="regname"
                                 value={this.state.regname}
                                 onChange={this.handleChange.bind(this)}
                                 required
-                                placeholder=' Username*'
                             />
-                       
-             
+                            <br /><br />
+                            </label>
+                            </div>
+
+                            <div className="Emailinput">
+                            <label>
+                            email:
+                            <br />
                             <input
                                 type='text'
-                                className='form-group-register'
+                                className='inAppInput'
                                 id="regemail"
                                 value={this.state.regemail}
                                 onChange={this.handleChange.bind(this)}
                                 required
-                                placeholder=' Enter your email*'
                             />
-                   
+                            <br /><br />
+                            </label>
+                            </div>
+                            
+                            <div className="Passwordinput">
+                            <label>
+                            Password:
+                            <br />
                             <input
                                 type='password'
-                                className='form-group-register'
+                                className='inAppInput'
                                 id="regpassword"
                                 value={this.state.regpassword}
                                 onChange={this.handleChange.bind(this)}
                                 required
-                                placeholder=' Password*'
                             />
+                            <br /><br />
+                            </label>
+                            </div>
                
+                            <div className="Secondpasswordinput">
+                            <label>
+                            retype password:
+                            <br />
                             <input
                                 type='password'
-                                className='form-group-register'
+                                className='inAppInput'
                                 id="regconfirm_password"
                                 value={this.state.regconfirm_password}
                                 onChange={this.handleChange.bind(this)}
                                 required
-                                placeholder=' Confirm password*'
                             />
-                       </div>
-                    
-                       </div>
-                        
-                    
-  
-                    <button className="registerButton">{buttonText}</button>
-
+                            </label>
+                            </div>
+                              <input className="Add-Button" type="submit" value="Anlegen " />      
                 </form>
+            
+</div>
+<div id="box3"> 
 
-            </div>
+  <div id="connection">
 
-        )
+    <div className="table" id="tblData">
+                <div className="tblhead" >
+                  
+                   <Userstable />
+                 
+                </div>
+                 
+               </div>
+        
+
+    </div>
+    <br />
+    
+  </div>
+
+</div> 
+</div> 
+</div>
+        );
     }
-
 
     handleChange(event) {
         const field = event.target.id;
@@ -137,4 +180,4 @@ class Registerbox extends Component {
     }
 }
 
-export default Registerbox
+export default Usersettings;

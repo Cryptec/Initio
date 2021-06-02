@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { SaveOutline, IoSettingsOutline, MailOutline } from '../../Components/Icons'
+import { SaveOutline, IoSettingsOutline, MailOutline, PeopleAlt } from '../../Components/Icons'
 import { Link } from 'react-router-dom'
 
 
@@ -22,15 +22,20 @@ class StaticBar extends Component {
             
               <li className="ListItem">
                    <Link to="/settings"> <IoSettingsOutline color="white"/> </Link>
-                </li>
+              </li>
+
+              <li className="ListItem">
+                    <Link to="/settings-users"> <PeopleAlt color="white" /> </Link>
+              </li>
           
               <li className="ListItem">
                    <Link to="/settings-connection"> <SaveOutline color="white" /> </Link>
-                </li>
+              </li>
 
-                <li className="ListItem">
+              <li className="ListItem">
                     <Link to="/settings-mail"> <MailOutline color="white" /> </Link>
-                </li>
+              </li>
+
             </ul>
 
             </div>

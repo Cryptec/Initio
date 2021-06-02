@@ -68,7 +68,7 @@ router.post("/bestand/", (req, res, next) => {
   });
 
   router.get("/bestand", (req, res, next) => {
-    var sql = "select * from Teilebestand"
+    var sql = "select * from Teilebestand ORDER BY id DESC"
     var params = []
     db.all(sql, params, (err, rows) => {
       if (err) {
