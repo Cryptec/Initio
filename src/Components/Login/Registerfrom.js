@@ -126,6 +126,9 @@ class Registerbox extends Component {
             } else if (response.data.answer === "Denied") {
                 console.log("Wrong Username or Password");
                 
+            } else if (response.data.answer === "password_too_short") {
+                console.log("Password length must be at least 4 characters long");
+
             } else if (response.data.answer === "Name_Excist") {
                 console.log("Username already exist");
 

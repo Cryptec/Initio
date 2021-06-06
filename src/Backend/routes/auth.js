@@ -55,7 +55,8 @@ router.post('/register', async (req, res) => {
   var params =[data.regname, data.regemail, data.regpassword]
   db.run(sql, params, function () {
       if (error){
-          res.status(400).send(error.details[0].message);
+          res.json({ "answer": "password_too_short"});
+          res.status(400)
           return;
       } else {
       res.json({
