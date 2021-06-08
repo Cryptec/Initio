@@ -64,6 +64,15 @@
     margin-left: 15vw;
     margin-top: 15vh;
   }
+
+  .errorText {
+    border: 1px solid rgb(99, 31, 31);
+    border-radius: var(--radius);
+    color: rgb(99, 31, 31);
+    font-size: 1rem;
+    padding: 5px;
+  }
+  
   @media (max-width: 1000px) {
     div.loginTextBox {
       display: none;

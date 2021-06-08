@@ -13,13 +13,15 @@ class Registerbox extends Component {
             regpassword: "",
             regemail:"",
             regconfirm_password:"",
-            regstatus: "Submit"
+            regstatus: "Submit",
+            errorMessage: ""
         };
     }
 
     render() {
 
         let buttonText = this.state.regstatus;
+        let errorMessage = this.state.errorMessage;
         return (
             <div>
                 <form onSubmit={this.handleSubmit.bind(this)} method="POST">
@@ -69,7 +71,9 @@ class Registerbox extends Component {
                                 placeholder=' Confirm password*'
                             />
                        </div>
-                    
+ 
+                        <p className="errorText">{errorMessage}</p>
+
                        </div>
                         
                     
@@ -106,11 +110,12 @@ class Registerbox extends Component {
         event.preventDefault();
         if (this.state.regpassword !== this.state.regconfirm_password) {
             console.log("The passwords doesn't match")
+            this.setState({ errorMessage: "The passwords doesn't match" });
             return false; // The form won't submit
         }
         else  
     
-        this.setState({ status: "Submitting" });
+        this.setState({ regstatus: "Submitting" });
         
         axios({
             method: "POST",
@@ -128,6 +133,8 @@ class Registerbox extends Component {
                 
             } else if (response.data.answer === "password_too_short") {
                 console.log("Password length must be at least 4 characters long");
+                this.setState({ errorMessage: "Password length must be at least 4 characters long" });
+                this.setState({ regstatus: "Submit" });
 
             } else if (response.data.answer === "Name_Excist") {
                 console.log("Username already exist");
