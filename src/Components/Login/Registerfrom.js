@@ -22,6 +22,7 @@ class Registerbox extends Component {
 
         let buttonText = this.state.regstatus;
         let errorMessage = this.state.errorMessage;
+
         return (
             <div>
                 <form onSubmit={this.handleSubmit.bind(this)} method="POST">
@@ -127,10 +128,7 @@ class Registerbox extends Component {
             if (response.data.answer === "Success") {
                 this.setState({ regname: "", regpassword: "", regconfirm_password: "", regemail: "", regstatus: "Submitted" });
                 console.log("Form sent");
-
-            } else if (response.data.answer === "Denied") {
-                console.log("Wrong Username or Password");
-                
+   
             } else if (response.data.answer === "password_too_short") {
                 console.log("Password length must be at least 4 characters long");
                 this.setState({ errorMessage: "Password length must be at least 4 characters long" });
