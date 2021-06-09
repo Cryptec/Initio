@@ -14,8 +14,15 @@ class Registerbox extends Component {
             regemail:"",
             regconfirm_password:"",
             regstatus: "Submit",
-            errorMessage: ""
+            errorMessage: "",
+            isActive: false
         };
+    }
+
+    handleShow = () =>{
+        this.setState({
+            isActive: true
+        })
     }
 
     render() {
@@ -73,7 +80,9 @@ class Registerbox extends Component {
                             />
                        </div>
  
-                        <p className="errorText">{errorMessage}</p>
+                        <div>
+                        {this.state.isActive ? <p className="errorText">{errorMessage}</p>  : null }
+                        </div>
 
                        </div>
                         
@@ -133,12 +142,15 @@ class Registerbox extends Component {
                 console.log("Password length must be at least 4 characters long");
                 this.setState({ errorMessage: "Password length must be at least 4 characters long" });
                 this.setState({ regstatus: "Submit" });
+                this.handleShow()
 
             } else if (response.data.answer === "Name_Excist") {
                 console.log("Username already exist");
+                this.handleShow()
 
             } else if (response.data.answer === "Email_Excist") {
                 console.log("There is already an account with this email");
+                this.handleShow()
         }
             
         });

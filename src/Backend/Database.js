@@ -30,10 +30,11 @@ let db = new sqlite3.Database(DBSOURCE, (err) => {
 
         db.run(`CREATE TABLE Users (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
-            regname text, 
+            regname text UNIQUE, 
             regemail text UNIQUE, 
             regpassword text, 
-            CONSTRAINT regemail_unique UNIQUE (regemail)
+            CONSTRAINT regemail_unique UNIQUE (regemail),
+            CONSTRAINT regname_unique UNIQUE (regname)
             )`,
             (err) => {
                 if (err) {
