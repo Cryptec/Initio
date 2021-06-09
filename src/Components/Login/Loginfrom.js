@@ -117,19 +117,19 @@ class Loginform extends Component {
             } else if (response.data.answer === "UserError") {
                 this.setState({ regpassword: "", status: "Logging in" });
                 this.setState({ errorMessage: "User not found!" });
-                this.setState({ regstatus: "Submit" });
+                this.setState({ status: "Submit" });
                 console.log("User not found!");
             
             } else if (response.data.answer === "PassError") {
                 this.setState({ regpassword: "", status: "Logging in" });
                 this.setState({ errorMessage: "Wrong Password!" });
-                this.setState({ regstatus: "Submit" });
+                this.setState({ status: "Submit" });
                 console.log("Wrong Password!");
             
             } else if (response.data.answer === this.state.answerDenied) {
                 this.setState({ regpassword: "", status: "Logging in" });
                 this.setState({ errorMessage: "Wrong Username or Password" });
-                this.setState({ regstatus: "Submit" });
+                this.setState({ status: "Submit" });
                 console.log("Wrong Username or Password");
 
             }
