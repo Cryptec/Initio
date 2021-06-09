@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
-import axios from "axios";
+import React, { Component } from 'react'
+import axios from "axios"
 
-import '../../css/logincss/loginbox.css';
+import '../../css/logincss/loginbox.css'
 
 const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT
 
@@ -20,8 +20,8 @@ class Registerbox extends Component {
 
     render() {
 
-        let buttonText = this.state.regstatus;
-        let errorMessage = this.state.errorMessage;
+        let buttonText = this.state.regstatus
+        let errorMessage = this.state.errorMessage
 
         return (
             <div>

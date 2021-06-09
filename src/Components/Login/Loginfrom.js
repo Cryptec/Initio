@@ -17,12 +17,15 @@ class Loginform extends Component {
             status: "Submit",
             answerOk: "Success",
             answerDenied: "Denied",
+            errorMessage: ""
         };
     }
 
     render() {
 
-        let buttonText = this.state.status;
+        let buttonText = this.state.status
+        let errorMessage = this.state.errorMessage
+
         return (
             <div>
                
@@ -61,8 +64,11 @@ class Loginform extends Component {
                                 placeholder=' Password'
                             />
                 
+                       <p className="errorTextLogin">{errorMessage}</p> 
                         </div>
+
                         <Link to="/forgot" style={{fontSize: "0.8rem", textDecoration: "none", color: "white"}}> forgot password? </Link>
+                        
 
                     </div>
    
@@ -108,11 +114,24 @@ class Loginform extends Component {
                 this.handleLogin()
                 console.log("Login Success");
 
-                
-           
+            } else if (response.data.answer === "UserError") {
+                this.setState({ regpassword: "", status: "Logging in" });
+                this.setState({ errorMessage: "User not found!" });
+                this.setState({ regstatus: "Submit" });
+                console.log("User not found!");
+            
+            } else if (response.data.answer === "PassError") {
+                this.setState({ regpassword: "", status: "Logging in" });
+                this.setState({ errorMessage: "Wrong Password!" });
+                this.setState({ regstatus: "Submit" });
+                console.log("Wrong Password!");
+            
             } else if (response.data.answer === this.state.answerDenied) {
                 this.setState({ regpassword: "", status: "Logging in" });
+                this.setState({ errorMessage: "Wrong Username or Password" });
+                this.setState({ regstatus: "Submit" });
                 console.log("Wrong Username or Password");
+
             }
         });
     }

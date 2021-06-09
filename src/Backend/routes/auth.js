@@ -116,11 +116,22 @@ router.get("/users", (req, res, next) => {
       });
   }
     findUserByName(regname, (err, user)=>{
-        if (err) return  res.status(500).send('Server error!');
-        if (!user) return  res.status(404).send('User not found!');
+        if (err){
+          res.json({"answer":"Server error!"});
+          res.status(500)
+          return
+        }
+        if (!user){
+          res.json({"answer":"UserError"});
+          res.status(404)
+          return
+        }
         const  result  =  bcrypt.compareSync(regpassword, user.regpassword);
-        if(!result) return  res.status(401).send('Password not valid!');
-
+        if(!result){
+          res.json({"answer":"PassError"});
+          res.status(401)
+          return
+        } 
         res.status(200)
         res.json({
           "answer":"Success",
