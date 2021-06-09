@@ -32,6 +32,16 @@
     background-color: var(--background);
     padding: 20px; 
 } 
+#userTable { 
+    flex-grow: 2; 
+    padding: 10px; 
+    margin-bottom: 30px;
+    margin-top: 15px;
+    line-height: 20px; 
+    border-radius: 4px;
+    background-color: var(--background);
+    padding: 10px; 
+} 
 #set1 {
     color: white;
     font-family: Arial, Helvetica, sans-serif;

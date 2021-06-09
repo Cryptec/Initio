@@ -35,7 +35,7 @@
     "eject": "react-scripts eject",
     "client": "yarn start",
     "server": "cd ./src/Backend && node index.js",
-    "dev": "concurrently \"yarn run server\" \"yarn run client\"",
+    "dev": "concurrently \"yarn run server\" \"yarn run client\" \"yarn run electron\"",
     "electron": "electron ."
   },
   "eslintConfig": {

@@ -104,7 +104,7 @@ render() {
 </div>
 <div id="box3"> 
 
-  <div id="connection">
+  <div id="userTable"> 
 
     <div className="table" id="tblData">
                 <div className="tblhead" >

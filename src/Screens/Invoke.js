@@ -14,7 +14,7 @@ render() {
         <Sidebar />
             <div className="container">
               <div className="box-wrapper"> 
-                <div id="background">
+                  <div id="background" style={{ overflowY: 'hidden' }}>
 
                     <input type="search" name="Suchen" id="suchen" placeholder="&#124; &#x2315;" style={{right: "40px", position: "absolute", width: "200px"}}/>
                     <br />

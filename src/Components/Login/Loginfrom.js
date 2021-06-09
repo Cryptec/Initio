@@ -70,14 +70,13 @@ class Loginform extends Component {
                                 required
                                 placeholder=' Password'
                             />
-                
-                        <div>
-                        {this.state.isActive ? <p className="errorTextLogin">{errorMessage}</p>  : null }
-                        </div>
                         
                         </div>
 
-                        <Link to="/forgot" style={{fontSize: "0.8rem", textDecoration: "none", color: "white"}}> forgot password? </Link>
+                        <Link to="/forgot" style={{fontSize: "0.8rem", textDecoration: "none", color: "white"}}> forgot your password? </Link>
+                        
+                        
+                        {this.state.isActive ? <p className="errorTextLogin">{errorMessage}</p> : null}
                         
 
                     </div>
