@@ -56,14 +56,17 @@ router.post("/bestand/", (req, res, next) => {
         });
   });
   router.delete("/bestand/:id", (req, res, next) => {
-    db.run(`DELETE FROM Teilebestand WHERE id = ?`,
-        req.params.id,
-        function (err, result) {
+    var sql = "DELETE FROM Teilebestand WHERE id = ?"
+    var params = [req.params.id]
+    db.run (sql, params, (err) => {
             if (err) {
                 res.status(400).json({ "error": res.message })
                 return;
             }
             res.status(200).json({ deletedID: this.changes })
+            res.json({
+              "answer": "success"
+            })
         });
   });
 

@@ -140,18 +140,20 @@ router.get("/users", (req, res, next) => {
     });
 });
 
-router.delete("/api/user/:id", (req, res, next) => {
-  db.run(
-      'DELETE FROM Users WHERE id = ?',
-      req.params.id,
-      function (err, result) {
-          if (err){
-              res.status(400).json({"error": res.message})
+router.delete("/user/:id", (req, res, next) => {
+  var sql = "DELETE FROM Teilebestand WHERE id = ?"
+  var params = [req.params.id]
+  db.run (sql, params, (err) => {
+          if (err) {
+              res.status(400).json({ "error": res.message })
               return;
           }
-          res.status(200).json({"message":"deleted", changes: this.changes})
-  });
-})
+          res.status(200)
+          res.json({
+            "answer": "success"
+          })
+      });
+});
 
 
 module.exports = router;

@@ -42,7 +42,8 @@ render() {
             <tr>
               <th style={{ borderTopLeftRadius: "4px" }}>ID</th>
               <th>Name</th>
-              <th style={{ borderTopRightRadius: "4px" }}>email</th>
+              <th>email</th>
+              <th style={{ borderTopRightRadius: "4px" }}></th>
             </tr>
           </thead>
           <tbody>
@@ -63,6 +64,16 @@ renderTableHeader = () => {
     </th>)
   }
 
+deleteTableRow = () => {
+  const response = fetch(`${API_ENDPOINT}/api/user/:id`)
+  if (response.ok) {
+    const users = response.json()
+    this.setState({ users, isLoading: false })
+  } else {
+    this.setState({ isError: true, isLoading: false })
+  }
+}
+
 renderTableRows = () => {
     return this.state.users.map(user => {
       return (
@@ -70,6 +81,7 @@ renderTableRows = () => {
           <td>{user.id}</td>
           <td>{user.regname}</td>
           <td>{user.regemail}</td>
+          <td className="delButton" onClick={this.deleteTableRow}>&#10005;</td>
         </tr>
       )
     })
