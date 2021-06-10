@@ -5,23 +5,27 @@ import StaticBar from './Sidebar-Static'
 import '../../css/Global.css'
 import '../../css/Settings.css'
 
-const $ = require('jquery');
-
-$(document).ready(function() {
-    $("#storage").change(function() {
-      if ($(this).val() === "local") {
-        $('#server').hide(); $('.server').hide();
-        $('#user').hide(); $('.user').hide();
-        $('#password').hide(); $('.password').hide();
-      } else {
-        $('#server').show(); $('.server').show();
-        $('#user').show(); $('.user').show();
-        $('#password').show(); $('.password').show();
-      }
-    })
-  })
   
 class Connectionsettings extends Component {
+
+async componentDidMount() {
+  const $ = require('jquery');
+
+
+  $(document).ready(function() {
+      $("#storage").change(function() {
+        if ($(this).val() === "local") {
+          $('#server').hide(); $('.server').hide();
+          $('#user').hide(); $('.user').hide();
+          $('#password').hide(); $('.password').hide();
+        } else {
+          $('#server').show(); $('.server').show();
+          $('#user').show(); $('.user').show();
+          $('#password').show(); $('.password').show();
+        }
+      })
+    })
+}
 
 render() {
   return (
