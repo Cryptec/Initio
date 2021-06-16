@@ -47,3 +47,11 @@
     font-family: Arial, Helvetica, sans-serif;
     position:absolute;
 }
+
+.delButton {
+    cursor: pointer;
+    width: 15px;
+}
+.delButton:hover {
+    color: var(--button);
+}

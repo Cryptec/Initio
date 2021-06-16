@@ -22,10 +22,3 @@
     border: none;
     color: white;
 }
-
-.delButton {
-    cursor: pointer;
-}
-.delButton:hover {
-    color: var(--button);
-}
