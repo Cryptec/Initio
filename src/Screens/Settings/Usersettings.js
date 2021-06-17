@@ -17,6 +17,7 @@ class Usersettings extends Component {
             regpassword: "",
             regemail:"",
             regconfirm_password:"",
+            count: 0
         };
     }
 
@@ -109,8 +110,8 @@ render() {
     <div className="table" id="tblData">
                 <div className="tblhead" >
                   
-                   <Userstable />
-                 
+                   <Userstable key={this.state.count} />
+
                 </div>
                  
                </div>
@@ -152,7 +153,6 @@ render() {
             return false; // The form won't submit
         }
         else  
-    
         this.setState({ status: "Submitting" });
         
         axios({
@@ -164,6 +164,7 @@ render() {
         }).then((response) => {
             if (response.data.answer === "Success") {
                 this.setState({ regname: "", regpassword: "", regconfirm_password: "", regemail: "", regstatus: "Submitted" });
+                this.setState({ count: this.state.count + 1 })
                 console.log("User registration sent");
 
             } else if (response.data.answer === "Denied") {
