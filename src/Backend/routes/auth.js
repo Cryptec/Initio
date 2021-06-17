@@ -140,8 +140,8 @@ router.get("/users", (req, res, next) => {
     });
 });
 
-router.delete("/user/:id", (req, res, next) => {
-  var sql = "DELETE FROM Teilebestand WHERE id = ?"
+router.delete("/users/:id", (req, res, next) => {
+  var sql = "DELETE FROM Users WHERE id = ?"
   var params = [req.params.id]
   db.run (sql, params, (err) => {
           if (err) {
