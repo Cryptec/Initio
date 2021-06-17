@@ -19,6 +19,7 @@ class New extends Component {
       Beschreibung: '',
       answerOk: 'Success',
       answerDenied: 'Denied',
+      count: 0
     }
   }
 
@@ -140,7 +141,7 @@ class New extends Component {
 
             <div id="box3" style={{ overflow: 'hidden' }}>
               <div id="box4" style={{ overflowY: 'hidden' }}>
-                <Table />
+                <Table key={this.state.count} />
               </div>
             </div>
           </div>
@@ -188,7 +189,8 @@ class New extends Component {
           Hersteller: '',
           Preis: '',
           Beschreibung: '',
-        })
+          count: this.state.count + 1
+        }) 
         console.log('Success')
       } else if (response.data.answer === this.state.answerDenied) {
         this.setState({
