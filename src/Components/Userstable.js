@@ -69,7 +69,6 @@ deleteTableRow = () => {
     return (
       fetch(`${API_ENDPOINT}/api/users/${user.id}`, {method: 'DELETE'})
     )
-    this.setState({ users, isLoading: false })
 })
 }
 
