@@ -65,13 +65,12 @@ renderTableHeader = () => {
   }
 
 deleteTableRow = () => {
-  const response = fetch(`${API_ENDPOINT}/api/user/:id`)
-  if (response.ok) {
-    const users = response.json()
+  return this.state.users.map(user => {
+    return (
+      fetch(`${API_ENDPOINT}/api/users/${user.id}`, {method: 'DELETE'})
+    )
     this.setState({ users, isLoading: false })
-  } else {
-    this.setState({ isError: true, isLoading: false })
-  }
+})
 }
 
 renderTableRows = () => {

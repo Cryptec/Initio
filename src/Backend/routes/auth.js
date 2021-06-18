@@ -81,7 +81,7 @@ router.post('/register', async (req, res) => {
 })
 
 router.get("/users", (req, res, next) => {
-    var sql = "select * from Users"
+    var sql = "select * from Users ORDER BY id"
     var params = []
     db.all(sql, params, (err, rows) => {
       if (err) {
