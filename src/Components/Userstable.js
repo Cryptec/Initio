@@ -64,14 +64,6 @@ renderTableHeader = () => {
     </th>)
   }
 
-deleteTableRow = () => {
-  return this.state.users.map(user => {
-    return (
-      fetch(`${API_ENDPOINT}/api/users/${user.id}`, {method: 'DELETE'})
-    )
-})
-}
-
 renderTableRows = () => {
     return this.state.users.map(user => {
       return (
@@ -79,10 +71,19 @@ renderTableRows = () => {
           <td>{user.id}</td>
           <td>{user.regname}</td>
           <td>{user.regemail}</td>
-          <td className="delButton" onClick={this.deleteTableRow}>&#10005;</td>
+          <td className="delButton" onClick={() => this.deleteTableRow(user.id)}>&#10005;</td>
         </tr>
       )
     })
   }
+
+deleteTableRow = (id) => {
+    return this.state.users.map(user => {
+      return (
+        fetch(`${API_ENDPOINT}/api/users/${user.id}`, {method: 'DELETE'})
+      )
+  })
+  }
 }
+
 export default Userstable
