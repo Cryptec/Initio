@@ -75,7 +75,7 @@ router.post('/register', async (req, res) => {
           res.json({ status: "sent" });
         }
       });
-      res.status(200)
+      return res.status(200)
     }
   });
 })
@@ -104,6 +104,7 @@ router.get("/users", (req, res, next) => {
             "answer":"success",
             "data":row
         })
+        return
       });
   });
 
@@ -133,10 +134,8 @@ router.get("/users", (req, res, next) => {
           return
         } 
         res.status(200)
-        res.json({
-          "answer":"Success",
-        })
-
+        res.json({ "answer":"Success" })
+        return
     });
 });
 
@@ -149,9 +148,8 @@ router.delete("/users/:id", (req, res, next) => {
               return;
           }
           res.status(200)
-          res.json({
-            "answer": "success"
-          })
+          res.json({ "answer": "success" })
+          return
       });
 });
 
