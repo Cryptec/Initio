@@ -37,7 +37,7 @@ render() {
 
     return users.length > 0
       ? (
-        <table className="table" id="tblData"  >
+        <table className="table" id="tblData">
           <thead>
             <tr>
               <th style={{ borderTopLeftRadius: "4px" }}>ID</th>
@@ -77,12 +77,17 @@ renderTableRows = () => {
     })
   }
 
-deleteTableRow = (id) => {
-    return this.state.users.map(user => {
-      return (
-        fetch(`${API_ENDPOINT}/api/users/${user.id}`, {method: 'DELETE'})
-      )
-  })
+
+deleteTableRow = async (id) => {
+    
+  await fetch(`${API_ENDPOINT}/api/users/${id}`, {method: 'DELETE'})
+  const response = await fetch(`${API_ENDPOINT}/api/users`)
+  if (response.ok) {
+    const users = await response.json()
+    this.setState({ users, isLoading: false })
+  } else {
+    this.setState({ isError: true, isLoading: false })
+  }
   }
 }
 

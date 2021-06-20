@@ -191,7 +191,7 @@ class New extends Component {
           Beschreibung: '',
           count: this.state.count + 1
         }) 
-        console.log('Success')
+        return console.log('Success')
       } else if (response.data.answer === this.state.answerDenied) {
         this.setState({
           Teilenummer: '',
@@ -200,7 +200,7 @@ class New extends Component {
           Preis: '',
           Beschreibung: '',
         })
-        alert('Failed adding articles')
+        return console.log('Failed adding articles')
       }
     })
   }
