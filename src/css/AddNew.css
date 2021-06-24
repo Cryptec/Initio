@@ -166,3 +166,30 @@
     cursor: pointer;
     border-radius: 4px
     }
+    .deleteButton {
+    background-color: var(--button);
+    border: none;
+    color: rgb(0, 0, 0);
+    width:100px;
+    margin-left: 20px;
+    margin-top:230px;
+    padding: 12px 12px;
+    text-align: center;
+    font-size: 15px;
+    cursor: pointer;
+    border-radius: 4px
+    }
+
+.detailClose {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    color: white;
+    position: absolute;
+    float: right;
+    right: 45px;
+    font-size: large;
+}
+.detailClose:hover {
+    color: var(--button);
+}
