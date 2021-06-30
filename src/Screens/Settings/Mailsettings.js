@@ -23,10 +23,10 @@ render() {
            <div id="set4">
 
                 <h3>email Settings:</h3>
-                <text>receiving address: </text>
+                <span>receiving address: </span>
                     <input type="text" name="pass" id="pass" style={{height: "25px", width: "200px", background: "#2A4A51", borderRadius: "6px", border: "none", color: "white"}}/><br /><br />
         
-                <text>sending address: </text>
+                <span>sending address: </span>
                     <select name="loginselect" id="loginselectid" style={{height: "25px", width: "200px", background: "#2A4A51", borderRadius: "6px", border: "none", color: "white"}}>
                      <option value="enabled">enabled</option>
                      <option value="disabled" id="disabled">disabled</option>

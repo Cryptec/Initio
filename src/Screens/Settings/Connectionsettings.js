@@ -41,19 +41,19 @@ render() {
            <div className="simplebackground">
            <h3>Connection settings:</h3>
 
-              <text>Type: </text>
+              <span>Type: </span>
                 <select name="Storage" id="storage" style={{height: "25px", width: "200px", background: "#2A4A51", borderRadius: "6px", border: "none", color: "white"}}>
                    <option value="MySQL">MySQL</option>
                    <option value="local" id="local">local</option>
                 </select>
 
-              <text className="server"> Server: </text>
+              <span className="server"> Server: </span>
                 <input type="text" name="pass" id="server" style={{height: "25px", width: "200px", background: "#2A4A51", borderRadius: "6px", border: "none", color: "white"}}/><br /><br />
    
-              <text className="user">User: </text>
+              <span className="user">User: </span>
                 <input type="text" name="pass" id="user" style={{height: "25px", width: "200px", background: "#2A4A51", borderRadius: "6px", border: "none", color: "white"}}/>
 
-              <text className="password"> Password: </text>
+              <span className="password"> Password: </span>
                 <input type="text" name="pass" id="password" style={{height: "25px", width: "200px", background: "#2A4A51", borderRadius: "6px", border: "none", color: "white"}}/><br /><br />
     
               <p><button className='save-Button' id="save-Button">Save</button></p>
