@@ -91,8 +91,8 @@ deleteTableRow = async (id) => {
   await fetch(`${API_ENDPOINT}/api/bestand/${id}`, {method: 'DELETE'})
   const response = await fetch(`${API_ENDPOINT}/api/bestand`)
   if (response.ok) {
-    const users = await response.json()
-    this.setState({ users, isLoading: false })
+    const bestand = await response.json()
+    this.setState({ bestand, isLoading: false })
   } else {
     this.setState({ isError: true, isLoading: false })
   }
@@ -100,8 +100,9 @@ deleteTableRow = async (id) => {
 
 
 toggle = async (part) => {
+  const activeRow = part
+  await this.setState({activeRow: activeRow})
   this.setState((currentState) => ({ show: !currentState.show })) 
-  await this.setState({activeRow: part})
   console.log("this is" + this.state.activeRow)
   }
 
