@@ -123,7 +123,7 @@ editSection = () => {
                 className="teilenrinput"
                 name="Teilenummer"
                 id="Teilenummer"
-                value={this.state.activeRow}
+                defaultValue={this.state.activeRow}
                 required
               />
               <br />
@@ -140,7 +140,7 @@ editSection = () => {
                 name="SKU"
                 className="skuinput"
                 id="SKU"
-                value={part.SKU}
+                defaultValue={part.SKU}
                 required
               />
               <br />
@@ -157,7 +157,7 @@ editSection = () => {
                 name="Price"
                 className="priceinput"
                 id="Preis"
-                value={part.Preis}
+                defaultValue={part.Preis}
                 required
               />
               <br />
@@ -174,7 +174,7 @@ editSection = () => {
                 name="Hersteller"
                 id="Hersteller"
                 className="herstellerinput"
-                value={part.Hersteller}
+                defaultValue={part.Hersteller}
                 required
               ></input>
               <datalist id="manufacturers">
@@ -196,7 +196,7 @@ editSection = () => {
                 name="Beschreibung"
                 className="beschreibunginput"
                 id="Beschreibung"
-                value={part.Beschreibung}
+                defaultValue={part.Beschreibung}
                 required
               />
               <br />
