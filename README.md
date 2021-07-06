@@ -1,9 +1,5 @@
 # Initio
 
-<p align="center">
-  <img src="https://github.com/Cryptec/Initio/blob/detailview-test/src/Assets/Complete.png" alt="Sublime's custom image"/>
-</p>
-
 <!-- MarkdownTOC autolink="true" -->
 - [About](#About)
 - [Getting Started](#Getting-Started)
@@ -18,6 +14,10 @@
 Initio is an open-source Tool for stocks for your Collection or Company. And the best?
 it runs in the Browser AND as Desktop Application, and offer some useful features like
 a login window to protect your data! 
+
+<p align="center">
+  <img src="https://github.com/Cryptec/Initio/blob/detailview-test/src/Assets/Complete.png" alt="Sublime's custom image"/>
+</p>
 
 want to contribute? simply open a PR in the ```development``` branch, or get in touch. 
 
