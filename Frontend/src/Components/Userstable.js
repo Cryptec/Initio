@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT
+const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT || 'localhost:5000'
 
 class Userstable extends Component {
   constructor(props) {
@@ -15,7 +15,7 @@ class Userstable extends Component {
 
 async componentDidMount() {
     this.setState({ isLoading: true })
-    const response = await fetch(`${API_ENDPOINT}/api/users`)
+    const response = await fetch(`${API_ENDPOINT}/api/users`, {credentials: 'include'})
     if (response.ok) {
       const users = await response.json()
       this.setState({ users, isLoading: false })
@@ -69,8 +69,8 @@ renderTableRows = () => {
       return (
         <tr key={user.id}>
           <td>{user.id}</td>
-          <td>{user.regname}</td>
-          <td>{user.regemail}</td>
+          <td>{user.name}</td>
+          <td>{user.email}</td>
           <td className="delButton" onClick={() => this.deleteTableRow(user.id)}>&#10005;</td>
         </tr>
       )
@@ -80,7 +80,7 @@ renderTableRows = () => {
 
 deleteTableRow = async (id) => {
     
-  await fetch(`${API_ENDPOINT}/api/users/${id}`, {method: 'DELETE'})
+  await fetch(`${API_ENDPOINT}/api/user/${id}`, {method: 'DELETE', credentials: 'include'})
   const response = await fetch(`${API_ENDPOINT}/api/users`)
   if (response.ok) {
     const users = await response.json()

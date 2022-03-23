@@ -9,11 +9,11 @@ class Registerbox extends Component {
     constructor() {
         super();
         this.state = {
-            regname: "",
-            regpassword: "",
-            regemail:"",
-            regconfirm_password:"",
-            regstatus: "Submit",
+            name: "",
+            password: "",
+            email:"",
+            confirm_password:"",
+            status: "Submit",
             errorMessage: "",
             isActive: false
         };
@@ -42,7 +42,7 @@ class Registerbox extends Component {
                                 type='text'
                                 className='form-group-register'
                                 id="regname"
-                                value={this.state.regname}
+                                value={this.state.name}
                                 onChange={this.handleChange.bind(this)}
                                 required
                                 placeholder=' Username*'
@@ -53,7 +53,7 @@ class Registerbox extends Component {
                                 type='text'
                                 className='form-group-register'
                                 id="regemail"
-                                value={this.state.regemail}
+                                value={this.state.email}
                                 onChange={this.handleChange.bind(this)}
                                 required
                                 placeholder=' Enter your email*'
@@ -63,7 +63,7 @@ class Registerbox extends Component {
                                 type='password'
                                 className='form-group-register'
                                 id="regpassword"
-                                value={this.state.regpassword}
+                                value={this.state.password}
                                 onChange={this.handleChange.bind(this)}
                                 required
                                 placeholder=' Password*'
@@ -73,7 +73,7 @@ class Registerbox extends Component {
                                 type='password'
                                 className='form-group-register'
                                 id="regconfirm_password"
-                                value={this.state.regconfirm_password}
+                                value={this.state.confirm_password}
                                 onChange={this.handleChange.bind(this)}
                                 required
                                 placeholder=' Confirm password*'
@@ -101,47 +101,47 @@ class Registerbox extends Component {
     handleChange(event) {
         const field = event.target.id;
         if (field === "regname") {
-            this.setState({ regname: event.target.value });
+            this.setState({ name: event.target.value });
         } else if (field === "regemail") {
-            this.setState({ regemail: event.target.value });
+            this.setState({ email: event.target.value });
         } else if (field === "regpassword") {
-            this.setState({ regpassword: event.target.value });
+            this.setState({ password: event.target.value });
         } else if (field === "regconfirm_password") {
-            this.setState({ regconfirm_password: event.target.value });
+            this.setState({ confirm_password: event.target.value });
         }
     }
     handleConfirmPassword = (event) => {
-        if (event.target.value !== this.state.regpassword) {
+        if (event.target.value !== this.state.password) {
             console.log('error');
-            this.setState({ regconfirm_password: event.target.value })
+            this.setState({ confirm_password: event.target.value })
         }
     }
     handleSubmit(event) {
         event.preventDefault();
-        if (this.state.regpassword !== this.state.regconfirm_password) {
+        if (this.state.password !== this.state.confirm_password) {
             console.log("The passwords doesn't match")
             this.setState({ errorMessage: "The passwords doesn't match" });
             return false; // The form won't submit
         }
         else  
     
-        this.setState({ regstatus: "Submitting" });
+        this.setState({ status: "Submitting" });
         
         axios({
             method: "POST",
             url: `${API_ENDPOINT}/api/register`,
             headers: { 'Content-Type': 'application/json' },
-            data: { regname: this.state.regname, regpassword: this.state.regpassword, regemail: this.state.regemail }
+            data: { name: this.state.name, password: this.state.password, email: this.state.email }
 
         }).then((response) => {
-            if (response.data.answer === "Success") {
-                this.setState({ regname: "", regpassword: "", regconfirm_password: "", regemail: "", regstatus: "Submitted" });
+            if (response.data.answer === "successfully_registered") {
+                this.setState({ name: "", password: "", confirm_password: "", email: "", status: "Submitted" });
                 console.log("Form sent");
    
             } else if (response.data.answer === "password_too_short") {
                 console.log("Password length must be at least 4 characters long");
                 this.setState({ errorMessage: "Password length must be at least 4 characters long" });
-                this.setState({ regstatus: "Submit" });
+                this.setState({ status: "Submit" });
                 this.handleShow()
 
             } else if (response.data.answer === "Name_Excist") {

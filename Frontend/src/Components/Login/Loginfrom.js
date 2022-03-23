@@ -12,8 +12,8 @@ class Loginform extends Component {
     constructor() {
         super();
         this.state = {
-            regname: "",
-            regpassword: "",
+            email: "",
+            password: "",
             status: "Submit",
             answerOk: "Success",
             answerDenied: "Denied",
@@ -55,17 +55,17 @@ class Loginform extends Component {
                                 type='text'
                                 className='form-group'
                                 id="name"
-                                value={this.state.regname}
+                                value={this.state.email}
                                 onChange={this.handleChange.bind(this)}
                                 required
-                                placeholder=' Username'
+                                placeholder=' Useremail'
                             />
                       <br className="space"></br>
                             <input
                                 type='password'
                                 className='form-group'
                                 id="password"
-                                value={this.state.regpassword}
+                                value={this.state.password}
                                 onChange={this.handleChange.bind(this)}
                                 required
                                 placeholder=' Password'
@@ -93,9 +93,9 @@ class Loginform extends Component {
     handleChange(event) {
         const field = event.target.id;
         if (field === "name") {
-            this.setState({ regname: event.target.value });
+            this.setState({ email: event.target.value });
         } else if (field === "password") {
-            this.setState({ regpassword: event.target.value });
+            this.setState({ password: event.target.value });
         }
     }
 
@@ -110,35 +110,38 @@ class Loginform extends Component {
 
         axios({
             method: "POST",
+            withCredentials: true,
+            credentials: 'include',
             url: `${API_ENDPOINT}/api/login`,
             headers: { 'Content-Type': 'application/json' },
-            data: { regname: this.state.regname, regpassword: this.state.regpassword}
+            data: { username: this.state.email, password: this.state.password}
             
         }).then((response, props) => {
             
             console.log(response);
-            if (response.data.answer === this.state.answerOk) {
-                
-                this.setState({ regname: "", regpassword: "", status: "Logged in" })
+            if (response.data.success) {
+                localStorage.setItem("userName", response.data.name);
+                localStorage.setItem("emailAddress", response.data.email);
+                this.setState({ email: "", password: "", status: "Logged in" })
                 this.handleLogin()
                 console.log("Login Success");
 
             } else if (response.data.answer === "UserError") {
-                this.setState({ regpassword: "", status: "Logging in" });
+                this.setState({ password: "", status: "Logging in" });
                 this.setState({ errorMessage: "User not found!" });
                 this.setState({ status: "Submit" });
                 this.handleShow()
                 console.log("User not found!");
             
             } else if (response.data.answer === "PassError") {
-                this.setState({ regpassword: "", status: "Logging in" });
+                this.setState({ password: "", status: "Logging in" });
                 this.setState({ errorMessage: "Wrong Password!" });
                 this.setState({ status: "Submit" });
                 this.handleShow()
                 console.log("Wrong Password!");
             
             } else if (response.data.answer === this.state.answerDenied) {
-                this.setState({ regpassword: "", status: "Logging in" });
+                this.setState({ password: "", status: "Logging in" });
                 this.setState({ errorMessage: "Wrong Username or Password" });
                 this.setState({ status: "Submit" });
                 this.handleShow()

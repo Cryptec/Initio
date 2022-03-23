@@ -13,10 +13,10 @@ class Usersettings extends Component {
     constructor() {
         super();
         this.state = {
-            regname: "",
-            regpassword: "",
-            regemail:"",
-            regconfirm_password:"",
+            name: "",
+            password: "",
+            email:"",
+            confirm_password:"",
             count: 0
         };
     }
@@ -44,8 +44,8 @@ render() {
                             <input
                                 type='text'
                                 className='inAppInput'
-                                id="regname"
-                                value={this.state.regname}
+                                id="name"
+                                value={this.state.name}
                                 onChange={this.handleChange.bind(this)}
                                 required
                             />
@@ -60,8 +60,8 @@ render() {
                             <input
                                 type='text'
                                 className='inAppInput'
-                                id="regemail"
-                                value={this.state.regemail}
+                                id="email"
+                                value={this.state.email}
                                 onChange={this.handleChange.bind(this)}
                                 required
                             />
@@ -76,8 +76,8 @@ render() {
                             <input
                                 type='password'
                                 className='inAppInput'
-                                id="regpassword"
-                                value={this.state.regpassword}
+                                id="password"
+                                value={this.state.password}
                                 onChange={this.handleChange.bind(this)}
                                 required
                             />
@@ -92,8 +92,8 @@ render() {
                             <input
                                 type='password'
                                 className='inAppInput'
-                                id="regconfirm_password"
-                                value={this.state.regconfirm_password}
+                                id="confirm_password"
+                                value={this.state.confirm_password}
                                 onChange={this.handleChange.bind(this)}
                                 required
                             />
@@ -130,25 +130,25 @@ render() {
 
     handleChange(event) {
         const field = event.target.id;
-        if (field === "regname") {
-            this.setState({ regname: event.target.value });
-        } else if (field === "regemail") {
-            this.setState({ regemail: event.target.value });
-        } else if (field === "regpassword") {
-            this.setState({ regpassword: event.target.value });
-        } else if (field === "regconfirm_password") {
-            this.setState({ regconfirm_password: event.target.value });
+        if (field === "name") {
+            this.setState({ name: event.target.value });
+        } else if (field === "email") {
+            this.setState({ email: event.target.value });
+        } else if (field === "password") {
+            this.setState({ password: event.target.value });
+        } else if (field === "confirm_password") {
+            this.setState({ confirm_password: event.target.value });
         }
     }
     handleConfirmPassword = (event) => {
-        if (event.target.value !== this.state.regpassword) {
+        if (event.target.value !== this.state.password) {
             console.log('error');
-            this.setState({ regconfirm_password: event.target.value })
+            this.setState({ confirm_password: event.target.value })
         }
     }
     handleSubmit(event) {
         event.preventDefault();
-        if (this.state.regpassword !== this.state.regconfirm_password) {
+        if (this.state.password !== this.state.confirm_password) {
             console.log("The passwords doesn't match")
             return false; // The form won't submit
         }
@@ -159,11 +159,11 @@ render() {
             method: "POST",
             url: `${API_ENDPOINT}/api/register`,
             headers: { 'Content-Type': 'application/json' },
-            data: { regname: this.state.regname, regpassword: this.state.regpassword, regemail: this.state.regemail }
+            data: { name: this.state.name, password: this.state.password, email: this.state.email }
 
         }).then((response) => {
-            if (response.data.answer === "Success") {
-                this.setState({ regname: "", regpassword: "", regconfirm_password: "", regemail: "", regstatus: "Submitted" });
+            if (response.data.answer === "successfully_registered") {
+                this.setState({ name: "", password: "", confirm_password: "", email: "", status: "Submitted" });
                 this.setState({ count: this.state.count + 1 })
                 console.log("User registration sent");
 

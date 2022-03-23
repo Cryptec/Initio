@@ -1,7 +1,8 @@
 const router = require('express').Router();
+const checkAuthentication = require('../auth/is_authenticated');
 var db = require('../Database');
 
-router.post("/bestand/", (req, res, next) => {
+router.post("/bestand/", checkAuthentication, (req, res, next) => {
     var errors = []
     if (!req.body.Teilenummer) {
       errors.push("No Teilenummer specified");
@@ -43,7 +44,7 @@ router.post("/bestand/", (req, res, next) => {
     });
   })
 
-  router.patch("/bestand/", (req, res, next) => {
+  router.patch("/bestand/", checkAuthentication, (req, res, next) => {
     var reqBody = req.body;
     db.run(`UPDATE Teilebestand set Teilenummer = ?, SKU = ?, Hersteller = ?, Preis = ?, Beschreibung = ? WHERE Teilebestand_id = ?`,
         [reqBody.Teilenummer, reqBody.SKU, reqBody.Hersteller, reqBody.Preis, reqBody.Beschreibung, reqBody.Teilebestand_id],
@@ -55,7 +56,7 @@ router.post("/bestand/", (req, res, next) => {
             res.status(200).json({ updatedID: this.changes });
         });
   });
-  router.delete("/bestand/:id", (req, res, next) => {
+  router.delete("/bestand/:id", checkAuthentication, (req, res, next) => {
     var sql = "DELETE FROM Teilebestand WHERE id = ?"
     var params = [req.params.id]
     db.run (sql, params, (err) => {
@@ -70,7 +71,7 @@ router.post("/bestand/", (req, res, next) => {
         });
   });
 
-  router.get("/bestand", (req, res, next) => {
+  router.get("/bestand", checkAuthentication, (req, res, next) => {
     var sql = "select * from Teilebestand ORDER BY id DESC"
     var params = []
     db.all(sql, params, (err, rows) => {
@@ -83,7 +84,7 @@ router.post("/bestand/", (req, res, next) => {
   });
   
   
-  router.get("/bestand/:id", (req, res, next) => {
+  router.get("/bestand/:id", checkAuthentication, (req, res, next) => {
     var sql = "select * from Teilebestand where id = ?"
     var params = [req.params.id]
     db.get(sql, params, (err, row) => {

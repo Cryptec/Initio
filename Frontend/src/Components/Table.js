@@ -17,7 +17,7 @@ class Table extends Component {
 
 async componentDidMount() {
     this.setState({ isLoading: true })
-    const response = await fetch(`${API_ENDPOINT}/api/bestand`)
+    const response = await fetch(`${API_ENDPOINT}/api/bestand`, {credentials: 'include', withCredentials: true})
     if (response.ok) {
       const parts = await response.json()
       this.setState({ parts, isLoading: false })
@@ -80,7 +80,7 @@ renderTableRows = () => {
           <td>{part.Hersteller}</td>
           <td>{part.Beschreibung}</td>
           <td>{part.Preis}</td>
-          <td>{part.SKU}<span className="editButton" onClick ={part=> this.toggle(part)}>&#9998;</span></td>
+          <td>{part.SKU}<span className="editButton" onClick={part => this.toggle(part)}>&#9998;</span></td>
         </tr>
       )
     })
@@ -88,7 +88,7 @@ renderTableRows = () => {
 
 deleteTableRow = async (id) => {
     
-  await fetch(`${API_ENDPOINT}/api/bestand/${id}`, {method: 'DELETE'})
+  await fetch(`${API_ENDPOINT}/api/bestand/${id}`, { credentials: 'include', method: 'DELETE'})
   const response = await fetch(`${API_ENDPOINT}/api/bestand`)
   if (response.ok) {
     const bestand = await response.json()
@@ -123,7 +123,7 @@ editSection = () => {
                 className="teilenrinput"
                 name="Teilenummer"
                 id="Teilenummer"
-                defaultValue={this.state.activeRow}
+                defaultValue={part.Teilenummer}
                 required
               />
               <br />

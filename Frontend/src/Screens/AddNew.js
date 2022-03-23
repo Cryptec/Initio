@@ -171,6 +171,8 @@ class New extends Component {
 
     axios({
       method: 'POST',
+      withCredentials: true,
+      credentials: 'iclude',
       url: `${API_ENDPOINT}/api/bestand`,
       headers: { 'Content-Type': 'application/json' },
       data: {
