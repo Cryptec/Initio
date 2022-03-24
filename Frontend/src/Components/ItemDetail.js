@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import axios from 'axios'
 
 import '../css/Global.css'
 
@@ -15,47 +16,50 @@ class ItemDetail extends Component {
       id: this.props.id,
       Teilenummer: '',
       SKU: '',
-      Price: '',
-      Hersteller: ''
+      Preis: '',
+      Hersteller: '',
+      Beschreibung: ''
     }
   }
 
   async componentDidMount() {
     this.setState({ isLoading: true })
-    const response = await fetch(`${API_ENDPOINT}/api/bestand/${this.state.id}`, {
-      credentials: 'include',
-      withCredentials: true,
+    const response = await fetch(`${API_ENDPOINT}/api/bestand/${this.props.id}`, {
+      credentials: 'include'
     })
     if (response.ok) {
       const parts = await response.json()
       this.setState({ Teilenummer: parts.Teilenummer,
                       SKU: parts.SKU,
-                      Price: parts.Preis,
+                      Preis: parts.Preis,
                       Hersteller: parts.Hersteller,
+                      Beschreibung: parts.Beschreibung,
                       isLoading: false })
     } else {
       this.setState({ isError: true, isLoading: false })
     }
   }
 
-  deleteTableRow = async (id) => {
-    await fetch(`${API_ENDPOINT}/api/bestand/${id}`, {
-      credentials: 'include',
+
+  deleteTableRow = async () => {
+    await axios({
       method: 'DELETE',
+      withCredentials: true,
+      credentials: 'include',
+      url: `${API_ENDPOINT}/api/bestand/${this.props.id}`,
+      headers: { 'Content-Type': 'application/json' },
+      data: {
+        id: this.state.id
+      },
+    }).then((response, props) => {
+      console.log(response)
+      if (response.data.success) {
+        return window.location.replace('/invoke')
+      } else {
+        this.setState({ isError: true, isLoading: false })
+        return console.error()
+      }
     })
-    const response = await fetch(`${API_ENDPOINT}/api/bestand`)
-    if (response.ok) {
-      const parts = await response.json()
-      this.setState({
-        Teilenummer: parts.Teilenummer,
-        SKU: parts.SKU,
-        Price: parts.Price,
-        Hersteller: parts.Hersteller,
-        isLoading: false
-      })
-    } else {
-      this.setState({ isError: true, isLoading: false })
-    }
   }
 
   render() {
@@ -73,6 +77,7 @@ class ItemDetail extends Component {
                 name='Teilenummer'
                 id='Teilenummer'
                 defaultValue={this.state.Teilenummer}
+                onChange={this.handleChange.bind(this)}
                 required
               />
               <br />
@@ -90,6 +95,7 @@ class ItemDetail extends Component {
                 className='skuinput'
                 id='SKU'
                 defaultValue={this.state.SKU}
+                onChange={this.handleChange.bind(this)}
                 required
               />
               <br />
@@ -106,7 +112,8 @@ class ItemDetail extends Component {
                 name='Price'
                 className='priceinput'
                 id='Preis'
-                defaultValue={this.state.Price}
+                defaultValue={this.state.Preis}
+                onChange={this.handleChange.bind(this)}
                 required
               />
               <br />
@@ -124,6 +131,7 @@ class ItemDetail extends Component {
                 id='Hersteller'
                 className='herstellerinput'
                 defaultValue={this.state.Hersteller}
+                onChange={this.handleChange.bind(this)}
                 required
               ></input>
               <datalist id='manufacturers'>
@@ -146,6 +154,7 @@ class ItemDetail extends Component {
                 className='beschreibunginput'
                 id='Beschreibung'
                 defaultValue={this.state.Beschreibung}
+                onChange={this.handleChange.bind(this)}
                 required
               />
               <br />
@@ -153,7 +162,7 @@ class ItemDetail extends Component {
             </label>
           </div>
 
-          <input className='Eintragen-Button' type='submit' value='Update ' />
+          <button className='Eintragen-Button' type='submit' >Update</button>
 
           <span id='response'></span>
           <button
@@ -166,6 +175,50 @@ class ItemDetail extends Component {
       </div>
     )
   }
+
+  handleChange(event) {
+    const field = event.target.id;
+  
+    if (field === "Teilenummer") {
+        this.setState({ Teienummer: event.target.value }); 
+    } else if (field === "SKU") {
+        this.setState({ SKU: event.target.value });
+    } else if (field === "Preis") {
+      this.setState({ Preis: event.target.value });
+    } else if (field === "Hersteller") {
+      this.setState({ Hersteller: event.target.value });
+    } else if (field === "Beschreibung") {
+      this.setState({ Beschreibung: event.target.value });
+    }
+  }
+  handleSubmit(event) {
+  event.preventDefault();
+
+  axios({
+    method: 'POST',
+    withCredentials: true,
+    credentials: 'include',
+    url: `${API_ENDPOINT}/api/edititem`,
+    headers: { 'Content-Type': 'application/json' },
+    data: {
+      id: this.state.id,
+      Teilenummer: this.state.Teilenummer,
+      SKU: this.state.SKU,
+      Preis: this.state.Preis,
+      Hersteller: this.state.Hersteller,
+      Beschreibung: this.state.Beschreibung
+    },
+  }).then((response, props) => {
+    console.log(response)
+    if (response.data.success) {
+      console.log('Successfully edited data')
+      window.location.replace('/invoke')
+    } else {
+      return console.error()
+    }
+  })
+}
+  
 }
 
 export default ItemDetail

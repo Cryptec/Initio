@@ -19,7 +19,8 @@ class New extends Component {
       Beschreibung: '',
       answerOk: 'Success',
       answerDenied: 'Denied',
-      count: 0
+      count: 0,
+      inputText: ''
     }
   }
 
@@ -141,7 +142,7 @@ class New extends Component {
 
             <div id="box3" style={{ overflow: 'hidden' }}>
               <div id="box4" style={{ overflowY: 'hidden' }}>
-                <Table key={this.state.count} />
+                <Table input={this.state.inputText} key={this.state.count} />
               </div>
             </div>
           </div>

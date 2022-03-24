@@ -11,14 +11,16 @@ class Table extends Component {
       isLoading: false,
       isError: false,
       show: false,
-      activeRow: []
+      activeRow: [],
+      id: '',
+      filter: ''
     }
   }
 
 
 async componentDidMount() {
     this.setState({ isLoading: true })
-    const response = await fetch(`${API_ENDPOINT}/api/bestand`, {credentials: 'include', withCredentials: true})
+    const response = await fetch(`${API_ENDPOINT}/api/bestand/${this.state.filter}`, {credentials: 'include', withCredentials: true})
     if (response.ok) {
       const parts = await response.json()
       this.setState({ parts, isLoading: false })
@@ -74,12 +76,22 @@ renderTableHeader = () => {
   }
 
 renderTableRows = () => {
-    return this.state.parts.map(part => {
+  const filteredData = this.state.parts.filter((el) => {
+    if (this.props.input === '') {
+      return el
+    } else {
+      return el.Beschreibung.toLowerCase().includes(this.props.input)
+    }
+  })
+
+    return filteredData.map((part) => {
+      const Beschreibung = part.Beschreibung
+
       return (
         <tr key={part.id}>
           <td>{part.Teilenummer}</td>
           <td>{part.Hersteller}</td>
-          <td>{part.Beschreibung}</td>
+          <td>{Beschreibung}</td>
           <td>{part.Preis}</td>
           <td>{part.SKU}<span className="editButton" onClick={() => this.toggle(part.id)}>&#9998;</span></td>
         </tr>
@@ -87,24 +99,12 @@ renderTableRows = () => {
     })
   }
 
-deleteTableRow = async (id) => {
-    
-  await fetch(`${API_ENDPOINT}/api/bestand/${id}`, { credentials: 'include', method: 'DELETE'})
-  const response = await fetch(`${API_ENDPOINT}/api/bestand`)
-  if (response.ok) {
-    const bestand = await response.json()
-    this.setState({ bestand, isLoading: false })
-  } else {
-    this.setState({ isError: true, isLoading: false })
-  }
-}
 
-
-toggle = async (part) => {
-  const activeRow = part
-  await this.setState({activeRow: activeRow})
+toggle = async (id) => {
+  const activeRow = `${id}`
+  await this.setState({id: activeRow})
   this.setState((currentState) => ({ show: !currentState.show })) 
-  console.log("this is" + this.state.activeRow)
+  console.log("this is" + this.state.id)
   }
 
 editSection = (id) => {
@@ -112,7 +112,7 @@ editSection = (id) => {
       <div>
         <button className="detailClose" onClick={this.toggle}>&#10005;</button>
 
-        <ItemDetail id={id} />
+        <ItemDetail id={this.state.id} />
       </div>
     )
 }
