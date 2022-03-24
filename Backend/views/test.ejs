@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Reset Password</title>
+  </head>
+  <body>
+                    
+                      <form action="" method="post">
+                            <h3>Enter a new password for <%= email%></h3>
+                            <br />
+
+                        <label className='label'>
+                          Password
+                          <br />
+                          <input  id='password' type='password' name="password" required />
+                        </label>
+                        <br />
+                        <label className='label'>
+                          Confirm Password
+                          <br />
+                          <input id='confirm_password' type='password' name="confirm_password" required />
+                        </label>
+                        <br />
+                        <br />
+                        <input class="submitButton" type="submit" value="submit"/>
+                    
+                      </form>
+  </body>
+</html>
+
+<style>
+body {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  font-family: Arial, Helvetica, sans-serif;
+}
+label {
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+input {
+  align-items: center;
+  border: 1px solid #cfcece;
+  padding: 10px 16px;
+  margin-bottom: 15px;
+  font-size: 18px;
+  line-height: 1.3333333;
+  border-radius: 6px;
+  width: 318px;
+}
+.submitButton {
+    border: 1px solid #cfcece;
+    background-color: transparent;
+    padding: 10px 16px;
+    border-radius: 6px;
+    line-height: 1.3333333;
+    cursor: pointer;
+    font-size: 18px;
+    color: #777;
+    width: 350px;
+}
+</style>

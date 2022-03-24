@@ -180,7 +180,7 @@ class ItemDetail extends Component {
     const field = event.target.id;
   
     if (field === "Teilenummer") {
-        this.setState({ Teienummer: event.target.value }); 
+        this.setState({ Teilenummer: event.target.value }); 
     } else if (field === "SKU") {
         this.setState({ SKU: event.target.value });
     } else if (field === "Preis") {
