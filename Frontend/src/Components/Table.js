@@ -81,7 +81,7 @@ renderTableRows = () => {
           <td>{part.Hersteller}</td>
           <td>{part.Beschreibung}</td>
           <td>{part.Preis}</td>
-          <td>{part.SKU}<span className="editButton" onClick={part => this.toggle(part)}>&#9998;</span></td>
+          <td>{part.SKU}<span className="editButton" onClick={() => this.toggle(part.id)}>&#9998;</span></td>
         </tr>
       )
     })

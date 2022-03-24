@@ -2,29 +2,37 @@ import React, { Component } from 'react'
 
 import '../css/Global.css'
 
-const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT
+const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT || 'localhost:5000'
 
 class ItemDetail extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      parts: [],
       isLoading: false,
       isError: false,
       show: false,
       activeRow: [],
+      id: this.props.id,
+      Teilenummer: '',
+      SKU: '',
+      Price: '',
+      Hersteller: ''
     }
   }
 
   async componentDidMount() {
     this.setState({ isLoading: true })
-    const response = await fetch(`${API_ENDPOINT}/api/bestand/${this.props.id}`, {
+    const response = await fetch(`${API_ENDPOINT}/api/bestand/${this.state.id}`, {
       credentials: 'include',
       withCredentials: true,
     })
     if (response.ok) {
       const parts = await response.json()
-      this.setState({ parts, isLoading: false })
+      this.setState({ Teilenummer: parts.Teilenummer,
+                      SKU: parts.SKU,
+                      Price: parts.Preis,
+                      Hersteller: parts.Hersteller,
+                      isLoading: false })
     } else {
       this.setState({ isError: true, isLoading: false })
     }
@@ -37,18 +45,24 @@ class ItemDetail extends Component {
     })
     const response = await fetch(`${API_ENDPOINT}/api/bestand`)
     if (response.ok) {
-      const bestand = await response.json()
-      this.setState({ bestand, isLoading: false })
+      const parts = await response.json()
+      this.setState({
+        Teilenummer: parts.Teilenummer,
+        SKU: parts.SKU,
+        Price: parts.Price,
+        Hersteller: parts.Hersteller,
+        isLoading: false
+      })
     } else {
       this.setState({ isError: true, isLoading: false })
     }
   }
 
   render() {
-    return this.state.parts.map(part => {
+    
     return (
       <div>
-        <form key={part.id} method='POST'>
+        <form key={this.state.id} method='POST'>
           <div className='Teilenummer'>
             <label>
               Teilenummer:
@@ -58,7 +72,7 @@ class ItemDetail extends Component {
                 className='teilenrinput'
                 name='Teilenummer'
                 id='Teilenummer'
-                defaultValue={part.Teilenummer}
+                defaultValue={this.state.Teilenummer}
                 required
               />
               <br />
@@ -75,7 +89,7 @@ class ItemDetail extends Component {
                 name='SKU'
                 className='skuinput'
                 id='SKU'
-                defaultValue={part.SKU}
+                defaultValue={this.state.SKU}
                 required
               />
               <br />
@@ -92,7 +106,7 @@ class ItemDetail extends Component {
                 name='Price'
                 className='priceinput'
                 id='Preis'
-                defaultValue={part.Preis}
+                defaultValue={this.state.Price}
                 required
               />
               <br />
@@ -109,7 +123,7 @@ class ItemDetail extends Component {
                 name='Hersteller'
                 id='Hersteller'
                 className='herstellerinput'
-                defaultValue={part.Hersteller}
+                defaultValue={this.state.Hersteller}
                 required
               ></input>
               <datalist id='manufacturers'>
@@ -131,7 +145,7 @@ class ItemDetail extends Component {
                 name='Beschreibung'
                 className='beschreibunginput'
                 id='Beschreibung'
-                defaultValue={part.Beschreibung}
+                defaultValue={this.state.Beschreibung}
                 required
               />
               <br />
@@ -144,14 +158,13 @@ class ItemDetail extends Component {
           <span id='response'></span>
           <button
             className='deleteButton'
-            onClick={() => this.deleteTableRow(part.id)}
+            onClick={() => this.deleteTableRow(this.state.id)}
           >
             Delete
           </button>
         </form>
       </div>
     )
-  })
   }
 }
 
