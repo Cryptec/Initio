@@ -46,6 +46,7 @@ router.post("/bestand/", checkAuthentication, (req, res, next) => {
 
   router.post("/edititem", checkAuthentication, (req, res, next) => {
     var data = {
+      id: req.body.id,
       Teilenummer: req.body.Teilenummer,
       SKU: req.body.SKU,
       Hersteller: req.body.Hersteller,
@@ -53,7 +54,7 @@ router.post("/bestand/", checkAuthentication, (req, res, next) => {
       Beschreibung: req.body.Beschreibung,
     }
     var sql = 'UPDATE Teilebestand set Teilenummer = ?, SKU = ?, Hersteller = ?, Preis = ?, Beschreibung = ? WHERE id = ?'
-    var params = [data.Teilenummer, data.SKU, data.Hersteller, data.Preis, data.Beschreibung]
+    var params = [data.Teilenummer, data.SKU, data.Hersteller, data.Preis, data.Beschreibung, data.id]
     db.run(sql, params, (err, rows) => {
       if (err) {
         res.status(400).json({ "error": err.message });
@@ -63,6 +64,7 @@ router.post("/bestand/", checkAuthentication, (req, res, next) => {
       return res.send({ success: true });
     });
   });
+
   router.delete("/bestand/:id", checkAuthentication, (req, res, next) => {
     db.run(
       'DELETE FROM Teilebestand WHERE id = ?',

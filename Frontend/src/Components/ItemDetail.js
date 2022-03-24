@@ -66,7 +66,7 @@ class ItemDetail extends Component {
     
     return (
       <div>
-        <form key={this.state.id} method='POST'>
+        <form key={this.state.id} onSubmit={this.handleSubmit.bind(this)}>
           <div className='Teilenummer'>
             <label>
               Teilenummer:
@@ -162,7 +162,7 @@ class ItemDetail extends Component {
             </label>
           </div>
 
-          <button className='Eintragen-Button' type='submit' >Update</button>
+          <button className='Eintragen-Button' >Update</button>
 
           <span id='response'></span>
           <button
@@ -212,7 +212,7 @@ class ItemDetail extends Component {
     console.log(response)
     if (response.data.success) {
       console.log('Successfully edited data')
-      window.location.replace('/invoke')
+      return window.location.replace('/invoke')
     } else {
       return console.error()
     }
