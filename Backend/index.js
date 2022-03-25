@@ -6,6 +6,7 @@ const passport = require('passport')
 const LocalStrategy = require('passport-local').Strategy;
 const authRoute = require('./routes/auth');
 const itemRoute = require('./routes/items');
+const settingsRoute = require('./routes/settings')
 const checkAuthentication = require("./auth/is_authenticated")
 const db = require('./Database');
 const check_first_start = require("./database/check_first_start")
@@ -89,6 +90,7 @@ function setupExpress() {
   // Route Middlewares
   app.use('/api', authRoute);
   app.use('/api', checkAuthentication, itemRoute);
+  app.use('/api', checkAuthentication, settingsRoute);
 
   app.use(express.static('public'));
   app.use('/uploads', express.static('uploads'));
