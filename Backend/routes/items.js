@@ -1,8 +1,23 @@
 const router = require('express').Router();
+const multer = require('multer')
+const fs = require('fs')
 const checkAuthentication = require('../auth/is_authenticated');
 var db = require('../Database');
 
-router.post("/bestand/", checkAuthentication, (req, res, next) => {
+
+const imagepath = './public/uploads/'
+
+const upload = multer({
+  dest: imagepath,
+  fileFilter(req, file, cb) {
+    if (!file.originalname.match(/\.(png|jpg|jpeg|PNG)$/)) {
+      cb(new Error('Please upload an image.'))
+    }
+    cb(undefined, true)
+  }
+}).single("file");
+
+router.post("/bestand/", checkAuthentication, upload, (req, res, next) => {
     var errors = []
     if (!req.body.Teilenummer) {
       errors.push("No Teilenummer specified");
@@ -23,17 +38,34 @@ router.post("/bestand/", checkAuthentication, (req, res, next) => {
       res.status(400).json({ "error": errors.join(",") });
       return;
     }
+    console.log("Request ---", req.body);
+    if (req.file !== undefined) {
+    console.log("Request file ---", req.file);
+    console.log("filename is:", req.file.Filename);
     var data = {
       Teilenummer: req.body.Teilenummer,
       SKU: req.body.SKU,
       Hersteller: req.body.Hersteller,
       Preis: req.body.Preis,
       Beschreibung: req.body.Beschreibung,
-      Supply: req.body.Supply
+      Supply: req.body.Supply,
+      filename: req.file.Filename
     }
-    var sql = 'INSERT INTO Teilebestand (Teilenummer, SKU, Hersteller, Preis, Beschreibung, Supply) VALUES (?,?,?,?,?,?)'
-    var params = [data.Teilenummer, data.SKU, data.Hersteller, data.Preis, data.Beschreibung, data.Supply]
-    
+    var sql = 'INSERT INTO Teilebestand (Teilenummer, SKU, Hersteller, Preis, Beschreibung, Supply, Filename) VALUES (?,?,?,?,?,?,?)'
+    var params = [data.Teilenummer, data.SKU, data.Hersteller, data.Preis, data.Beschreibung, data.Supply, data.Filename]
+    } else if (req.file === undefined) {
+      var data = {
+        Teilenummer: req.body.Teilenummer,
+        SKU: req.body.SKU,
+        Hersteller: req.body.Hersteller,
+        Preis: req.body.Preis,
+        Beschreibung: req.body.Beschreibung,
+        Supply: req.body.Supply,
+        Filename: "null"
+      }
+    var sql = 'INSERT INTO Teilebestand (Teilenummer, SKU, Hersteller, Preis, Beschreibung, Supply, Filename) VALUES (?,?,?,?,?,?,?)'
+    var params = [data.Teilenummer, data.SKU, data.Hersteller, data.Preis, data.Beschreibung, data.Supply, data.Filename]
+    }
     db.run(sql, params, function (err, result) {
       if (err) {
         res.status(400).json({ "error": err.message })
@@ -45,7 +77,11 @@ router.post("/bestand/", checkAuthentication, (req, res, next) => {
     });
   })
 
-  router.post("/edititem", checkAuthentication, (req, res, next) => {
+  router.post("/edititem", checkAuthentication, upload, (req, res, next) => {
+    console.log("Request ---", req.body);
+    if (req.file !== undefined) {
+    console.log("Request file ---", req.file);
+    console.log("filename is:", req.file.Filename);
     var data = {
       id: req.body.id,
       Teilenummer: req.body.Teilenummer,
@@ -53,10 +89,35 @@ router.post("/bestand/", checkAuthentication, (req, res, next) => {
       Hersteller: req.body.Hersteller,
       Preis: req.body.Preis,
       Beschreibung: req.body.Beschreibung,
-      Supply: req.body.Supply
+      Supply: req.body.Supply,
+      Filename: req.file.Filename,
+      Oldfilename: req.body.Oldfilename
     }
-    var sql = 'UPDATE Teilebestand set Teilenummer = ?, SKU = ?, Hersteller = ?, Preis = ?, Beschreibung = ?, Supply = ? WHERE id = ?'
-    var params = [data.Teilenummer, data.SKU, data.Hersteller, data.Preis, data.Supply, data.Beschreibung, data.id]
+    const removeimagepath = imagepath + data.Oldfilename
+    fs.unlink(removeimagepath, (err) => {
+      if (err) {
+        console.error(err)
+        return
+      }
+      console.log("successfully deleted:" + data.Oldfilename)
+    })
+    var sql = 'UPDATE Teilebestand set Teilenummer = ?, SKU = ?, Hersteller = ?, Preis = ?, Beschreibung = ?, Supply = ?, Filename = ? WHERE id = ?'
+    var params = [data.Teilenummer, data.SKU, data.Hersteller, data.Preis, data.Supply, data.Beschreibung, data.Filename, data.id]
+    } else if (req.file === undefined) {
+      var data = {
+        id: req.body.id,
+        Teilenummer: req.body.Teilenummer,
+        SKU: req.body.SKU,
+        Hersteller: req.body.Hersteller,
+        Preis: req.body.Preis,
+        Beschreibung: req.body.Beschreibung,
+        Supply: req.body.Supply,
+        Filename: req.file.Filename,
+        Oldfilename: req.body.Oldfilename
+      }
+      var sql = 'UPDATE Teilebestand set Teilenummer = ?, SKU = ?, Hersteller = ?, Preis = ?, Beschreibung = ?, Supply = ? WHERE id = ?'
+      var params = [data.Teilenummer, data.SKU, data.Hersteller, data.Preis, data.Supply, data.Beschreibung, data.id]
+    }    
     db.run(sql, params, (err, rows) => {
       if (err) {
         res.status(400).json({ "error": err.message });
@@ -68,6 +129,18 @@ router.post("/bestand/", checkAuthentication, (req, res, next) => {
   });
 
   router.delete("/bestand/:id", checkAuthentication, (req, res, next) => {
+    var data = {
+      Filename: req.body.filename,
+      id: req.body.id
+    }
+    const removeimagepath = imagepath + data.Filename
+    fs.unlink(removeimagepath, (err) => {
+      if (err) {
+        console.error(err)
+        return
+      }
+      console.log("successfully deleted:" + data.Filename)
+    })
     db.run(
       'DELETE FROM Teilebestand WHERE id = ?',
       req.params.id,
@@ -79,6 +152,33 @@ router.post("/bestand/", checkAuthentication, (req, res, next) => {
         console.log("successfully deleted item")
         return res.send({ success: true });
       });
+  });
+
+  router.post('/removeimage', checkAuthentication, function (req, res) {
+    var data = {
+      Filename: req.body.Filename,
+      Oldfilename: req.body.Oldfilename,
+      id: req.body.id
+    }
+    const removeimagepath = imagepath + data.Oldfilename
+    fs.unlink(removeimagepath, (err) => {
+      if (err) {
+        console.error(err)
+        return
+      }
+      console.log("successfully deleted:" + data.Oldfilename)
+    })
+    var params = [data.filename, data.id]
+    db.serialize(() => {
+      db.run('UPDATE Teilebestand SET Filename = ? WHERE id = ?', params, function (err) {
+        if (err) {
+          res.send("Error encountered while updating");
+          return res.status(400).json({ error: true });
+        }
+        console.log("Successfully removed image");
+        return res.send({ success: true });
+      });
+    });
   });
 
   router.get("/bestand", checkAuthentication, (req, res, next) => {
