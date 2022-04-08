@@ -26,9 +26,9 @@ render() {
               
         <div className="box-wrapper"> 
          <div id="background">
-
-            Willkommen zurück, {activeUser}
-            
+          <div style={styles.welcome}>
+            Willkommen, {activeUser}!
+          </div>
          </div> 
         </div>
           
@@ -36,5 +36,16 @@ render() {
         );
     }
 }
+
+const styles = {};
+
+styles.welcome = {
+    color: 'white',
+    fontSize: '20px',
+    margin: '15px',
+    fontFamily: 'Arial, Helvetica, sans-serif',
+}
+
+
 
 export default Home;
