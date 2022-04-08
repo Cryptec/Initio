@@ -80,6 +80,23 @@
     color: white;
 }
 
+.Supply { 
+    margin-top: 80px;
+    margin-left: 220px; 
+    color: white;
+    font-size: 18px;
+    font-family: Arial, Helvetica, sans-serif;
+    position:absolute;
+    }
+.supplyinput {
+    height: 30px; 
+    width: 90px; 
+    background: var(--primary); 
+    border-radius: 6px; 
+    border: none;
+    color: white;
+}
+
 .Hersteller { 
     margin-top:80px;
     margin-left: 10px; 
@@ -90,7 +107,7 @@
   }
 .herstellerinput {
     height: 30px; 
-    width: 300px; 
+    width: 200px; 
     background: var(--primary); 
     border-radius: 6px; 
     border: none; 

@@ -17,6 +17,7 @@ class New extends Component {
       Hersteller: '',
       Preis: '',
       Beschreibung: '',
+      Supply: '',
       answerOk: 'Success',
       answerDenied: 'Denied',
       count: 0,
@@ -111,6 +112,24 @@ class New extends Component {
                   </label>
                 </div>
 
+                <div className="Supply">
+                  <label>
+                    Lager:
+                    <br />
+                    <input
+                      type="text"
+                      name="Supply"
+                      className="supplyinput"
+                      id="Supply"
+                      value={this.state.Supply}
+                      onChange={this.handleChange.bind(this)}
+                      required
+                    />
+                    <br />
+                    <br />
+                  </label>
+                </div>
+
                 <div className="Beschreibung">
                   <label>
                     Beschreibung:
@@ -159,6 +178,8 @@ class New extends Component {
       this.setState({ SKU: event.target.value })
     } else if (field === 'Hersteller') {
       this.setState({ Hersteller: event.target.value })
+    } else if (field === 'Supply') {
+      this.setState({ Supply: event.target.value })
     } else if (field === 'Preis') {
       this.setState({ Preis: event.target.value })
     } else if (field === 'Beschreibung') {
@@ -182,6 +203,7 @@ class New extends Component {
         Hersteller: this.state.Hersteller,
         Preis: this.state.Preis,
         Beschreibung: this.state.Beschreibung,
+        Supply: this.state.Supply
       },
     }).then((response, props) => {
       console.log(response)
@@ -192,6 +214,7 @@ class New extends Component {
           Hersteller: '',
           Preis: '',
           Beschreibung: '',
+          Supply: '',
           count: this.state.count + 1
         }) 
         return console.log('Success')
@@ -202,6 +225,7 @@ class New extends Component {
           Hersteller: '',
           Preis: '',
           Beschreibung: '',
+          Supply: ''
         })
         return console.log('Failed adding articles')
       }

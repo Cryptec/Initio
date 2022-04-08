@@ -18,6 +18,7 @@ class ItemDetail extends Component {
       SKU: '',
       Preis: '',
       Hersteller: '',
+      Supply: '',
       Beschreibung: ''
     }
   }
@@ -34,6 +35,7 @@ class ItemDetail extends Component {
                       Preis: parts.Preis,
                       Hersteller: parts.Hersteller,
                       Beschreibung: parts.Beschreibung,
+                      Supply: parts.Supply,
                       isLoading: false })
     } else {
       this.setState({ isError: true, isLoading: false })
@@ -144,6 +146,24 @@ class ItemDetail extends Component {
             </label>
           </div>
 
+          <div className="Supply">
+            <label>
+              Lager:
+                <br />
+                <input
+                  type="text"
+                  name="Supply"
+                  className="supplyinput"
+                  id="Supply"
+                  value={this.state.Supply}
+                  onChange={this.handleChange.bind(this)}
+                  required
+              />
+              <br />
+              <br />
+              </label>
+            </div>
+
           <div className='Beschreibung'>
             <label>
               Beschreibung:
@@ -187,6 +207,8 @@ class ItemDetail extends Component {
       this.setState({ Preis: event.target.value });
     } else if (field === "Hersteller") {
       this.setState({ Hersteller: event.target.value });
+    } else if (field === "Supply") {
+      this.setState({ Supply: event.target.value });
     } else if (field === "Beschreibung") {
       this.setState({ Beschreibung: event.target.value });
     }
@@ -206,7 +228,8 @@ class ItemDetail extends Component {
       SKU: this.state.SKU,
       Preis: this.state.Preis,
       Hersteller: this.state.Hersteller,
-      Beschreibung: this.state.Beschreibung
+      Beschreibung: this.state.Beschreibung,
+      Supply: this.state.Supply
     },
   }).then((response, props) => {
     console.log(response)

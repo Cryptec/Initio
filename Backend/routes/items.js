@@ -29,9 +29,10 @@ router.post("/bestand/", checkAuthentication, (req, res, next) => {
       Hersteller: req.body.Hersteller,
       Preis: req.body.Preis,
       Beschreibung: req.body.Beschreibung,
+      Supply: req.body.Supply
     }
-    var sql = 'INSERT INTO Teilebestand (Teilenummer, SKU, Hersteller, Preis, Beschreibung) VALUES (?,?,?,?,?)'
-    var params = [data.Teilenummer, data.SKU, data.Hersteller, data.Preis, data.Beschreibung]
+    var sql = 'INSERT INTO Teilebestand (Teilenummer, SKU, Hersteller, Preis, Beschreibung, Supply) VALUES (?,?,?,?,?,?)'
+    var params = [data.Teilenummer, data.SKU, data.Hersteller, data.Preis, data.Beschreibung, data.Supply]
     
     db.run(sql, params, function (err, result) {
       if (err) {
@@ -52,9 +53,10 @@ router.post("/bestand/", checkAuthentication, (req, res, next) => {
       Hersteller: req.body.Hersteller,
       Preis: req.body.Preis,
       Beschreibung: req.body.Beschreibung,
+      Supply: req.body.Supply
     }
-    var sql = 'UPDATE Teilebestand set Teilenummer = ?, SKU = ?, Hersteller = ?, Preis = ?, Beschreibung = ? WHERE id = ?'
-    var params = [data.Teilenummer, data.SKU, data.Hersteller, data.Preis, data.Beschreibung, data.id]
+    var sql = 'UPDATE Teilebestand set Teilenummer = ?, SKU = ?, Hersteller = ?, Preis = ?, Beschreibung = ?, Supply = ? WHERE id = ?'
+    var params = [data.Teilenummer, data.SKU, data.Hersteller, data.Preis, data.Supply, data.Beschreibung, data.id]
     db.run(sql, params, (err, rows) => {
       if (err) {
         res.status(400).json({ "error": err.message });
