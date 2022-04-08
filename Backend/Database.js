@@ -33,7 +33,7 @@ let db = new sqlite3.Database(DBSOURCE, (err) => {
             Preis text, 
             SKU text,
             Supply text,
-            Filename text,
+            filename text,
             CONSTRAINT Teilenummer_unique UNIQUE (Teilenummer)
             )`,
             (err) => {

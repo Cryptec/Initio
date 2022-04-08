@@ -17,31 +17,12 @@ const upload = multer({
   }
 }).single("file");
 
-router.post("/bestand/", checkAuthentication, upload, (req, res, next) => {
-    var errors = []
-    if (!req.body.Teilenummer) {
-      errors.push("No Teilenummer specified");
-    }
-    if (!req.body.SKU) {
-      errors.push("No SKU specified");
-    }
-    if (!req.body.Hersteller) {
-      errors.push("No Hersteller specified");
-    }
-    if (!req.body.Preis) {
-      errors.push("No Preis specified");
-    }
-    if (!req.body.Beschreibung) {
-      errors.push("No Beschreibung specified");
-    }
-    if (errors.length) {
-      res.status(400).json({ "error": errors.join(",") });
-      return;
-    }
+router.post("/bestand/", checkAuthentication, upload, async (req, res, next) => {
+
     console.log("Request ---", req.body);
     if (req.file !== undefined) {
     console.log("Request file ---", req.file);
-    console.log("filename is:", req.file.Filename);
+    console.log("filename is:", req.file.filename);
     var data = {
       Teilenummer: req.body.Teilenummer,
       SKU: req.body.SKU,
@@ -49,10 +30,10 @@ router.post("/bestand/", checkAuthentication, upload, (req, res, next) => {
       Preis: req.body.Preis,
       Beschreibung: req.body.Beschreibung,
       Supply: req.body.Supply,
-      filename: req.file.Filename
+      filename: req.file.filename
     }
-    var sql = 'INSERT INTO Teilebestand (Teilenummer, SKU, Hersteller, Preis, Beschreibung, Supply, Filename) VALUES (?,?,?,?,?,?,?)'
-    var params = [data.Teilenummer, data.SKU, data.Hersteller, data.Preis, data.Beschreibung, data.Supply, data.Filename]
+    var sql = 'INSERT INTO Teilebestand (Teilenummer, SKU, Hersteller, Preis, Beschreibung, Supply, filename) VALUES (?,?,?,?,?,?,?)'
+    var params = [data.Teilenummer, data.SKU, data.Hersteller, data.Preis, data.Beschreibung, data.Supply, data.filename]
     } else if (req.file === undefined) {
       var data = {
         Teilenummer: req.body.Teilenummer,
@@ -61,19 +42,17 @@ router.post("/bestand/", checkAuthentication, upload, (req, res, next) => {
         Preis: req.body.Preis,
         Beschreibung: req.body.Beschreibung,
         Supply: req.body.Supply,
-        Filename: "null"
+        filename: "null"
       }
-    var sql = 'INSERT INTO Teilebestand (Teilenummer, SKU, Hersteller, Preis, Beschreibung, Supply, Filename) VALUES (?,?,?,?,?,?,?)'
-    var params = [data.Teilenummer, data.SKU, data.Hersteller, data.Preis, data.Beschreibung, data.Supply, data.Filename]
+    var sql = 'INSERT INTO Teilebestand (Teilenummer, SKU, Hersteller, Preis, Beschreibung, Supply, filename) VALUES (?,?,?,?,?,?,?)'
+    var params = [data.Teilenummer, data.SKU, data.Hersteller, data.Preis, data.Beschreibung, data.Supply, data.filename]
     }
     db.run(sql, params, function (err, result) {
       if (err) {
         res.status(400).json({ "error": err.message })
         return;
       }
-      res.json({
-        "answer": "Success",
-      })
+      return res.send({success: true});
     });
   })
 
@@ -81,7 +60,7 @@ router.post("/bestand/", checkAuthentication, upload, (req, res, next) => {
     console.log("Request ---", req.body);
     if (req.file !== undefined) {
     console.log("Request file ---", req.file);
-    console.log("filename is:", req.file.Filename);
+    console.log("filename is:", req.file.filename);
     var data = {
       id: req.body.id,
       Teilenummer: req.body.Teilenummer,
@@ -90,7 +69,7 @@ router.post("/bestand/", checkAuthentication, upload, (req, res, next) => {
       Preis: req.body.Preis,
       Beschreibung: req.body.Beschreibung,
       Supply: req.body.Supply,
-      Filename: req.file.Filename,
+      filename: req.file.filename,
       Oldfilename: req.body.Oldfilename
     }
     const removeimagepath = imagepath + data.Oldfilename
@@ -101,8 +80,8 @@ router.post("/bestand/", checkAuthentication, upload, (req, res, next) => {
       }
       console.log("successfully deleted:" + data.Oldfilename)
     })
-    var sql = 'UPDATE Teilebestand set Teilenummer = ?, SKU = ?, Hersteller = ?, Preis = ?, Beschreibung = ?, Supply = ?, Filename = ? WHERE id = ?'
-    var params = [data.Teilenummer, data.SKU, data.Hersteller, data.Preis, data.Supply, data.Beschreibung, data.Filename, data.id]
+    var sql = 'UPDATE Teilebestand set Teilenummer = ?, SKU = ?, Hersteller = ?, Preis = ?, Beschreibung = ?, Supply = ?, filename = ? WHERE id = ?'
+    var params = [data.Teilenummer, data.SKU, data.Hersteller, data.Preis, data.Supply, data.Beschreibung, data.filename, data.id]
     } else if (req.file === undefined) {
       var data = {
         id: req.body.id,
@@ -112,7 +91,7 @@ router.post("/bestand/", checkAuthentication, upload, (req, res, next) => {
         Preis: req.body.Preis,
         Beschreibung: req.body.Beschreibung,
         Supply: req.body.Supply,
-        Filename: req.file.Filename,
+        filename: req.file.filename,
         Oldfilename: req.body.Oldfilename
       }
       var sql = 'UPDATE Teilebestand set Teilenummer = ?, SKU = ?, Hersteller = ?, Preis = ?, Beschreibung = ?, Supply = ? WHERE id = ?'
@@ -130,16 +109,16 @@ router.post("/bestand/", checkAuthentication, upload, (req, res, next) => {
 
   router.delete("/bestand/:id", checkAuthentication, (req, res, next) => {
     var data = {
-      Filename: req.body.filename,
+      filename: req.body.filename,
       id: req.body.id
     }
-    const removeimagepath = imagepath + data.Filename
+    const removeimagepath = imagepath + data.filename
     fs.unlink(removeimagepath, (err) => {
       if (err) {
         console.error(err)
         return
       }
-      console.log("successfully deleted:" + data.Filename)
+      console.log("successfully deleted:" + data.filename)
     })
     db.run(
       'DELETE FROM Teilebestand WHERE id = ?',
@@ -156,7 +135,7 @@ router.post("/bestand/", checkAuthentication, upload, (req, res, next) => {
 
   router.post('/removeimage', checkAuthentication, function (req, res) {
     var data = {
-      Filename: req.body.Filename,
+      filename: req.body.filename,
       Oldfilename: req.body.Oldfilename,
       id: req.body.id
     }
@@ -170,7 +149,7 @@ router.post("/bestand/", checkAuthentication, upload, (req, res, next) => {
     })
     var params = [data.filename, data.id]
     db.serialize(() => {
-      db.run('UPDATE Teilebestand SET Filename = ? WHERE id = ?', params, function (err) {
+      db.run('UPDATE Teilebestand SET filename = ? WHERE id = ?', params, function (err) {
         if (err) {
           res.send("Error encountered while updating");
           return res.status(400).json({ error: true });

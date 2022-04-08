@@ -131,7 +131,49 @@
     border: none;
     color: white;
 }
-
+.ItemPreview {
+    height: 140px;
+    width: 200px;
+    margin-left: 450px;
+    background: var(--background);
+    border-radius: 7px;
+    flex-direction: column;
+    display: flex;
+    overflow: hidden;
+}
+.imageWrapper {
+    width: 200px;
+    height: 140px;
+    justify-content: center;
+    display: flex;
+}
+.imagePreview {
+    max-width: 200px;
+    width: auto;
+    max-height: 140px;
+    height: auto;
+    align-self: center;
+}
+.imgDelButton {
+    color: white;
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.4);
+    width: 190px;
+    padding: 2px 5px;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.imgDelButton:hover {
+   background-color: rgba(0, 0, 0, 0.8);
+   color: white;
+}
+fieldset {
+    border-radius: 6px;
+    width: 200px;
+    margin-left: 450px;
+  }
 
 #tblData {
     font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;

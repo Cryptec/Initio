@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import Sidebar from '../Components/Sidebar'
 import Table from '../Components/Table'
+import ImagePlaceholder from '../Assets/imageplaceholder.png'
+
 
 import '../css/Global.css'
 import '../css/AddNew.css'
@@ -18,11 +20,24 @@ class New extends Component {
       Preis: '',
       Beschreibung: '',
       Supply: '',
+      file: 'null',
+      preview: null, 
       answerOk: 'Success',
       answerDenied: 'Denied',
       count: 0,
       inputText: ''
     }
+  }
+
+  componentDidMount = async () => {
+    this.setState({
+      preview: ImagePlaceholder
+    })
+  }
+
+  removeImage = () => {
+    document.getElementById('image').value = null
+    this.setState({ preview: ImagePlaceholder, file: 'null' })
   }
 
   render() {
@@ -148,6 +163,38 @@ class New extends Component {
                   </label>
                 </div>
 
+                <div className='ItemPreview'>
+                  <div
+                    type='button'
+                    className='imgDelButton'
+                    onClick={() => this.removeImage()}
+                  >
+                    &#x2715;
+                  </div>
+
+                  <div className='imageWrapper' style={{ marginTop: '-25px' }}>
+                    <img
+                      src={this.state.preview}
+                      className='imagePreview'
+                      alt=''
+                    />
+                  </div>
+                </div>
+                <br />
+                <fieldset style={{
+                  display: "flex",
+                  flexDirection: "row",
+                  justifyContent: "space-between"
+                }}>
+                  <legend>Image:</legend>
+                  <input
+                    id='image'
+                    type='file'
+                    name='file'
+                    onChange={this.handleChange.bind(this)}
+                  />
+                </fieldset>
+
                 <input
                   className="Eintragen-Button"
                   type="submit"
@@ -184,30 +231,36 @@ class New extends Component {
       this.setState({ Preis: event.target.value })
     } else if (field === 'Beschreibung') {
       this.setState({ Beschreibung: event.target.value })
-    }
+    } else if (field === 'image') {
+      this.setState({
+        preview: URL.createObjectURL(event.target.files[0]),
+        file: event.target.files[0],
+      })
+    } 
   }
 
   handleSubmit(event) {
     event.preventDefault()
     this.setState({ status: 'Submit' })
+    let data = new FormData()
+    data.append('Teilenummer', this.state.Teilenummer)
+    data.append('SKU', this.state.SKU)
+    data.append('Hersteller', this.state.Hersteller)
+    data.append('Preis', this.state.Preis)
+    data.append('Beschreibung', this.state.Beschreibung)
+    data.append('Supply', this.state.Supply)
+    data.append('file', this.state.file)
 
     axios({
       method: 'POST',
       withCredentials: true,
       credentials: 'iclude',
       url: `${API_ENDPOINT}/api/bestand`,
-      headers: { 'Content-Type': 'application/json' },
-      data: {
-        Teilenummer: this.state.Teilenummer,
-        SKU: this.state.SKU,
-        Hersteller: this.state.Hersteller,
-        Preis: this.state.Preis,
-        Beschreibung: this.state.Beschreibung,
-        Supply: this.state.Supply
-      },
+      headers: { 'Content-Type': 'multipart/form-data' },
+      data: data,
     }).then((response, props) => {
       console.log(response)
-      if (response.data.answer === this.state.answerOk) {
+      if (response.data.success) {
         this.setState({
           Teilenummer: '',
           SKU: '',
@@ -215,6 +268,8 @@ class New extends Component {
           Preis: '',
           Beschreibung: '',
           Supply: '',
+          file: '',
+          preview: ImagePlaceholder,
           count: this.state.count + 1
         }) 
         return console.log('Success')
@@ -225,7 +280,8 @@ class New extends Component {
           Hersteller: '',
           Preis: '',
           Beschreibung: '',
-          Supply: ''
+          Supply: '',
+          file: ''
         })
         return console.log('Failed adding articles')
       }
