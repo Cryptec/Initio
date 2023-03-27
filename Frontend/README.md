@@ -53,3 +53,7 @@ First, you can edit the two dotenv files in the root of the project for enabling
 more infos at:
 
 https://www.freecodecamp.org/news/building-an-electron-application-with-create-react-app-97945861647c/
+
+build and pack
+
+https://wykrhm.medium.com/creating-standalone-desktop-applications-with-react-electron-and-sqlite3-269dbb310aee

@@ -5,7 +5,7 @@
   "description": "Bestandstool",
   "author": "Neupi",
   "proxy": "http://localhost:5000",
-  "main": "src/electron-starter.js",
+  "main": "public/electron.js",
   "dependencies": {
     "@hapi/joi": "15.0.3",
     "@testing-library/jest-dom": "^5.11.4",
@@ -16,6 +16,7 @@
     "concurrently": "^6.0.2",
     "cors": "^2.8.5",
     "dotenv": "^9.0.2",
+    "electron-is-dev": "^2.0.0",
     "electron-squirrel-startup": "^1.0.0",
     "jquery": "^3.6.0",
     "nodemon": "^2.0.15",
@@ -26,9 +27,34 @@
     "react-tabs": "^3.2.2",
     "web-vitals": "^1.0.1"
   },
+  "build": {
+    "appId": "dev.neubauer.initio",
+    "productName": "Initio",
+    "files": [
+      "build/**/*"
+    ],
+    "directories": {
+      "buildResources": "build"
+    },
+    "extraResources": [
+      {
+        "from": "../Backend/db.sqlite",
+        "to": "db/",
+        "filter": [
+          "**/*"
+        ]
+      }
+    ],
+    "win": {
+      "icon": "./build/images/appicon.ico",
+      "target": [
+        "7z"
+      ]
+    }
+  },
   "scripts": {
     "forge": "electron-forge start",
-    "build": "react-scripts build",
+    "build-react": "react-scripts build",
     "start": "react-scripts start",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
@@ -37,7 +63,11 @@
     "dev": "concurrently \"yarn run server\" \"yarn run client\" ",
     "electron": "electron .",
     "package": "electron-forge package",
-    "make": "electron-forge make"
+    "make": "electron-forge make",
+    "postinstall": "electron-builder install-app-deps",
+    "pack-app": "yarn build && electron-builder --dir",
+    "pack-build": "electron-builder --dir",
+    "build": "yarn build-react && electron-builder"
   },
   "eslintConfig": {
     "extends": [
@@ -63,7 +93,8 @@
     "@electron-forge/maker-rpm": "^6.0.0-beta.63",
     "@electron-forge/maker-squirrel": "^6.0.0-beta.63",
     "@electron-forge/maker-zip": "^6.0.0-beta.63",
-    "electron": "^12.0.4"
+    "electron": "^12.0.4",
+    "electron-builder": "^23.6.0"
   },
   "config": {
     "forge": {
