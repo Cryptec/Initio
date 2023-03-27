@@ -56,7 +56,7 @@ router.post("/bestand/", checkAuthentication, (req, res, next) => {
       Supply: req.body.Supply
     }
     var sql = 'UPDATE Teilebestand set Teilenummer = ?, SKU = ?, Hersteller = ?, Preis = ?, Beschreibung = ?, Supply = ? WHERE id = ?'
-    var params = [data.Teilenummer, data.SKU, data.Hersteller, data.Preis, data.Supply, data.Beschreibung, data.id]
+    var params = [data.Teilenummer, data.SKU, data.Hersteller, data.Preis, data.Beschreibung, data.Supply, data.id]
     db.run(sql, params, (err, rows) => {
       if (err) {
         res.status(400).json({ "error": err.message });
