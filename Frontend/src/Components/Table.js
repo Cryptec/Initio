@@ -80,7 +80,7 @@ renderTableRows = () => {
     if (this.props.input === '') {
       return el
     } else {
-      return el.Beschreibung.toLowerCase().includes(this.props.input)
+      return el.Teilenummer.toLowerCase().includes(this.props.input) || el.Beschreibung.toLowerCase().includes(this.props.input) || el.SKU.toLowerCase().includes(this.props.input) 
     }
   })
 
