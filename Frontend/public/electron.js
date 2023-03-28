@@ -1,5 +1,5 @@
 
-const { app, BrowserWindow } = require('electron'); // electron
+const { app, BrowserWindow, electron } = require('electron'); // electron
 const isDev = require('electron-is-dev'); // To check if electron is in development mode
 const path = require('path');
 
@@ -15,11 +15,13 @@ const createWindow = () => {
         frame: false,
         webPreferences: {
             // The preload file where we will perform our app communication
+            nodeIntegration: true,
+            enableRemoteModule: true,
+            contextIsolation: false,
             preload: isDev
                 ? path.join(app.getAppPath(), './public/preload.js') // Loading it from the public folder for dev
                 : path.join(app.getAppPath(), './build/preload.js'), // Loading it from the build folder for production
             worldSafeExecuteJavaScript: true, // If you're using Electron 12+, this should be enabled by default and does not need to be added here.
-            contextIsolation: true, // Isolating context so our app is not exposed to random javascript executions making it safer.
         },
     });
 
@@ -31,7 +33,7 @@ const createWindow = () => {
     );
 
     // Setting Window Icon - Asset file needs to be in the public/images folder.
-    mainWindow.setIcon(path.join(__dirname, 'images/appicon.ico'));
+    // !!!!!!!!mainWindow.setIcon(path.join(__dirname, 'images/appicon.ico'));
 
     // In development mode, if the window has loaded, then load the dev tools.
     if (isDev) {
@@ -52,16 +54,6 @@ app.setPath(
 // When the app is ready to load
 app.whenReady().then(async () => {
     await createWindow(); // Create the mainWindow
-
-    // If you want to add React Dev Tools
-    if (isDev) {
-        await session.defaultSession
-            .loadExtension(
-                path.join(__dirname, `../userdata/extensions/react-dev-tools`) // This folder should have the chrome extension for React Dev Tools. Get it online or from your Chrome extensions folder.
-            )
-            .then((name) => console.log('Dev Tools Loaded'))
-            .catch((err) => console.log(err));
-    }
 });
 
 // Exiting the app
