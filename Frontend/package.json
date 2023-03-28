@@ -47,9 +47,15 @@
       }
     ],
     "win": {
+      "icon": "build/icon.ico",
       "target": [
         "7z"
       ]
+    },
+    "nsis": {
+      "installerIcon": "build/icon.ico",
+      "installerHeaderIcon": "build/icon.ico",
+      "deleteAppDataOnUninstall": true
     }
   },
   "scripts": {
