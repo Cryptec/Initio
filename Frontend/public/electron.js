@@ -12,6 +12,7 @@ const createWindow = () => {
         height: 700,
         minWidth: 980,
         minHeight: 700,
+        frame: false,
         webPreferences: {
             // The preload file where we will perform our app communication
             preload: isDev
