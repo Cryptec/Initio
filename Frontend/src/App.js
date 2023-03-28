@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PrivateRoute from './Routes/PrivateRoute'
 import PublicRoute from './Routes/PublicRoute'
 import {
-  BrowserRouter as Router,
+  HashRouter as Router,
   Switch
 } from "react-router-dom"
 

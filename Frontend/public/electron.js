@@ -1,7 +1,8 @@
 
-const { app, BrowserWindow, electron } = require('electron'); // electron
+const { app, BrowserWindow } = require('electron'); // electron
 const isDev = require('electron-is-dev'); // To check if electron is in development mode
 const path = require('path');
+const url = require('url');
 
 let mainWindow;
 
@@ -26,21 +27,22 @@ const createWindow = () => {
     });
 
     // Loading a webpage inside the electron window we just created
-    mainWindow.loadURL(
+    /*mainWindow.loadURL(
         isDev
             ? 'http://localhost:3000' // Loading localhost if dev mode
             : `file://${path.join(__dirname, '../build/index.html')}` // Loading build file if in production
-    );
+    );*/
+
+    mainWindow.loadURL(isDev ? 'http://localhost:3000' : // Loading localhost if dev mode
+        url.format({
+        pathname: path.join(__dirname, '../build/index.html'),
+        protocol: 'file:',
+        slashes: true
+      }));
 
     // Setting Window Icon - Asset file needs to be in the public/images folder.
     // !!!!!!!!mainWindow.setIcon(path.join(__dirname, 'images/appicon.ico'));
 
-    // In development mode, if the window has loaded, then load the dev tools.
-    if (isDev) {
-        mainWindow.webContents.on('did-frame-finish-load', () => {
-            mainWindow.webContents.openDevTools({ mode: 'detach' });
-        });
-    }
 };
 
 // ((OPTIONAL)) Setting the location for the userdata folder created by an Electron app. It default to the AppData folder if you don't set it.
