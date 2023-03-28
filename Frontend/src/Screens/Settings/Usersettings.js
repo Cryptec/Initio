@@ -7,7 +7,7 @@ import Userstable from '../../Components/Userstable'
 import '../../css/Global.css'
 import '../../css/Usersettings.css'
 
-const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT
+const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT || 'http://localhost:5000'
 
 class Usersettings extends Component {
     constructor() {

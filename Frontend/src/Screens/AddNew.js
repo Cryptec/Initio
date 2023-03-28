@@ -6,7 +6,7 @@ import Table from '../Components/Table'
 import '../css/Global.css'
 import '../css/AddNew.css'
 
-const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT
+const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT || 'http://localhost:5000'
 
 class New extends Component {
   constructor(props) {

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT || 'localhost:5000'
+const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT || 'http://localhost:5000'
 
 class Userstable extends Component {
   constructor(props) {

@@ -1,6 +1,5 @@
 const TOKEN_KEY = 'jwt';
-const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT || 'http://localhost:5000/api/'
-
+const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT || 'http://localhost:5000'
 export const login = () => {
     localStorage.setItem(TOKEN_KEY, 'Login');
     localStorage.setItem('filter', '');

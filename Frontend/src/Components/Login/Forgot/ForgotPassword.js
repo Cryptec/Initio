@@ -4,8 +4,7 @@ import { Link } from 'react-router-dom'
 
 import '../../../css/logincss/forgotbox.css'
 
-const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT
-
+const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT || 'http://localhost:5000'
 class ForgotPassword extends Component {
     constructor() {
         super();

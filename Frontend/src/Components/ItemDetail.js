@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import { Redirect } from 'react-router-dom'
 
 import '../css/Global.css'
 
-const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT || 'localhost:5000'
+const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT || 'http://localhost:5000'
 
 class ItemDetail extends Component {
   constructor(props) {
@@ -19,7 +20,8 @@ class ItemDetail extends Component {
       Preis: '',
       Hersteller: '',
       Supply: '',
-      Beschreibung: ''
+      Beschreibung: '',
+      redirect: false
     }
   }
 
@@ -56,7 +58,7 @@ class ItemDetail extends Component {
     }).then((response, props) => {
       console.log(response)
       if (response.data.success) {
-        return window.location.replace('/invoke')
+        return this.setState({ redirect: true });
       } else {
         this.setState({ isError: true, isLoading: false })
         return console.error()
@@ -65,6 +67,12 @@ class ItemDetail extends Component {
   }
 
   render() {
+
+    const { redirect } = this.state;
+
+    if (redirect) {
+      return <Redirect to='/invoke'/>;
+    }
     
     return (
       <div>
@@ -235,7 +243,7 @@ class ItemDetail extends Component {
     console.log(response)
     if (response.data.success) {
       console.log('Successfully edited data')
-      return window.location.replace('/invoke')
+      return this.setState({ redirect: true });
     } else {
       return console.error()
     }
