@@ -22,10 +22,10 @@ $(window).on("load", function () {
         }
     });
 
-    $("#close").click(function () {
+    $("#close").click(async function () {
         console.log("close");
+        await logout();
         mainWindow.close();
-        logout();
     });
 
 });
