@@ -50,8 +50,8 @@ render() {
           <thead>
             <tr>
               <th style={{borderTopLeftRadius: "4px"}}>Teilenummer</th>
-              <th>Hersteller</th>
               <th>Beschreibung</th>
+              <th>Stück</th>
               <th>Preis</th>
               <th style={{borderTopRightRadius: "4px"}}>SKU</th>
             </tr>
@@ -90,8 +90,8 @@ renderTableRows = () => {
       return (
         <tr key={part.id}>
           <td>{part.Teilenummer}</td>
-          <td>{part.Hersteller}</td>
           <td>{Beschreibung}</td>
+          <td>{part.Supply}</td>
           <td>{part.Preis}€</td>
           <td>{part.SKU}<span className="editButton" onClick={() => this.toggle(part.id)}>&#9998;</span></td>
         </tr>

@@ -158,7 +158,7 @@ class ItemDetail extends Component {
 
           <div className="Supply">
             <label>
-              Lager:
+              Stück:
                 <br />
                 <input
                   type="text"

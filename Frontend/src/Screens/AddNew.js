@@ -114,7 +114,7 @@ class New extends Component {
 
                 <div className="Supply">
                   <label>
-                    Lager:
+                    Stück:
                     <br />
                     <input
                       type="text"
@@ -155,7 +155,7 @@ class New extends Component {
                 />
 
                 <span id="response"></span>
-                <button className="exportieren">Exportieren</button>
+ 
               </form>
             </div>
 
