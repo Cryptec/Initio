@@ -10,6 +10,7 @@ class Login extends Component {
                 
                 <header className="App-header">
                     <Loginbox />
+                    <div style={{ alignItems: 'center', display: 'flex', zIndex: '5', marginBottom: '-500px', fontSize: "0.9rem", color: 'gray' }}> Developed by Martin 'Scheiß' Neubauer</div>
                 </header>
             </div>
         )
