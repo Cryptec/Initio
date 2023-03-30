@@ -4,6 +4,8 @@ import { Redirect } from 'react-router-dom'
 
 import '../css/Global.css'
 
+const { getCurrentWindow } = window.require('electron').remote;
+
 const API_ENDPOINT = process.env.REACT_APP_API_ENDPOINT || 'http://localhost:5000'
 
 class ItemDetail extends Component {
@@ -71,7 +73,7 @@ class ItemDetail extends Component {
     const { redirect } = this.state;
 
     if (redirect) {
-      return <Redirect to='/invoke'/>;
+      return <Redirect to='/invoke'/> && getCurrentWindow().reload()
     }
     
     return (
